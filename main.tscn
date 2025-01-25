@@ -1,0 +1,176 @@
+[gd_scene load_steps=13 format=3 uid="uid://bdtgtu13nvteb"]
+
+[ext_resource type="Script" uid="uid://bydr7oqoaswx4" path="res://player.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://tile_2x_2_fall_2.tscn" id="1_272bh"]
+[ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://fall_behaviour.tscn" id="2_7mycd"]
+[ext_resource type="Texture2D" uid="uid://dff04sidgiid8" path="res://IMG_0024.PNG" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://d0lich7a7ntyi" path="res://floor_detector.gd" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://6n7kt5jydwjv" path="res://dash_behaviour.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://d2eg51q6jdijo" path="res://move_8d_behaviour.gd" id="7_272bh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(96, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(96, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
+radius = 4.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tiles" type="Node" parent="."]
+
+[node name="tile_2x2_fall2" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(0, -24)
+
+[node name="tile_2x2_fall3" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(0, -80)
+
+[node name="tile_2x2_fall4" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(0, -96)
+
+[node name="tile_2x2_fall5" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(0, -112)
+
+[node name="tile_2x2_fall6" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(0, -128)
+
+[node name="tile_2x2_fall7" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(0, -144)
+
+[node name="tile_2x2_fall8" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(56, 0)
+
+[node name="tile_2x2_fall9" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(72, 0)
+
+[node name="tile_2x2_fall10" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(88, 0)
+
+[node name="tile_2x2_fall11" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(88, -16)
+
+[node name="tile_2x2_fall12" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(88, -32)
+
+[node name="tile_2x2_fall13" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(88, -48)
+
+[node name="tile_2x2_fall14" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(72, -48)
+
+[node name="tile_2x2_fall15" parent="tiles" instance=ExtResource("1_272bh")]
+position = Vector2(56, -48)
+
+[node name="tile_solid" type="Area2D" parent="." groups=["floor"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_solid"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Area2D" type="Area2D" parent="tile_solid"]
+position = Vector2(-48, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_solid/Area2D"]
+position = Vector2(48, 20)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="ColorRect" type="ColorRect" parent="tile_solid"]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 24.0
+color = Color(0.635294, 0.670588, 0.678431, 1)
+
+[node name="tile_solid2" type="Area2D" parent="." groups=["floor"]]
+position = Vector2(0, -56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_solid2"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Area2D" type="Area2D" parent="tile_solid2"]
+position = Vector2(-48, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_solid2/Area2D"]
+position = Vector2(48, 20)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="ColorRect" type="ColorRect" parent="tile_solid2"]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 24.0
+color = Color(0.635294, 0.670588, 0.678431, 1)
+
+[node name="tile_success" type="Area2D" parent="." groups=["floor"]]
+position = Vector2(0, -168)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_success"]
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="Area2D" type="Area2D" parent="tile_success"]
+position = Vector2(-16, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_success/Area2D"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="ColorRect" type="ColorRect" parent="tile_success"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0.271062, 0.725013, 0.862412, 1)
+
+[node name="player" type="CharacterBody2D" parent="."]
+z_index = 1
+script = ExtResource("1_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+shape = SubResource("CircleShape2D_7dm0k")
+
+[node name="Area2D" type="Area2D" parent="player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/Area2D"]
+shape = SubResource("CircleShape2D_7dm0k")
+
+[node name="floor_detector" type="Node" parent="player" node_paths=PackedStringArray("area2d")]
+script = ExtResource("3_lquwl")
+area2d = NodePath("../Area2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_h2yge")
+hframes = 4
+
+[node name="fall_behaviour" parent="player" node_paths=PackedStringArray("obj") instance=ExtResource("2_7mycd")]
+obj = NodePath("..")
+
+[node name="dash_behaviour" type="Sprite2D" parent="player"]
+modulate = Color(1, 1, 1, 0.580392)
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_h2yge")
+hframes = 4
+script = ExtResource("4_1bvp3")
+
+[node name="move_8d_behaviour" type="Node" parent="player" node_paths=PackedStringArray("body")]
+script = ExtResource("7_272bh")
+body = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(5, 5)
+
+[connection signal="area_entered" from="player/Area2D" to="player" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="player/Area2D" to="player" method="_on_area_2d_area_exited"]
