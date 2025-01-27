@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bdtgtu13nvteb"]
+[gd_scene load_steps=25 format=3 uid="uid://bdtgtu13nvteb"]
 
 [ext_resource type="Script" uid="uid://bydr7oqoaswx4" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://tile_2x_2_fall_2.tscn" id="1_272bh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://of5s0msd320i" path="res://tile_success.gd" id="2_efxa6"]
 [ext_resource type="Texture2D" uid="uid://dff04sidgiid8" path="res://IMG_0024.PNG" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://d0lich7a7ntyi" path="res://floor_detector.gd" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://c0keajjc83v4e" path="res://round_progress_bar.gd" id="3_vivmo"]
 [ext_resource type="Script" uid="uid://6n7kt5jydwjv" path="res://dash_behaviour.gd" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://d2eg51q6jdijo" path="res://move_8d_behaviour.gd" id="7_272bh"]
 [ext_resource type="Shader" uid="uid://ccd6yuc2skwrt" path="res://lava.gdshader" id="8_5vw27"]
@@ -185,9 +186,11 @@ color = Color(0.271062, 0.725013, 0.862412, 1)
 
 [node name="player_container" type="Node" parent="."]
 
-[node name="dash_cooldown_bar" type="Node2D" parent="player_container"]
+[node name="dash_progress_bar" type="Node2D" parent="player_container" node_paths=PackedStringArray("obj")]
+script = ExtResource("3_vivmo")
+obj = NodePath("../player/dash_behaviour")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="player_container/dash_cooldown_bar"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="player_container/dash_progress_bar"]
 modulate = Color(0.180392, 1, 1, 0.796078)
 z_index = 2
 texture_filter = 1
@@ -219,7 +222,7 @@ body = NodePath("..")
 script = ExtResource("9_4c57u")
 body = NodePath("..")
 
-[node name="dash_behaviour" type="Sprite2D" parent="player_container/player" node_paths=PackedStringArray("progress_bar")]
+[node name="dash_behaviour" type="Sprite2D" parent="player_container/player"]
 modulate = Color(1, 1, 1, 0.580392)
 texture_filter = 1
 rotation = 1.5708
@@ -227,7 +230,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_h2yge")
 hframes = 4
 script = ExtResource("4_1bvp3")
-progress_bar = NodePath("../../dash_cooldown_bar/TextureProgressBar")
 
 [node name="floor_detector" type="Node" parent="player_container/player" node_paths=PackedStringArray("area2d")]
 script = ExtResource("3_lquwl")
@@ -255,7 +257,7 @@ hframes = 4
 zoom = Vector2(3, 3)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player_container/player"]
-remote_path = NodePath("../../dash_cooldown_bar")
+remote_path = NodePath("../../dash_progress_bar")
 update_rotation = false
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
