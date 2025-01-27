@@ -1,0 +1,19 @@
+- decouple progressbar from dash_behaviour
+- make tile agnostic to reuse for all type of tiles on player enter
+- add objects height, sort ordering based on height
+- decouple camera2d from player and follow on x y and height
+- make start level transition
+
+- to design cool levels:
+	- add bomb
+	- make success transition
+	- make level menu
+	- add collectables
+	- add keys
+
+
+- sound:
+	- add player falling sound
+	- add tile breaking sound and tile falling sound
+	- add steps sound
+	- add dash loading/unloading sound

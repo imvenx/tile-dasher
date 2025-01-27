@@ -1,12 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdtgtu13nvteb"]
+[gd_scene load_steps=24 format=3 uid="uid://bdtgtu13nvteb"]
 
 [ext_resource type="Script" uid="uid://bydr7oqoaswx4" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://tile_2x_2_fall_2.tscn" id="1_272bh"]
 [ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://fall_behaviour.tscn" id="2_7mycd"]
+[ext_resource type="Script" uid="uid://of5s0msd320i" path="res://tile_success.gd" id="2_efxa6"]
 [ext_resource type="Texture2D" uid="uid://dff04sidgiid8" path="res://IMG_0024.PNG" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://d0lich7a7ntyi" path="res://floor_detector.gd" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://6n7kt5jydwjv" path="res://dash_behaviour.gd" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://d2eg51q6jdijo" path="res://move_8d_behaviour.gd" id="7_272bh"]
+[ext_resource type="Shader" uid="uid://ccd6yuc2skwrt" path="res://lava.gdshader" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://clem6o42602g3" path="res://rotate_behaviour.gd" id="9_4c57u"]
+[ext_resource type="Shader" uid="uid://bm5fdmyagtgm4" path="res://blur.gdshader" id="9_kek77"]
+[ext_resource type="Texture2D" uid="uid://hymvbmaxmuox" path="res://path868.png" id="10_dg77c"]
+[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://555380__andreivstudio__lava-ambience.wav" id="14_w48qg"]
+[ext_resource type="AudioStream" uid="uid://cjc6cp5a21hs6" path="res://energy-90321.mp3" id="15_vivmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(96, 40)
@@ -23,6 +30,32 @@ size = Vector2(32, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
 radius = 4.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+shader = ExtResource("8_5vw27")
+shader_parameter/wave_speed_6 = 0.3
+shader_parameter/wave_amplitude_5 = 2.0
+shader_parameter/wave_frequency_6 = 5.0
+shader_parameter/lava_color_7 = Vector4(0.8, 0.1, 0, 1)
+shader_parameter/glow_intensity_5 = 3.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_272bh"]
+frequency = 0.744
+fractal_type = 2
+fractal_lacunarity = -0.075
+fractal_gain = 1.185
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5vw27"]
+noise = SubResource("FastNoiseLite_272bh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
+shader = ExtResource("9_kek77")
+shader_parameter/blur_radius3 = 10
+shader_parameter/Darknes3 = 0.1
+shader_parameter/R = 0.0
+shader_parameter/G = 0.0
+shader_parameter/B = 0.0
+shader_parameter/blur_strength3 = 5.0
+
 [node name="Node2D" type="Node2D"]
 
 [node name="tiles" type="Node" parent="."]
@@ -35,9 +68,6 @@ position = Vector2(0, -80)
 
 [node name="tile_2x2_fall4" parent="tiles" instance=ExtResource("1_272bh")]
 position = Vector2(0, -96)
-
-[node name="tile_2x2_fall5" parent="tiles" instance=ExtResource("1_272bh")]
-position = Vector2(0, -112)
 
 [node name="tile_2x2_fall6" parent="tiles" instance=ExtResource("1_272bh")]
 position = Vector2(0, -128)
@@ -69,94 +99,127 @@ position = Vector2(72, -48)
 [node name="tile_2x2_fall15" parent="tiles" instance=ExtResource("1_272bh")]
 position = Vector2(56, -48)
 
-[node name="tile_solid" type="Area2D" parent="." groups=["floor"]]
+[node name="tile_solid" type="Area2D" parent="tiles" groups=["floor"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_solid"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid"]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_1bvp3")
 
-[node name="Area2D" type="Area2D" parent="tile_solid"]
+[node name="Area2D" type="Area2D" parent="tiles/tile_solid"]
 position = Vector2(-48, -16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_solid/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid/Area2D"]
 position = Vector2(48, 20)
 shape = SubResource("RectangleShape2D_lquwl")
 
-[node name="ColorRect" type="ColorRect" parent="tile_solid"]
+[node name="ColorRect" type="ColorRect" parent="tiles/tile_solid"]
 offset_left = -48.0
 offset_top = -16.0
 offset_right = 48.0
 offset_bottom = 24.0
 color = Color(0.635294, 0.670588, 0.678431, 1)
 
-[node name="tile_solid2" type="Area2D" parent="." groups=["floor"]]
+[node name="tile_solid2" type="Area2D" parent="tiles" groups=["floor"]]
 position = Vector2(0, -56)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_solid2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid2"]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_1bvp3")
 
-[node name="Area2D" type="Area2D" parent="tile_solid2"]
+[node name="Area2D" type="Area2D" parent="tiles/tile_solid2"]
 position = Vector2(-48, -16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_solid2/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid2/Area2D"]
 position = Vector2(48, 20)
 shape = SubResource("RectangleShape2D_lquwl")
 
-[node name="ColorRect" type="ColorRect" parent="tile_solid2"]
+[node name="ColorRect" type="ColorRect" parent="tiles/tile_solid2"]
 offset_left = -48.0
 offset_top = -16.0
 offset_right = 48.0
 offset_bottom = 24.0
 color = Color(0.635294, 0.670588, 0.678431, 1)
 
-[node name="tile_success" type="Area2D" parent="." groups=["floor"]]
-position = Vector2(0, -168)
+[node name="tile_solid3" type="Area2D" parent="tiles" groups=["floor"]]
+position = Vector2(-64, -80)
+rotation = 1.57079
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_success"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid3"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Area2D" type="Area2D" parent="tiles/tile_solid3"]
+position = Vector2(-48, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid3/Area2D"]
+position = Vector2(48, 20)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="ColorRect" type="ColorRect" parent="tiles/tile_solid3"]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 24.0
+color = Color(0.635294, 0.670588, 0.678431, 1)
+
+[node name="tile_success" type="Area2D" parent="tiles" groups=["floor"]]
+position = Vector2(0, -168)
+script = ExtResource("2_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_success"]
 shape = SubResource("RectangleShape2D_272bh")
 
-[node name="Area2D" type="Area2D" parent="tile_success"]
+[node name="Area2D" type="Area2D" parent="tiles/tile_success"]
 position = Vector2(-16, -16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_success/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_success/Area2D"]
 position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_5vw27")
 
-[node name="ColorRect" type="ColorRect" parent="tile_success"]
+[node name="ColorRect" type="ColorRect" parent="tiles/tile_success"]
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
 color = Color(0.271062, 0.725013, 0.862412, 1)
 
-[node name="player" type="CharacterBody2D" parent="."]
+[node name="player_container" type="Node" parent="."]
+
+[node name="dash_cooldown_bar" type="Node2D" parent="player_container"]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="player_container/dash_cooldown_bar"]
+modulate = Color(0.180392, 1, 1, 0.796078)
+z_index = 2
+texture_filter = 1
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 26.0
+offset_bottom = 27.0
+scale = Vector2(0.206756, 0.206756)
+value = 100.0
+rounded = true
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("10_dg77c")
+
+[node name="player" type="CharacterBody2D" parent="player_container"]
 z_index = 1
 script = ExtResource("1_0xm2m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-shape = SubResource("CircleShape2D_7dm0k")
+[node name="dash_sound" type="AudioStreamPlayer2D" parent="player_container/player"]
+position = Vector2(-4, 18)
+stream = ExtResource("15_vivmo")
+attenuation = 1.6245
 
-[node name="Area2D" type="Area2D" parent="player"]
+[node name="move_8d_behaviour" type="Node" parent="player_container/player" node_paths=PackedStringArray("body")]
+script = ExtResource("7_272bh")
+body = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player/Area2D"]
-shape = SubResource("CircleShape2D_7dm0k")
+[node name="rotate_behaviour" type="Node" parent="player_container/player" node_paths=PackedStringArray("body")]
+script = ExtResource("9_4c57u")
+body = NodePath("..")
 
-[node name="floor_detector" type="Node" parent="player" node_paths=PackedStringArray("area2d")]
-script = ExtResource("3_lquwl")
-area2d = NodePath("../Area2D")
-
-[node name="Sprite2D" type="Sprite2D" parent="player"]
-texture_filter = 1
-rotation = 1.5708
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_h2yge")
-hframes = 4
-
-[node name="fall_behaviour" parent="player" node_paths=PackedStringArray("obj") instance=ExtResource("2_7mycd")]
-obj = NodePath("..")
-
-[node name="dash_behaviour" type="Sprite2D" parent="player"]
+[node name="dash_behaviour" type="Sprite2D" parent="player_container/player" node_paths=PackedStringArray("progress_bar")]
 modulate = Color(1, 1, 1, 0.580392)
 texture_filter = 1
 rotation = 1.5708
@@ -164,13 +227,178 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_h2yge")
 hframes = 4
 script = ExtResource("4_1bvp3")
+progress_bar = NodePath("../../dash_cooldown_bar/TextureProgressBar")
 
-[node name="move_8d_behaviour" type="Node" parent="player" node_paths=PackedStringArray("body")]
-script = ExtResource("7_272bh")
-body = NodePath("..")
+[node name="floor_detector" type="Node" parent="player_container/player" node_paths=PackedStringArray("area2d")]
+script = ExtResource("3_lquwl")
+area2d = NodePath("../Area2D")
 
-[node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(5, 5)
+[node name="fall_behaviour" parent="player_container/player" node_paths=PackedStringArray("obj") instance=ExtResource("2_7mycd")]
+obj = NodePath("..")
 
-[connection signal="area_entered" from="player/Area2D" to="player" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="player/Area2D" to="player" method="_on_area_2d_area_exited"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_container/player"]
+shape = SubResource("CircleShape2D_7dm0k")
+
+[node name="Area2D" type="Area2D" parent="player_container/player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_container/player/Area2D"]
+shape = SubResource("CircleShape2D_7dm0k")
+
+[node name="Sprite2D" type="Sprite2D" parent="player_container/player"]
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_h2yge")
+hframes = 4
+
+[node name="Camera2D" type="Camera2D" parent="player_container/player"]
+zoom = Vector2(3, 3)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="player_container/player"]
+remote_path = NodePath("../../dash_cooldown_bar")
+update_rotation = false
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(144, 128)
+autoscroll = Vector2(100, 100)
+screen_offset = Vector2(100, 100)
+
+[node name="ColorRect7" type="ColorRect" parent="Parallax2D"]
+visible = false
+offset_left = 288.0
+offset_top = 72.0
+offset_right = 384.0
+offset_bottom = 112.0
+scale = Vector2(0.658006, 0.658006)
+color = Color(0.492598, 0.529429, 0.537608, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="Parallax2D"]
+visible = false
+offset_left = 184.0
+offset_top = 80.0
+offset_right = 280.0
+offset_bottom = 120.0
+scale = Vector2(0.658006, 0.658006)
+color = Color(0.492598, 0.529429, 0.537608, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="Parallax2D/ColorRect8"]
+visible = false
+layout_mode = 0
+offset_left = 104.0
+offset_top = -160.0
+offset_right = 200.0
+offset_bottom = -120.0
+scale = Vector2(0.52954, 2.96534)
+color = Color(0.492598, 0.529429, 0.537608, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="Parallax2D/ColorRect8"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -8.0
+offset_right = 256.0
+offset_bottom = 32.0
+scale = Vector2(0.52954, 2.96534)
+color = Color(0.492598, 0.529429, 0.537608, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="Parallax2D"]
+visible = false
+offset_left = 192.0
+offset_top = -32.0
+offset_right = 288.0
+offset_bottom = 8.0
+scale = Vector2(0.744795, 0.744795)
+color = Color(0.492598, 0.529429, 0.537608, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+visible = false
+z_index = -1
+offset_left = -152.0
+offset_top = 44.8033
+offset_right = -16.0
+offset_bottom = 84.8033
+scale = Vector2(2.32828, -0.920082)
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Parallax2D"]
+visible = false
+z_index = -1
+offset_left = -152.0
+offset_top = -3.19672
+offset_right = -16.0
+offset_bottom = 36.8033
+scale = Vector2(2.32828, -0.920082)
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Parallax2D"]
+visible = false
+z_index = -1
+offset_left = -152.0
+offset_top = -51.1967
+offset_right = -16.0
+offset_bottom = -11.1967
+scale = Vector2(2.32828, -0.920082)
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Parallax2D"]
+visible = false
+z_index = -1
+offset_left = -152.0
+offset_top = -99.1967
+offset_right = -16.0
+offset_bottom = -59.1967
+scale = Vector2(2.32828, -0.920082)
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Parallax2D"]
+visible = false
+z_index = -1
+offset_left = -152.0
+offset_top = -147.197
+offset_right = -16.0
+offset_bottom = -107.197
+scale = Vector2(2.32828, -0.920082)
+color = Color(1, 0, 0, 1)
+
+[node name="lava" type="TextureRect" parent="Parallax2D"]
+modulate = Color(1, 0.329412, 0, 1)
+z_index = -1
+material = SubResource("ShaderMaterial_5vw27")
+offset_left = 96.0
+offset_top = -3.0
+offset_right = 1577.0
+offset_bottom = 1267.0
+scale = Vector2(0.371562, 0.371562)
+texture = SubResource("NoiseTexture2D_5vw27")
+
+[node name="lava2" type="TextureRect" parent="Parallax2D"]
+visible = false
+modulate = Color(1, 0.329412, 0, 1)
+z_index = -1
+material = SubResource("ShaderMaterial_5vw27")
+offset_left = 28.0
+offset_top = -28.0
+offset_right = 2239.0
+offset_bottom = 1868.0
+scale = Vector2(0.371562, 0.371562)
+texture = SubResource("NoiseTexture2D_5vw27")
+
+[node name="blur_glass" type="ColorRect" parent="."]
+modulate = Color(1, 0.388235, 0.219608, 1)
+z_index = 1
+material = SubResource("ShaderMaterial_4c57u")
+offset_left = -48.0
+offset_top = -16.0
+offset_right = -24.0
+offset_bottom = 4.0
+color = Color(1, 0.376471, 0.32549, 1)
+
+[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, 16)
+stream = ExtResource("14_w48qg")
+autoplay = true
+
+[connection signal="body_entered" from="tiles/tile_success/Area2D" to="tiles/tile_success" method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="player_container/player/Area2D" to="player_container/player" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="player_container/player/Area2D" to="player_container/player" method="_on_area_2d_area_exited"]
