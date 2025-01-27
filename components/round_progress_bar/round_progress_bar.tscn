@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh8uwy3lhrnnt"]
+
+[ext_resource type="Script" uid="uid://c0keajjc83v4e" path="res://components/round_progress_bar/round_progress_bar.gd" id="1_x76u7"]
+[ext_resource type="Texture2D" uid="uid://hymvbmaxmuox" path="res://components/round_progress_bar/round_progress_bar.png" id="2_vcgs8"]
+
+[node name="dash_progress_bar" type="Node2D" node_paths=PackedStringArray("obj")]
+script = ExtResource("1_x76u7")
+obj = NodePath("")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+modulate = Color(0.180392, 1, 1, 0.796078)
+z_index = 2
+texture_filter = 1
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 26.0
+offset_bottom = 27.0
+scale = Vector2(0.206756, 0.206756)
+value = 100.0
+rounded = true
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("2_vcgs8")

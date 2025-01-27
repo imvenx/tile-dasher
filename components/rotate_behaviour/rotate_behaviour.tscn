@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr0fsgqgq5ert"]
+
+[ext_resource type="Script" uid="uid://clem6o42602g3" path="res://components/rotate_behaviour/rotate_behaviour.gd" id="1_rpix0"]
+
+[node name="rotate_behaviour" type="Node" node_paths=PackedStringArray("body")]
+script = ExtResource("1_rpix0")
+body = NodePath("")

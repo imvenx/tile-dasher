@@ -8,6 +8,7 @@ class_name Player
 @onready var rotate_behaviour: RotateBehaviour = $rotate_behaviour
 @onready var dash_sound: AudioStreamPlayer2D = $dash_sound
 
+
 func _ready() -> void:
 	floor_detector.connect('fallen', on_fall)
 	fall_behaviour.connect('ended_falling', on_ended_falling)

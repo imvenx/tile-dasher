@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://75pwb1i0ieac"]
+
+[ext_resource type="Script" uid="uid://d2eg51q6jdijo" path="res://components/move_8d_behaviour/move_8d_behaviour.gd" id="1_urp2v"]
+
+[node name="move_8d_behaviour" type="Node" node_paths=PackedStringArray("body")]
+script = ExtResource("1_urp2v")
+body = NodePath("")

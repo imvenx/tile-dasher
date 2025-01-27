@@ -1,20 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://bdtgtu13nvteb"]
+[gd_scene load_steps=24 format=3 uid="uid://bdtgtu13nvteb"]
 
 [ext_resource type="Script" uid="uid://bydr7oqoaswx4" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://tile_2x_2_fall_2.tscn" id="1_272bh"]
-[ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://fall_behaviour.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://components/fall_behaviour/fall_behaviour.tscn" id="2_7mycd"]
 [ext_resource type="Script" uid="uid://of5s0msd320i" path="res://tile_success.gd" id="2_efxa6"]
 [ext_resource type="Texture2D" uid="uid://dff04sidgiid8" path="res://IMG_0024.PNG" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://d0lich7a7ntyi" path="res://floor_detector.gd" id="3_lquwl"]
-[ext_resource type="Script" uid="uid://c0keajjc83v4e" path="res://round_progress_bar.gd" id="3_vivmo"]
-[ext_resource type="Script" uid="uid://6n7kt5jydwjv" path="res://dash_behaviour.gd" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://d2eg51q6jdijo" path="res://move_8d_behaviour.gd" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://bh8uwy3lhrnnt" path="res://components/round_progress_bar/round_progress_bar.tscn" id="3_w48qg"]
+[ext_resource type="PackedScene" uid="uid://75pwb1i0ieac" path="res://components/move_8d_behaviour/move_8d_behaviour.tscn" id="7_vivmo"]
 [ext_resource type="Shader" uid="uid://ccd6yuc2skwrt" path="res://lava.gdshader" id="8_5vw27"]
-[ext_resource type="Script" uid="uid://clem6o42602g3" path="res://rotate_behaviour.gd" id="9_4c57u"]
+[ext_resource type="PackedScene" uid="uid://cr0fsgqgq5ert" path="res://components/rotate_behaviour/rotate_behaviour.tscn" id="8_vivmo"]
 [ext_resource type="Shader" uid="uid://bm5fdmyagtgm4" path="res://blur.gdshader" id="9_kek77"]
-[ext_resource type="Texture2D" uid="uid://hymvbmaxmuox" path="res://path868.png" id="10_dg77c"]
-[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://555380__andreivstudio__lava-ambience.wav" id="14_w48qg"]
-[ext_resource type="AudioStream" uid="uid://cjc6cp5a21hs6" path="res://energy-90321.mp3" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://bsrdnd0no6pen" path="res://components/dash_behaviour/dash_behaviour.tscn" id="9_vivmo"]
+[ext_resource type="PackedScene" uid="uid://deg8ko62xh357" path="res://components/floor_detector/floor_detector.tscn" id="10_vivmo"]
+[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="14_w48qg"]
+[ext_resource type="AudioStream" uid="uid://cjc6cp5a21hs6" path="res://sound/energy-90321.mp3" id="15_vivmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(96, 40)
@@ -186,24 +185,8 @@ color = Color(0.271062, 0.725013, 0.862412, 1)
 
 [node name="player_container" type="Node" parent="."]
 
-[node name="dash_progress_bar" type="Node2D" parent="player_container" node_paths=PackedStringArray("obj")]
-script = ExtResource("3_vivmo")
+[node name="dash_progress_bar" parent="player_container" node_paths=PackedStringArray("obj") instance=ExtResource("3_w48qg")]
 obj = NodePath("../player/dash_behaviour")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="player_container/dash_progress_bar"]
-modulate = Color(0.180392, 1, 1, 0.796078)
-z_index = 2
-texture_filter = 1
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 26.0
-offset_bottom = 27.0
-scale = Vector2(0.206756, 0.206756)
-value = 100.0
-rounded = true
-fill_mode = 4
-nine_patch_stretch = true
-texture_progress = ExtResource("10_dg77c")
 
 [node name="player" type="CharacterBody2D" parent="player_container"]
 z_index = 1
@@ -214,25 +197,17 @@ position = Vector2(-4, 18)
 stream = ExtResource("15_vivmo")
 attenuation = 1.6245
 
-[node name="move_8d_behaviour" type="Node" parent="player_container/player" node_paths=PackedStringArray("body")]
-script = ExtResource("7_272bh")
+[node name="move_8d_behaviour" parent="player_container/player" node_paths=PackedStringArray("body") instance=ExtResource("7_vivmo")]
 body = NodePath("..")
 
-[node name="rotate_behaviour" type="Node" parent="player_container/player" node_paths=PackedStringArray("body")]
-script = ExtResource("9_4c57u")
+[node name="rotate_behaviour" parent="player_container/player" node_paths=PackedStringArray("body") instance=ExtResource("8_vivmo")]
 body = NodePath("..")
 
-[node name="dash_behaviour" type="Sprite2D" parent="player_container/player"]
-modulate = Color(1, 1, 1, 0.580392)
-texture_filter = 1
+[node name="dash_behaviour" parent="player_container/player" instance=ExtResource("9_vivmo")]
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_h2yge")
-hframes = 4
-script = ExtResource("4_1bvp3")
 
-[node name="floor_detector" type="Node" parent="player_container/player" node_paths=PackedStringArray("area2d")]
-script = ExtResource("3_lquwl")
+[node name="floor_detector" parent="player_container/player" node_paths=PackedStringArray("area2d") instance=ExtResource("10_vivmo")]
 area2d = NodePath("../Area2D")
 
 [node name="fall_behaviour" parent="player_container/player" node_paths=PackedStringArray("obj") instance=ExtResource("2_7mycd")]

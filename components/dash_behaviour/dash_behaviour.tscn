@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsrdnd0no6pen"]
+
+[ext_resource type="Texture2D" uid="uid://dff04sidgiid8" path="res://IMG_0024.PNG" id="1_38d1q"]
+[ext_resource type="Script" uid="uid://6n7kt5jydwjv" path="res://components/dash_behaviour/dash_behaviour.gd" id="2_0i5lp"]
+
+[node name="dash_behaviour" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.580392)
+texture_filter = 1
+texture = ExtResource("1_38d1q")
+hframes = 4
+script = ExtResource("2_0i5lp")

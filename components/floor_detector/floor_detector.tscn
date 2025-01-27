@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://deg8ko62xh357"]
+
+[ext_resource type="Script" uid="uid://d0lich7a7ntyi" path="res://components/floor_detector/floor_detector.gd" id="1_808c1"]
+
+[node name="floor_detector" type="Node" node_paths=PackedStringArray("area2d")]
+script = ExtResource("1_808c1")
+area2d = NodePath("")
