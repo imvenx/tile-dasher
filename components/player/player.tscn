@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5oycs7smsf4m"]
+
+[ext_resource type="PackedScene" uid="uid://bh8uwy3lhrnnt" path="res://components/round_progress_bar/round_progress_bar.tscn" id="1_pxnim"]
+[ext_resource type="Script" uid="uid://bydr7oqoaswx4" path="res://components/player/player.gd" id="2_fwwnh"]
+[ext_resource type="AudioStream" uid="uid://cjc6cp5a21hs6" path="res://sound/energy-90321.mp3" id="3_vxcs8"]
+[ext_resource type="PackedScene" uid="uid://75pwb1i0ieac" path="res://components/move_8d_behaviour/move_8d_behaviour.tscn" id="4_16fba"]
+[ext_resource type="PackedScene" uid="uid://cr0fsgqgq5ert" path="res://components/rotate_behaviour/rotate_behaviour.tscn" id="5_hc4cx"]
+[ext_resource type="PackedScene" uid="uid://bsrdnd0no6pen" path="res://components/dash_behaviour/dash_behaviour.tscn" id="6_wmnke"]
+[ext_resource type="PackedScene" uid="uid://deg8ko62xh357" path="res://components/floor_detector/floor_detector.tscn" id="7_v44tt"]
+[ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://components/fall_behaviour/fall_behaviour.tscn" id="8_l1d2p"]
+[ext_resource type="Texture2D" uid="uid://dff04sidgiid8" path="res://components/player/IMG_0024.PNG" id="9_pdxi8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
+radius = 4.0
+
+[node name="player" type="Node"]
+
+[node name="dash_progress_bar" parent="." node_paths=PackedStringArray("obj") instance=ExtResource("1_pxnim")]
+obj = NodePath("../player_body/dash_behaviour")
+
+[node name="player_body" type="CharacterBody2D" parent="." groups=["player"]]
+z_index = 1
+script = ExtResource("2_fwwnh")
+
+[node name="dash_sound" type="AudioStreamPlayer2D" parent="player_body"]
+position = Vector2(-4, 18)
+stream = ExtResource("3_vxcs8")
+attenuation = 1.6245
+
+[node name="move_8d_behaviour" parent="player_body" node_paths=PackedStringArray("body") instance=ExtResource("4_16fba")]
+body = NodePath("..")
+
+[node name="rotate_behaviour" parent="player_body" node_paths=PackedStringArray("body") instance=ExtResource("5_hc4cx")]
+body = NodePath("..")
+
+[node name="dash_behaviour" parent="player_body" instance=ExtResource("6_wmnke")]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+
+[node name="floor_detector" parent="player_body" node_paths=PackedStringArray("area2d") instance=ExtResource("7_v44tt")]
+area2d = NodePath("../Area2D")
+
+[node name="fall_behaviour" parent="player_body" node_paths=PackedStringArray("obj") instance=ExtResource("8_l1d2p")]
+obj = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_body"]
+shape = SubResource("CircleShape2D_7dm0k")
+
+[node name="Area2D" type="Area2D" parent="player_body"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_body/Area2D"]
+shape = SubResource("CircleShape2D_7dm0k")
+
+[node name="Sprite2D" type="Sprite2D" parent="player_body"]
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_pdxi8")
+hframes = 4
+
+[node name="Camera2D" type="Camera2D" parent="player_body"]
+zoom = Vector2(3, 3)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="player_body"]
+remote_path = NodePath("../../dash_progress_bar")
+update_rotation = false
+
+[connection signal="area_entered" from="player_body/Area2D" to="player_body" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="player_body/Area2D" to="player_body" method="_on_area_2d_area_exited"]

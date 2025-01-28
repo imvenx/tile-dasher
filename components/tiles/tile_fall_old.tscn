@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://2el7cdlhrx8c"]
 
-[ext_resource type="Script" uid="uid://dh176w4o0mj0h" path="res://tile.gd" id="1_damkd"]
+[ext_resource type="Script" uid="uid://dh176w4o0mj0h" path="res://components/tiles/tile_fall.gd" id="1_damkd"]
 [ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://components/fall_behaviour/fall_behaviour.tscn" id="2_xeyft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]

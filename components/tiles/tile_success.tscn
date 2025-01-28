@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb02c455xi8vf"]
+
+[ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_8feqh"]
+[ext_resource type="Script" uid="uid://of5s0msd320i" path="res://components/tiles/tile_success.gd" id="2_ya3fq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mp1b3"]
+size = Vector2(32, 32)
+
+[node name="tile_success" instance=ExtResource("1_8feqh")]
+script = ExtResource("2_ya3fq")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_mp1b3")
+
+[node name="ColorRect" parent="." index="1"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 0.0
+offset_bottom = 0.0
+scale = Vector2(2, 2)
+color = Color(0.615686, 1, 1, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,328 @@
+[gd_scene load_steps=18 format=3 uid="uid://bdtgtu13nvteb"]
+
+[ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_21ko3"]
+[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall_old.tscn" id="2_s07ge"]
+[ext_resource type="Script" uid="uid://of5s0msd320i" path="res://components/tiles/tile_success.gd" id="3_iwo8l"]
+[ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="4_6et1j"]
+[ext_resource type="Shader" uid="uid://ccd6yuc2skwrt" path="res://components/lava/lava.gdshader" id="13_o6dmv"]
+[ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="13_s07ge"]
+[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="15_vpyym"]
+[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success.tscn" id="16_i3naf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(96, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(96, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+shader = ExtResource("13_o6dmv")
+shader_parameter/wave_speed_6 = 0.3
+shader_parameter/wave_amplitude_5 = 2.0
+shader_parameter/wave_frequency_6 = 5.0
+shader_parameter/lava_color_7 = Vector4(0.8, 0.1, 0, 1)
+shader_parameter/glow_intensity_5 = 3.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_272bh"]
+frequency = 0.744
+fractal_type = 2
+fractal_lacunarity = -0.075
+fractal_gain = 1.185
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5vw27"]
+noise = SubResource("FastNoiseLite_272bh")
+
+[sub_resource type="Shader" id="Shader_21ko3"]
+code = "// A Customizable Gausian Blur Shader
+// Credits to DJBob Gaming YT :D
+shader_type canvas_item;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform int blur_radius3 : hint_range(1, 32) = 10;
+uniform float Darknes3 : hint_range(0.0,1.0) = .1;
+uniform float R : hint_range(0.0,1.0) = 0;
+uniform float G : hint_range(0.0,1.0) = 0;
+uniform float B : hint_range(0.0,1.0) = 0;
+uniform float blur_strength3 : hint_range(0.1, 10.0) = 10.0;
+
+float gaussian_weight(float i, float sigma) {
+    return exp(-0.5 * (i * i) / (sigma * sigma));
+}
+
+void calculate_kernel(out float kernel[32], int radius, float sigma) {
+    float sum = 0.0;
+    for (int i = 0; i <= radius; i++) {
+        kernel[i] = gaussian_weight(float(i), sigma);
+        sum += i == 0 ? kernel[i] : 2.0 * kernel[i];
+    }
+    for (int i = 0; i <= radius; i++) {
+        kernel[i] /= sum;
+    }
+}
+
+void fragment() {
+    vec2 resolution = SCREEN_PIXEL_SIZE;
+    vec2 uv = SCREEN_UV;
+
+    float kernel[32];
+    calculate_kernel(kernel, blur_radius3, blur_strength3);
+
+    vec3 final_color = vec3(0.0);
+    float total_weight = 0.0;
+
+    for (int x = -blur_radius3; x <= blur_radius3; x++) {
+        for (int y = -blur_radius3; y <= blur_radius3; y++) {
+            float weight = kernel[abs(x)] * kernel[abs(y)];
+            vec2 offset = vec2(float(x), float(y)) * resolution;
+            final_color += texture(SCREEN_TEXTURE, uv + offset).rgb * weight;
+            total_weight += weight;
+        }
+    }
+
+    final_color /= total_weight;
+	final_color.r = (final_color.r + R) - Darknes3;
+	final_color.g = (final_color.g + G) - Darknes3;
+	final_color.b = (final_color.b + B) - Darknes3;
+
+    COLOR = vec4(final_color, 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
+shader = SubResource("Shader_21ko3")
+shader_parameter/blur_radius3 = 10
+shader_parameter/Darknes3 = 0.1
+shader_parameter/R = 0.0
+shader_parameter/G = 0.0
+shader_parameter/B = 0.0
+shader_parameter/blur_strength3 = 5.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tiles" type="Node" parent="."]
+
+[node name="tile" parent="tiles" instance=ExtResource("1_21ko3")]
+position = Vector2(24, -88)
+
+[node name="tile_fall" parent="tiles" instance=ExtResource("1_21ko3")]
+position = Vector2(24, -112)
+
+[node name="tile_fall2" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(0, -24)
+
+[node name="tile_fall3" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(0, -80)
+
+[node name="tile_fall4" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(0, -96)
+
+[node name="tile_fall5" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(0, -128)
+
+[node name="tile_fall6" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(0, -144)
+
+[node name="tile_fall7" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(56, 0)
+
+[node name="tile_fall9" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(72, 0)
+
+[node name="tile_fall10" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(88, 0)
+
+[node name="tile_fall11" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(88, -16)
+
+[node name="tile_fall12" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(88, -32)
+
+[node name="tile_fall13" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(88, -48)
+
+[node name="tile_fall14" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(72, -48)
+
+[node name="tile_fall15" parent="tiles" instance=ExtResource("2_s07ge")]
+position = Vector2(56, -48)
+
+[node name="tile_solid" type="Area2D" parent="tiles" groups=["floor"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Area2D" type="Area2D" parent="tiles/tile_solid"]
+position = Vector2(-48, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid/Area2D"]
+position = Vector2(48, 20)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="ColorRect" type="ColorRect" parent="tiles/tile_solid"]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 24.0
+color = Color(0.635294, 0.670588, 0.678431, 1)
+
+[node name="tile_solid2" type="Area2D" parent="tiles" groups=["floor"]]
+position = Vector2(0, -56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid2"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Area2D" type="Area2D" parent="tiles/tile_solid2"]
+position = Vector2(-48, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid2/Area2D"]
+position = Vector2(48, 20)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="ColorRect" type="ColorRect" parent="tiles/tile_solid2"]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 24.0
+color = Color(0.635294, 0.670588, 0.678431, 1)
+
+[node name="tile_solid3" type="Area2D" parent="tiles" groups=["floor"]]
+position = Vector2(-64, -80)
+rotation = 1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid3"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Area2D" type="Area2D" parent="tiles/tile_solid3"]
+position = Vector2(-48, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_solid3/Area2D"]
+position = Vector2(48, 20)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="ColorRect" type="ColorRect" parent="tiles/tile_solid3"]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 24.0
+color = Color(0.635294, 0.670588, 0.678431, 1)
+
+[node name="tile_success" type="Area2D" parent="tiles" groups=["floor"]]
+position = Vector2(0, -168)
+script = ExtResource("3_iwo8l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_success"]
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="Area2D" type="Area2D" parent="tiles/tile_success"]
+position = Vector2(-16, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_success/Area2D"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="ColorRect" type="ColorRect" parent="tiles/tile_success"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0.271062, 0.725013, 0.862412, 1)
+
+[node name="tile2" parent="tiles" instance=ExtResource("1_21ko3")]
+position = Vector2(0, 32)
+
+[node name="player" parent="." instance=ExtResource("4_6et1j")]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(144, 128)
+autoscroll = Vector2(100, 100)
+screen_offset = Vector2(100, 100)
+
+[node name="ColorRect7" type="ColorRect" parent="Parallax2D"]
+offset_left = 288.0
+offset_top = 72.0
+offset_right = 384.0
+offset_bottom = 112.0
+scale = Vector2(0.658006, 0.658006)
+color = Color(0.494118, 0.529412, 0.537255, 0.788235)
+
+[node name="ColorRect10" type="ColorRect" parent="Parallax2D"]
+visible = false
+offset_left = 252.433
+offset_top = -25.281
+offset_right = 348.433
+offset_bottom = 14.719
+scale = Vector2(0.52954, 2.96534)
+color = Color(0.492598, 0.529429, 0.537608, 1)
+
+[node name="ColorRect11" type="ColorRect" parent="Parallax2D"]
+offset_left = 294.0
+offset_top = 110.0
+offset_right = 390.0
+offset_bottom = 150.0
+scale = Vector2(0.52954, 2.96534)
+color = Color(0.494118, 0.529412, 0.537255, 0.745098)
+
+[node name="ColorRect8" type="ColorRect" parent="Parallax2D"]
+offset_left = 184.0
+offset_top = 80.0
+offset_right = 280.0
+offset_bottom = 120.0
+scale = Vector2(0.658006, 0.658006)
+color = Color(0.494118, 0.529412, 0.537255, 0.788235)
+
+[node name="ColorRect9" type="ColorRect" parent="Parallax2D"]
+offset_left = 192.0
+offset_top = -32.0
+offset_right = 288.0
+offset_bottom = 8.0
+scale = Vector2(0.744795, 0.744795)
+color = Color(0.494118, 0.529412, 0.537255, 0.788235)
+
+[node name="lava" parent="Parallax2D" instance=ExtResource("13_s07ge")]
+
+[node name="lava2" type="TextureRect" parent="Parallax2D"]
+visible = false
+modulate = Color(1, 0.329412, 0, 1)
+z_index = -1
+material = SubResource("ShaderMaterial_5vw27")
+offset_left = 28.0
+offset_top = -28.0
+offset_right = 2239.0
+offset_bottom = 1868.0
+scale = Vector2(0.371562, 0.371562)
+texture = SubResource("NoiseTexture2D_5vw27")
+
+[node name="blur_glass" type="ColorRect" parent="."]
+modulate = Color(1, 0.388235, 0.219608, 1)
+z_index = 1
+material = SubResource("ShaderMaterial_4c57u")
+offset_left = -48.0
+offset_top = -16.0
+offset_right = -24.0
+offset_bottom = 4.0
+color = Color(1, 0.376471, 0.32549, 1)
+
+[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, 16)
+stream = ExtResource("15_vpyym")
+autoplay = true
+
+[node name="tile_fall" parent="." instance=ExtResource("2_s07ge")]
+position = Vector2(0, 48)
+
+[node name="tile_success" parent="." instance=ExtResource("16_i3naf")]
+position = Vector2(0, 72)
+
+[node name="tile_fall2" parent="." instance=ExtResource("2_s07ge")]
+position = Vector2(24, 40)
+
+[connection signal="body_entered" from="tiles/tile_success/Area2D" to="tiles/tile_success" method="_on_area_2d_body_entered"]

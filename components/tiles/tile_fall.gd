@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if is_warning: return
 
-	if body.name == "player":  # Replace with your player's name or group
+	if body.is_in_group("player"):  # Replace with your player's name or group
 		is_warning = true
 		warning_timer = 0.0
 

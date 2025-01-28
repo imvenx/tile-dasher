@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://djavpkgmyfxxs"]
+
+[ext_resource type="Shader" uid="uid://ccd6yuc2skwrt" path="res://components/lava/lava.gdshader" id="1_wkyw6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+shader = ExtResource("1_wkyw6")
+shader_parameter/wave_speed_6 = 0.3
+shader_parameter/wave_amplitude_5 = 2.0
+shader_parameter/wave_frequency_6 = 5.0
+shader_parameter/lava_color_7 = Vector4(0.8, 0.1, 0, 1)
+shader_parameter/glow_intensity_5 = 3.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_272bh"]
+frequency = 0.744
+fractal_type = 2
+fractal_lacunarity = -0.075
+fractal_gain = 1.185
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5vw27"]
+noise = SubResource("FastNoiseLite_272bh")
+
+[node name="lava" type="TextureRect"]
+modulate = Color(1, 0.329412, 0, 1)
+z_index = -1
+material = SubResource("ShaderMaterial_5vw27")
+offset_left = 96.0
+offset_top = -3.0
+offset_right = 1577.0
+offset_bottom = 1267.0
+scale = Vector2(0.371562, 0.371562)
+texture = SubResource("NoiseTexture2D_5vw27")
