@@ -1,0 +1,202 @@
+[gd_scene load_steps=7 format=3 uid="uid://vbbemqlx8xf7"]
+
+[ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_8s3b3"]
+[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="2_cc5tm"]
+[ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="3_mj76i"]
+[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="4_mdw0g"]
+[ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="5_naavy"]
+[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="6_gh4cy"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tiles" type="Node" parent="."]
+
+[node name="tile2" parent="tiles" instance=ExtResource("1_8s3b3")]
+position = Vector2(200, -120)
+scale = Vector2(2, 2)
+
+[node name="tile3" parent="tiles" instance=ExtResource("1_8s3b3")]
+position = Vector2(248, -120)
+scale = Vector2(2, 2)
+
+[node name="tile_success" parent="tiles" instance=ExtResource("2_cc5tm")]
+position = Vector2(0, -240)
+scale = Vector2(2, 2)
+
+[node name="tile_success2" parent="tiles" instance=ExtResource("2_cc5tm")]
+scale = Vector2(2, 2)
+is_goal = false
+
+[node name="player" parent="tiles" instance=ExtResource("3_mj76i")]
+
+[node name="tile_fall14" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -24)
+
+[node name="tile_fall15" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -40)
+
+[node name="tile_fall16" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -56)
+
+[node name="tile_fall35" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -72)
+
+[node name="tile_fall36" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -88)
+
+[node name="tile_fall37" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -104)
+
+[node name="tile_fall38" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -120)
+
+[node name="tile_fall39" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -136)
+
+[node name="tile_fall40" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -152)
+
+[node name="tile_fall41" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -168)
+
+[node name="tile_fall42" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -184)
+
+[node name="tile_fall21" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(32, -120)
+
+[node name="tile_fall43" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(32, -136)
+
+[node name="tile_fall44" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(32, -152)
+
+[node name="tile_fall51" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(16, -152)
+
+[node name="tile_fall66" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(0, -200)
+
+[node name="tile_fall23" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(48, -120)
+
+[node name="tile_fall24" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(64, -120)
+
+[node name="tile_fall25" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(80, -120)
+
+[node name="tile_fall26" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(80, -136)
+
+[node name="tile_fall27" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(80, -152)
+
+[node name="tile_fall28" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(96, -152)
+
+[node name="tile_fall29" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(112, -152)
+
+[node name="tile_fall30" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(144, -152)
+
+[node name="tile_fall31" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(144, -136)
+
+[node name="tile_fall32" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(144, -120)
+
+[node name="tile_fall33" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(176, -120)
+
+[node name="tile_fall34" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(160, -120)
+
+[node name="tile_fall46" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(248, -144)
+
+[node name="tile_fall48" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(248, -160)
+
+[node name="tile_fall49" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(200, -224)
+
+[node name="tile_fall58" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(216, -224)
+
+[node name="tile_fall59" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(216, -208)
+
+[node name="tile_fall60" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(232, -208)
+
+[node name="tile_fall61" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(248, -208)
+
+[node name="tile_fall62" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(248, -192)
+
+[node name="tile_fall63" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(248, -176)
+
+[node name="tile_fall50" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(184, -224)
+
+[node name="tile_fall52" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(152, -224)
+
+[node name="tile_fall64" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(168, -224)
+
+[node name="tile_fall53" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(152, -240)
+
+[node name="tile_fall54" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(136, -240)
+
+[node name="tile_fall55" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(120, -240)
+
+[node name="tile_fall56" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(72, -240)
+
+[node name="tile_fall57" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(56, -240)
+
+[node name="tile_fall65" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(40, -240)
+
+[node name="tile_fall67" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(104, -240)
+
+[node name="tile_fall47" parent="tiles" instance=ExtResource("4_mdw0g")]
+position = Vector2(128, -152)
+
+[node name="ColorRect" type="ColorRect" parent="tiles"]
+offset_left = 200.0
+offset_top = -129.0
+offset_right = 216.0
+offset_bottom = -113.0
+rotation = 0.785398
+scale = Vector2(0.774031, 0.774031)
+color = Color(0.027451, 0.972549, 1, 0.835294)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(144, 128)
+autoscroll = Vector2(100, 100)
+screen_offset = Vector2(100, 100)
+
+[node name="lava" parent="Parallax2D" instance=ExtResource("5_naavy")]
+
+[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, 16)
+stream = ExtResource("6_gh4cy")
+autoplay = true
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+position = Vector2(-128, -128)
+rotation = -0.785397
+height = 0.1

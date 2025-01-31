@@ -28,9 +28,11 @@ func start_dashing():
 	if energy_percent <= 0: 
 		return
 	is_dashing = true
+	visible = true
 
 func stop_dashing():
 	if not is_dashing: return
+	visible = false
 	dash.emit(global_position)
 	is_dashing = false
 	adjust_cooldown_based_on_distance()
@@ -38,6 +40,7 @@ func stop_dashing():
 	modulate = Color(1, 1, 1, 1)
 
 func cancel_dash():
+	visible = false
 	is_dashing = false
 	adjust_cooldown_based_on_distance()
 	position.x = 0

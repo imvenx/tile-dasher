@@ -1,0 +1,165 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsiec8c0x075y"]
+
+[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="2_ldkys"]
+[ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="3_dm5g0"]
+[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="4_vp6pq"]
+[ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="5_66nwl"]
+[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="6_t5gjd"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tiles" type="Node" parent="."]
+
+[node name="tile_success" parent="tiles" instance=ExtResource("2_ldkys")]
+position = Vector2(0, -240)
+scale = Vector2(2, 2)
+
+[node name="tile_success2" parent="tiles" instance=ExtResource("2_ldkys")]
+scale = Vector2(2, 2)
+is_goal = false
+
+[node name="player" parent="tiles" instance=ExtResource("3_dm5g0")]
+
+[node name="tile_fall14" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(0, -24)
+
+[node name="tile_fall15" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(0, -40)
+
+[node name="tile_fall16" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(0, -56)
+
+[node name="tile_fall17" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(32, -72)
+
+[node name="tile_fall26" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(32, -56)
+
+[node name="tile_fall44" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(16, -120)
+
+[node name="tile_fall18" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(48, -72)
+
+[node name="tile_fall19" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(64, -72)
+
+[node name="tile_fall21" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-48, -88)
+
+[node name="tile_fall22" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-64, -88)
+
+[node name="tile_fall23" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-64, -104)
+
+[node name="tile_fall24" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-64, -120)
+
+[node name="tile_fall25" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(64, -120)
+
+[node name="tile_fall27" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(48, -120)
+
+[node name="tile_fall42" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(0, -136)
+
+[node name="tile_fall43" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(16, -136)
+
+[node name="tile_fall29" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-32, -120)
+
+[node name="tile_fall32" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-32, -152)
+
+[node name="tile_fall34" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-48, -168)
+
+[node name="tile_fall49" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(0, -152)
+
+[node name="tile_fall38" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(64, -200)
+
+[node name="tile_fall45" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(48, -200)
+
+[node name="tile_fall40" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-48, -200)
+
+[node name="tile_fall41" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-64, -200)
+
+[node name="tile_fall36" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(64, -168)
+
+[node name="tile_fall30" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(64, -152)
+
+[node name="tile_fall51" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(48, -152)
+
+[node name="tile_fall20" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(64, -88)
+
+[node name="tile_fall28" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(64, -104)
+
+[node name="tile_fall46" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(16, -200)
+
+[node name="tile_fall48" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(16, -184)
+
+[node name="tile_fall52" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-16, -184)
+
+[node name="tile_fall47" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-64, -168)
+
+[node name="tile_fall50" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-48, -152)
+
+[node name="ColorRect" type="ColorRect" parent="tiles"]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = -24.0
+offset_bottom = -88.0
+rotation = 0.785398
+scale = Vector2(0.312941, 0.312941)
+
+[node name="ColorRect2" type="ColorRect" parent="tiles"]
+offset_top = -160.0
+offset_right = 40.0
+offset_bottom = -120.0
+rotation = 0.785398
+scale = Vector2(0.312941, 0.312941)
+
+[node name="ColorRect3" type="ColorRect" parent="tiles"]
+offset_left = 64.0
+offset_top = -208.0
+offset_right = 104.0
+offset_bottom = -168.0
+rotation = 0.785398
+scale = Vector2(0.312941, 0.312941)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(144, 128)
+autoscroll = Vector2(100, 100)
+screen_offset = Vector2(100, 100)
+
+[node name="lava" parent="Parallax2D" instance=ExtResource("5_66nwl")]
+
+[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, 16)
+stream = ExtResource("6_t5gjd")
+autoplay = true
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+position = Vector2(-128, -128)
+rotation = -0.785397
+height = 0.1

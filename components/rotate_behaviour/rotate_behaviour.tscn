@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" uid="uid://clem6o42602g3" path="res://components/rotate_behaviour/rotate_behaviour.gd" id="1_rpix0"]
 
-[node name="rotate_behaviour" type="Node" node_paths=PackedStringArray("body")]
+[node name="rotate_behaviour" type="Node"]
 script = ExtResource("1_rpix0")
-body = NodePath("")

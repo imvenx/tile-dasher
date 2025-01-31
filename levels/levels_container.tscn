@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cty1j3pas531w"]
+
+[ext_resource type="Script" uid="uid://vnpm7i80qbfv" path="res://levels/levels_container.gd" id="1_c4a6t"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_c4a6t")
+
+[node name="smooth_transition_color" type="ColorRect" parent="."]
+z_index = 10
+offset_left = -1128.0
+offset_top = -928.0
+offset_right = -1088.0
+offset_bottom = -888.0
+scale = Vector2(66.1714, 65.3046)
+color = Color(0, 0, 0, 1)

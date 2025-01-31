@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://k76phtxwt48n"]
+
+[ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_045es"]
+[ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="4_yydhl"]
+[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="5_8hd6v"]
+[ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="5_bekh1"]
+[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="7_f7u7y"]
+[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="8_jq2cn"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(144, 128)
+autoscroll = Vector2(100, 100)
+screen_offset = Vector2(100, 100)
+
+[node name="lava" parent="Parallax2D" instance=ExtResource("5_bekh1")]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0.839216)
+z_index = 2
+offset_left = -136.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 40.0
+text = "Be carefull, the floor is falling apart"
+
+[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, 16)
+stream = ExtResource("7_f7u7y")
+autoplay = true
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+position = Vector2(-128, -128)
+rotation = -0.785397
+height = 0.1
+
+[node name="player" parent="." instance=ExtResource("4_yydhl")]
+
+[node name="tiles" type="Node" parent="."]
+
+[node name="tile" parent="tiles" instance=ExtResource("1_045es")]
+scale = Vector2(2, 2)
+
+[node name="tile_success" parent="tiles" instance=ExtResource("8_jq2cn")]
+position = Vector2(0, -160)
+scale = Vector2(2, 2)
+
+[node name="tile_fall14" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(0, -24)
+
+[node name="tile_fall15" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(0, -40)
+
+[node name="tile_fall16" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(0, -56)
+
+[node name="tile_fall17" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(0, -72)
+
+[node name="tile_fall18" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(16, -72)
+
+[node name="tile_fall19" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(32, -72)
+
+[node name="tile_fall20" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(32, -88)
+
+[node name="tile_fall21" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(32, -104)
+
+[node name="tile_fall22" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(16, -104)
+
+[node name="tile_fall24" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(0, -104)
+
+[node name="tile_fall25" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(0, -120)
+
+[node name="tile_fall23" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(0, -136)

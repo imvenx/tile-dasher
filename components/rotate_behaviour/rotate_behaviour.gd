@@ -1,7 +1,7 @@
 extends Node
 class_name RotateBehaviour
 
-@export var initial_rotation_speed: float = 10.0  
+@export var initial_rotation_speed: float = 20.0  
 var rotation_speed: float = initial_rotation_speed  
 @export var body: CharacterBody2D
 

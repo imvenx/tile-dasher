@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dff04sidgiid8"
-path="res://.godot/imported/IMG_0024.PNG-86cc1937d7a2ca8db50562eb476426e6.ctex"
+uid="uid://6redbmgijip"
+path="res://.godot/imported/broken-tile_n.png-5e57d4ec5f3ae6f0c9e6c8962613d949.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://components/player/IMG_0024.PNG"
-dest_files=["res://.godot/imported/IMG_0024.PNG-86cc1937d7a2ca8db50562eb476426e6.ctex"]
+source_file="res://components/tiles/broken-tile_n.png"
+dest_files=["res://.godot/imported/broken-tile_n.png-5e57d4ec5f3ae6f0c9e6c8962613d949.ctex"]
 
 [params]
 

@@ -1,16 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyo8nrtpugyd8"]
+[gd_scene load_steps=5 format=3 uid="uid://cyo8nrtpugyd8"]
+
+[ext_resource type="Texture2D" uid="uid://c0x33jola6cj8" path="res://components/tiles/IMG_0041.PNG" id="1_8vivr"]
+[ext_resource type="Texture2D" uid="uid://di0fw13vpi2u5" path="res://components/tiles/IMG_0041_n.png" id="2_ve6y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(16, 16)
+size = Vector2(32, 32)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8vivr"]
+diffuse_texture = ExtResource("1_8vivr")
+normal_texture = ExtResource("2_ve6y3")
 
 [node name="tile" type="Area2D" groups=["floor"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_h2yge")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-metadata/_edit_use_anchors_ = true
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = SubResource("CanvasTexture_8vivr")

@@ -7,17 +7,22 @@ class_name Player
 @onready var move_8d_behaviour: Move8DBehaviour = $move_8d_behaviour
 @onready var rotate_behaviour: RotateBehaviour = $rotate_behaviour
 @onready var dash_sound: AudioStreamPlayer2D = $dash_sound
-
+@onready var animation_tree:AnimationTree = $AnimationTree
 
 func _ready() -> void:
 	floor_detector.connect('fallen', on_fall)
 	fall_behaviour.connect('ended_falling', on_ended_falling)
 	dash_behaviour.connect('dash', _on_dash_behaviour_dash)
+	move_8d_behaviour.connect('started_moving', on_start_moving)
+	move_8d_behaviour.connect('stoped_moving', on_stop_moving)
+
 
 func _process(delta: float) -> void:
+	#$AnimationTree.set("parameters/TimeScale/scale", 0.1)
+	#var t = $AnimationTree.get("parameters/playback")
 	
 	if(fall_behaviour.is_falling):	return
-	
+		
 	## MOVE
 	var input_vector = Vector2.ZERO
 	if Input.is_key_pressed(KEY_W):
@@ -73,4 +78,18 @@ func on_ended_falling():
 
 
 func reset_scene():
-	get_tree().reload_current_scene()
+	GlobalEvents.restart_level.emit()
+	
+func on_start_moving():
+	print('moving')
+	$animations/idle.visible = false
+	$animations/walk.visible = true
+	animation_tree.set("parameters/conditions/is_idle", false)
+	animation_tree.set("parameters/conditions/is_walking", true)
+
+func on_stop_moving():
+	print('stop')
+	$animations/idle.visible = true
+	$animations/walk.visible = false
+	animation_tree.set("parameters/conditions/is_idle", true)
+	animation_tree.set("parameters/conditions/is_walking", false)

@@ -6,7 +6,7 @@ extends Area2D
 var is_warning: bool = false
 var warning_timer: float = 0.0
 
-@onready var tile_sprite: ColorRect = $ColorRect
+@onready var tile_sprite: Sprite2D = $Sprite2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
 @onready var fall_behaviour: FallBehaviour = $fall_behaviour
 

@@ -1,15 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://2el7cdlhrx8c"]
+[gd_scene load_steps=7 format=3 uid="uid://2el7cdlhrx8c"]
 
 [ext_resource type="Script" uid="uid://dh176w4o0mj0h" path="res://components/tiles/tile_fall.gd" id="1_damkd"]
 [ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_xd7h2"]
 [ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://components/fall_behaviour/fall_behaviour.tscn" id="2_xeyft"]
+[ext_resource type="Texture2D" uid="uid://6redbmgijip" path="res://components/tiles/broken-tile_n.png" id="4_ea2o8"]
+[ext_resource type="Texture2D" uid="uid://dn4w18pa3yw0m" path="res://components/tiles/broken-tile.png" id="4_g3b5d"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_i4vee"]
+diffuse_texture = ExtResource("4_g3b5d")
+normal_texture = ExtResource("4_ea2o8")
 
 [node name="tile_fall" instance=ExtResource("1_xd7h2")]
 script = ExtResource("1_damkd")
 
-[node name="ColorRect" parent="." index="1"]
-color = Color(0.698039, 0.564706, 0.345098, 1)
+[node name="Sprite2D" parent="." index="1"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = SubResource("CanvasTexture_i4vee")
 
-[node name="fall_behaviour" parent="." index="2" instance=ExtResource("2_xeyft")]
+[node name="fall_behaviour" parent="." index="2" node_paths=PackedStringArray("obj") instance=ExtResource("2_xeyft")]
+obj = NodePath("..")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

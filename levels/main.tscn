@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=3 uid="uid://bdtgtu13nvteb"]
 
 [ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_21ko3"]
-[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall_old.tscn" id="2_s07ge"]
-[ext_resource type="Script" uid="uid://of5s0msd320i" path="res://components/tiles/tile_success.gd" id="3_iwo8l"]
+[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="2_s07ge"]
+[ext_resource type="Script" uid="uid://of5s0msd320i" path="res://components/tiles/tile_success/tile_success.gd" id="3_iwo8l"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="4_6et1j"]
 [ext_resource type="Shader" uid="uid://ccd6yuc2skwrt" path="res://components/lava/lava.gdshader" id="13_o6dmv"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="13_s07ge"]
 [ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="15_vpyym"]
-[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success.tscn" id="16_i3naf"]
+[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="16_i3naf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(96, 40)
