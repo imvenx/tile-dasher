@@ -6,6 +6,7 @@ class_name FallBehaviour
 var fall_timer: float = 0.0
 var is_falling = false
 signal ended_falling
+@export var fall_sound: AudioStreamPlayer2D
 
 func _process(delta):
 	if not is_falling: return
@@ -22,3 +23,5 @@ func _process(delta):
 
 func start_falling():
 	is_falling = true
+	if fall_sound:
+		fall_sound.play()

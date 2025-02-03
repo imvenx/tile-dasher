@@ -7,9 +7,8 @@
 script = ExtResource("1_x76u7")
 
 [node name="bg" type="TextureProgressBar" parent="."]
-modulate = Color(0, 0, 0, 0.490196)
+modulate = Color(0, 0, 0, 0.588235)
 z_index = 2
-texture_filter = 1
 offset_left = -3.0
 offset_top = -3.0
 offset_right = 26.0
@@ -24,7 +23,6 @@ texture_progress = ExtResource("2_vcgs8")
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 modulate = Color(0.180392, 1, 1, 0.796078)
 z_index = 2
-texture_filter = 1
 offset_left = -3.0
 offset_top = -3.0
 offset_right = 26.0
@@ -32,6 +30,6 @@ offset_bottom = 27.0
 scale = Vector2(0.206756, 0.206756)
 value = 100.0
 rounded = true
-fill_mode = 4
+fill_mode = 5
 nine_patch_stretch = true
 texture_progress = ExtResource("2_vcgs8")

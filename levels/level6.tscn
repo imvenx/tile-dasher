@@ -11,7 +11,7 @@
 [node name="tiles" type="Node" parent="."]
 
 [node name="tile_success" parent="tiles" instance=ExtResource("2_6ilhl")]
-position = Vector2(0, -432)
+position = Vector2(0, -448)
 scale = Vector2(2, 2)
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_6ilhl")]
@@ -41,6 +41,18 @@ position = Vector2(0, -152)
 [node name="tile_fall38" parent="tiles" instance=ExtResource("4_rv0x7")]
 position = Vector2(0, -216)
 
+[node name="tile_fall45" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(16, -152)
+
+[node name="tile_fall46" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(16, -168)
+
+[node name="tile_fall47" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(32, -168)
+
+[node name="tile_fall48" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(32, -184)
+
 [node name="tile_fall39" parent="tiles" instance=ExtResource("4_rv0x7")]
 position = Vector2(0, -232)
 
@@ -59,14 +71,62 @@ position = Vector2(0, -360)
 [node name="tile_fall44" parent="tiles" instance=ExtResource("4_rv0x7")]
 position = Vector2(0, -376)
 
+[node name="tile_fall59" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(16, -376)
+
+[node name="tile_fall60" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(32, -376)
+
+[node name="tile_fall61" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(48, -376)
+
+[node name="tile_fall62" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(48, -392)
+
+[node name="tile_fall63" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(48, -408)
+
+[node name="tile_fall64" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(32, -408)
+
+[node name="tile_fall65" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(16, -408)
+
+[node name="tile_fall67" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-16, -408)
+
+[node name="tile_fall68" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-32, -408)
+
+[node name="tile_fall69" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-48, -408)
+
+[node name="tile_fall70" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-48, -392)
+
+[node name="tile_fall71" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-48, -376)
+
+[node name="tile_fall72" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-32, -376)
+
+[node name="tile_fall73" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-16, -376)
+
 [node name="tile_fall52" parent="tiles" instance=ExtResource("4_rv0x7")]
 position = Vector2(0, -392)
 
 [node name="tile_fall53" parent="tiles" instance=ExtResource("4_rv0x7")]
 position = Vector2(0, -408)
 
+[node name="tile_fall74" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(0, -424)
+
 [node name="tile_fall56" parent="tiles" instance=ExtResource("4_rv0x7")]
-position = Vector2(0, -304)
+position = Vector2(-16, -344)
+
+[node name="tile_fall58" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-32, -344)
 
 [node name="tile_fall66" parent="tiles" instance=ExtResource("4_rv0x7")]
 physics_interpolation_mode = 2
@@ -75,6 +135,24 @@ rotation = 0.785398
 scale = Vector2(0.327866, 0.327866)
 script = null
 metadata/_edit_use_anchors_ = true
+
+[node name="tile_fall49" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-32, -296)
+
+[node name="tile_fall50" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-48, -296)
+
+[node name="tile_fall51" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-32, -280)
+
+[node name="tile_fall54" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-48, -312)
+
+[node name="tile_fall55" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-16, -264)
+
+[node name="tile_fall57" parent="tiles" instance=ExtResource("4_rv0x7")]
+position = Vector2(-16, -280)
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -1

@@ -11,6 +11,9 @@ var is_dashing = false
 var dash_timer = 0.0
 var energy_percent = 100
 
+func _ready():
+	visible = false
+
 func _process(delta: float) -> void:
 	if is_dashing:
 		if position.x >= max_dash_distance or energy_percent <= 0:
@@ -62,7 +65,7 @@ func update_cooldown_progress(delta: float):
 		energy_percent = clamp(energy_percent + energy_recovered, 0, 100)
 
 func update_opacity():
-	modulate = Color(1, 1, 1, energy_percent / 100)
+	modulate = Color(0, 10, 100, energy_percent / 100)
 
 func start_cooldown():
 	dash_timer = dash_cooldown_time

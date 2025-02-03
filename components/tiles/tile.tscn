@@ -1,10 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyo8nrtpugyd8"]
+[gd_scene load_steps=7 format=3 uid="uid://cyo8nrtpugyd8"]
 
 [ext_resource type="Texture2D" uid="uid://c0x33jola6cj8" path="res://components/tiles/IMG_0041.PNG" id="1_8vivr"]
 [ext_resource type="Texture2D" uid="uid://di0fw13vpi2u5" path="res://components/tiles/IMG_0041_n.png" id="2_ve6y3"]
+[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://components/player/toon.gdshader" id="3_ve6y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyuo2"]
+shader = ExtResource("3_ve6y3")
+shader_parameter/TOON_STEPS_9 = 2
+shader_parameter/COLOR_BOOST_5 = 1.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8vivr"]
 diffuse_texture = ExtResource("1_8vivr")
@@ -16,6 +22,14 @@ normal_texture = ExtResource("2_ve6y3")
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_h2yge")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="border-sprite" type="Sprite2D" parent="."]
+modulate = Color(0.615422, 0.615422, 0.615422, 1)
+material = SubResource("ShaderMaterial_jyuo2")
 scale = Vector2(0.25, 0.25)
+texture = SubResource("CanvasTexture_8vivr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jyuo2")
+position = Vector2(4.17233e-07, 4.17233e-07)
+scale = Vector2(0.21875, 0.21875)
 texture = SubResource("CanvasTexture_8vivr")

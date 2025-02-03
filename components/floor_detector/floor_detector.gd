@@ -38,6 +38,6 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 func _on_fall_timer_timeout() -> void:
 	# If still not touching the floor after the delay, emit the signal
 	if touching_floor_points <= 0:
-		print('fallen! aaa')
+		fall_timer.disconnect('timeout', _on_fall_timer_timeout)
 		has_fallen = true
 		fallen.emit()

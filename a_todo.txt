@@ -23,7 +23,7 @@
 	- add player falling sound
 	- add tile breaking sound and tile falling sound
 	- add steps sound
-	- add dash loading/unloading sound
+	- add dash loading/unloadingw sound
 
 - ideas for replayability / completionist / badges
 	- complete level destroying all falling tiles

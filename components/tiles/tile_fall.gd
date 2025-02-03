@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var warning_duration: float = 1.0  # Warning duration in seconds
+@export var warning_duration: float = 0.6  # Warning duration in seconds
 
 #var is_falling: bool = false
 var is_warning: bool = false
@@ -9,6 +9,7 @@ var warning_timer: float = 0.0
 @onready var tile_sprite: Sprite2D = $Sprite2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
 @onready var fall_behaviour: FallBehaviour = $fall_behaviour
+@onready var tile_break_sound = 	$"tile-break-sound"
 
 func _ready() -> void:
 	fall_behaviour.connect('ended_falling', on_ended_falling)
@@ -39,6 +40,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Replace with your player's name or group
 		is_warning = true
 		warning_timer = 0.0
+		tile_break_sound.play()
 
 
 func on_ended_falling():
