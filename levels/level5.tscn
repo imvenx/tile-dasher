@@ -11,7 +11,7 @@
 [node name="tiles" type="Node" parent="."]
 
 [node name="tile_success" parent="tiles" instance=ExtResource("2_ldkys")]
-position = Vector2(0, -240)
+position = Vector2(0, -248)
 scale = Vector2(2, 2)
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_ldkys")]
@@ -42,10 +42,22 @@ position = Vector2(16, -120)
 position = Vector2(48, -72)
 
 [node name="tile_fall19" parent="tiles" instance=ExtResource("4_vp6pq")]
-position = Vector2(64, -72)
+position = Vector2(48, -104)
 
 [node name="tile_fall21" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(-48, -88)
+
+[node name="tile_fall31" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-32, -88)
+
+[node name="tile_fall33" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-32, -104)
+
+[node name="tile_fall37" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-32, -104)
+
+[node name="tile_fall35" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(32, -120)
 
 [node name="tile_fall22" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(-64, -88)
@@ -71,23 +83,17 @@ position = Vector2(-16, -152)
 [node name="tile_fall43" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(16, -136)
 
-[node name="tile_fall29" parent="tiles" instance=ExtResource("4_vp6pq")]
-position = Vector2(-32, -120)
-
 [node name="tile_fall32" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(-32, -152)
 
 [node name="tile_fall34" parent="tiles" instance=ExtResource("4_vp6pq")]
-position = Vector2(-32, -136)
+position = Vector2(-32, -120)
 
 [node name="tile_fall49" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(0, -152)
 
 [node name="tile_fall38" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(64, -200)
-
-[node name="tile_fall45" parent="tiles" instance=ExtResource("4_vp6pq")]
-position = Vector2(48, -200)
 
 [node name="tile_fall40" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(-32, -200)
@@ -98,6 +104,9 @@ position = Vector2(-32, -184)
 [node name="tile_fall53" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(-48, -184)
 
+[node name="tile_fall56" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-32, -168)
+
 [node name="tile_fall36" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(64, -168)
 
@@ -105,21 +114,36 @@ position = Vector2(64, -168)
 position = Vector2(64, -152)
 
 [node name="tile_fall51" parent="tiles" instance=ExtResource("4_vp6pq")]
-position = Vector2(48, -152)
+position = Vector2(48, -168)
+
+[node name="tile_fall59" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(32, -168)
+
+[node name="tile_fall60" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(32, -184)
+
+[node name="tile_fall58" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(64, -184)
 
 [node name="tile_fall20" parent="tiles" instance=ExtResource("4_vp6pq")]
-position = Vector2(64, -88)
-
-[node name="tile_fall28" parent="tiles" instance=ExtResource("4_vp6pq")]
-position = Vector2(64, -104)
+position = Vector2(48, -88)
 
 [node name="tile_fall46" parent="tiles" instance=ExtResource("4_vp6pq")]
-position = Vector2(16, -200)
+position = Vector2(16, -184)
+
+[node name="tile_fall57" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(64, -216)
 
 [node name="tile_fall48" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(0, -184)
 
 [node name="tile_fall52" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(48, -216)
+
+[node name="tile_fall61" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(48, -232)
+
+[node name="tile_fall63" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(0, -200)
 
 [node name="tile_fall47" parent="tiles" instance=ExtResource("4_vp6pq")]

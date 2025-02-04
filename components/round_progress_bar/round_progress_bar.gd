@@ -2,11 +2,11 @@ extends Node2D
 
 @onready var progress_bar: TextureProgressBar = $TextureProgressBar
 @export var obj: Node
-var is_visible = true
+var _is_visible = true
 
 func _process(delta: float) -> void:
 	
-	if not is_visible: return
+	if not _is_visible: return
 	
 	var progress = obj.get_progress()
 	if(progress >= 100):
@@ -17,6 +17,6 @@ func _process(delta: float) -> void:
 	progress_bar.value = progress
 
 
-func set_is_visible(_is_visible:bool):
-	is_visible = _is_visible
-	visible = is_visible
+func set_is_visible(__is_visible:bool):
+	_is_visible = __is_visible
+	visible = _is_visible

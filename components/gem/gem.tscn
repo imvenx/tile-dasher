@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://djp35qy2enu4w"]
+
+[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://components/player/toon.gdshader" id="1_p477x"]
+[ext_resource type="Texture2D" uid="uid://davlpaytpckbn" path="res://components/gem/gem.png" id="2_1iovx"]
+[ext_resource type="Texture2D" uid="uid://cqnoykmbw4skp" path="res://components/gem/gem_n.png" id="3_6713g"]
+[ext_resource type="Script" uid="uid://vwnm530qwn48" path="res://components/gem/gem.gd" id="4_slwdt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lf3p4"]
+shader = ExtResource("1_p477x")
+shader_parameter/TOON_STEPS_9 = 2
+shader_parameter/COLOR_BOOST_5 = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pdpul"]
+diffuse_texture = ExtResource("2_1iovx")
+normal_texture = ExtResource("3_6713g")
+
+[sub_resource type="Animation" id="Animation_lf3p4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.562618, 0.562618)]
+}
+
+[sub_resource type="Animation" id="Animation_omn1t"]
+resource_name = "levitate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.55, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.6, 0.6), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lf3p4"]
+_data = {
+&"RESET": SubResource("Animation_lf3p4"),
+&"levitate": SubResource("Animation_omn1t")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lf3p4"]
+size = Vector2(23.1063, 24.8837)
+
+[node name="gem" type="Sprite2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+scale = Vector2(0.562618, 0.562618)
+texture = SubResource("CanvasTexture_pdpul")
+script = ExtResource("4_slwdt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5.96046e-08, 3.57628e-07)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_lf3p4")

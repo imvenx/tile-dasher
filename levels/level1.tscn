@@ -1,64 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://k76phtxwt48n"]
+[gd_scene load_steps=8 format=3 uid="uid://k76phtxwt48n"]
 
 [ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_045es"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="4_yydhl"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="5_8hd6v"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="5_bekh1"]
-[ext_resource type="Texture2D" uid="uid://davlpaytpckbn" path="res://components/gem/gem.png" id="7_045es"]
+[ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="7_8hd6v"]
 [ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="7_f7u7y"]
-[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://components/player/toon.gdshader" id="7_omn1t"]
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="8_jq2cn"]
-[ext_resource type="Texture2D" uid="uid://cqnoykmbw4skp" path="res://components/gem/gem_n.png" id="8_omn1t"]
-[ext_resource type="Script" uid="uid://vwnm530qwn48" path="res://components/gem/gem.gd" id="10_lf3p4"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lf3p4"]
-shader = ExtResource("7_omn1t")
-shader_parameter/TOON_STEPS_9 = 2
-shader_parameter/COLOR_BOOST_5 = 1.0
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_pdpul"]
-diffuse_texture = ExtResource("7_045es")
-normal_texture = ExtResource("8_omn1t")
-
-[sub_resource type="Animation" id="Animation_omn1t"]
-resource_name = "levitate"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.55, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0.6, 0.6), Vector2(0.5, 0.5)]
-}
-
-[sub_resource type="Animation" id="Animation_lf3p4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.562618, 0.562618)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lf3p4"]
-_data = {
-&"RESET": SubResource("Animation_lf3p4"),
-&"levitate": SubResource("Animation_omn1t")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lf3p4"]
-size = Vector2(10.63, 17.7166)
 
 [node name="Node2D" type="Node2D"]
 
@@ -176,7 +124,7 @@ position = Vector2(32, -136)
 position = Vector2(32, -152)
 
 [node name="tile_fall28" parent="tiles" instance=ExtResource("5_8hd6v")]
-position = Vector2(16, -184)
+position = Vector2(16, -176)
 
 [node name="tile_fall36" parent="tiles" instance=ExtResource("5_8hd6v")]
 position = Vector2(32, -168)
@@ -185,19 +133,28 @@ position = Vector2(32, -168)
 position = Vector2(0, -184)
 
 [node name="tile_fall41" parent="tiles" instance=ExtResource("5_8hd6v")]
-position = Vector2(-16, -184)
+position = Vector2(-16, -168)
+
+[node name="tile_fall54" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(-32, -168)
+
+[node name="tile_fall53" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(0, -168)
 
 [node name="tile_fall42" parent="tiles" instance=ExtResource("5_8hd6v")]
-position = Vector2(-32, -184)
+position = Vector2(-48, -168)
+
+[node name="tile_fall55" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(-48, -184)
 
 [node name="tile_fall43" parent="tiles" instance=ExtResource("5_8hd6v")]
 position = Vector2(-32, -200)
 
-[node name="tile_fall44" parent="tiles" instance=ExtResource("5_8hd6v")]
-position = Vector2(-32, -216)
+[node name="tile_fall52" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(-48, -200)
 
-[node name="tile_fall45" parent="tiles" instance=ExtResource("5_8hd6v")]
-position = Vector2(-16, -216)
+[node name="tile_fall44" parent="tiles" instance=ExtResource("5_8hd6v")]
+position = Vector2(-16, -200)
 
 [node name="tile_fall37" parent="tiles" instance=ExtResource("5_8hd6v")]
 position = Vector2(0, -200)
@@ -214,21 +171,11 @@ position = Vector2(0, -248)
 [node name="tile_fall30" parent="tiles" instance=ExtResource("5_8hd6v")]
 position = Vector2(32, -184)
 
-[node name="gem" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_lf3p4")
-position = Vector2(-32, -200)
-scale = Vector2(0.562618, 0.562618)
-texture = SubResource("CanvasTexture_pdpul")
-script = ExtResource("10_lf3p4")
+[node name="gem" parent="." instance=ExtResource("7_8hd6v")]
+position = Vector2(-16, -200)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="gem"]
-libraries = {
-&"": SubResource("AnimationLibrary_lf3p4")
-}
+[node name="gem2" parent="." instance=ExtResource("7_8hd6v")]
+position = Vector2(0, -120)
 
-[node name="Area2D" type="Area2D" parent="gem"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="gem/Area2D"]
-position = Vector2(3.8147e-06, 0)
-shape = SubResource("RectangleShape2D_lf3p4")
+[node name="gem3" parent="." instance=ExtResource("7_8hd6v")]
+position = Vector2(64, -88)

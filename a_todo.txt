@@ -9,6 +9,9 @@
 - sink on lava anim/sound
 - adjustable difficulty (time tiles take to fall) easy/normal/hard
 
+- power ups / downs:  (or challenge badges etc..)
+	- invisibility (player is invisible making it harder to do platforming)
+
 - ideas levels:
 	- go back and forth on same bridge to get key to open chest
 	
