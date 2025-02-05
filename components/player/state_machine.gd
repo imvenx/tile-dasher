@@ -5,6 +5,7 @@ class_name StateMachine
 var state: String
 signal anim_ended(anim: String)
 var anim_speed = 1
+#var reset_anim_speed_val = anim_speed
 
 func _ready() -> void:
 	anim_tree.connect('animation_finished', on_animation_finished)
@@ -30,11 +31,13 @@ func change_state(new_state: String):
 	state = new_state
 
 func change_anim_speed(speed: float):
-	anim_speed *= speed
+	#reset_anim_speed_val = anim_speed
+	anim_speed = speed
 	anim_tree.set('parameters/TimeScale/scale', anim_speed)
 	
-func reset_anim_speed():
-	anim_tree.set('parameters/TimeScale/scale', 1)
+#func reset_anim_speed():
+	#anim_speed = reset_anim_speed_val
+	#anim_tree.set('parameters/TimeScale/scale', anim_speed)
 
 func on_animation_finished(anim: String):
 	anim_ended.emit(anim)

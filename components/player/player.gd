@@ -10,6 +10,7 @@ class_name Player
 @onready var state_machine: StateMachine = $state_machine
 @onready var dash_progress_bar = $'../dash_progress_bar'
 @onready var area_2d = $Area2D
+var anim_speed = 1
 
 func _ready() -> void:
 	#state_machine.change_state('idle')
@@ -49,9 +50,9 @@ func _input(event: InputEvent):
 				state_machine.change_anim_speed(0.3)
 			dash_behaviour.start_dashing()
 			rotate_behaviour.modify_rotation_speed(4)
-			move_8d_behaviour.modify_speed(.5)
+			move_8d_behaviour.change_speed(.5)
 		if event.is_action_released('dash'):
-			state_machine.reset_anim_speed()
+			state_machine.change_anim_speed(anim_speed)
 			dash_behaviour.stop_dashing()
 			rotate_behaviour.reset_rotation_speed()
 			move_8d_behaviour.reset_speed()
@@ -75,7 +76,7 @@ func on_ended_falling():
 
 func on_start_moving():
 	state_machine.change_state('run_scared')
-	#move_8d_behaviour.modify_speed(1.1)
+	#move_8d_behaviour.change_speed(1.1)
 	
 func on_stop_moving():
 	state_machine.change_state('idle')
@@ -84,8 +85,9 @@ func on_stop_moving():
 func on_area_entered(area2d: Area2D):
 	if area2d.is_in_group("gem"):
 		state_machine.change_state('happy')
-		move_8d_behaviour.modify_speed(.9)
-		state_machine.change_anim_speed(.9)
+		anim_speed -= .1
+		move_8d_behaviour.change_speed(anim_speed)
+		state_machine.change_anim_speed(anim_speed)
 		
 func on_anim_ended(anim: String):
 	if(anim == 'happy'):
