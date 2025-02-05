@@ -3,8 +3,8 @@ class_name Move8DBehaviour
 
 @export var initial_speed: float = 70.0  
 @export var speed: float = initial_speed
-@export var acceleration: float = 350.0  # Acceleration speed
-@export var deceleration: float = 350.0  # Deceleration speed
+@export var acceleration: float = 400.0  # Acceleration speed
+@export var deceleration: float = 400.0  # Deceleration speed
 @export var body: CharacterBody2D
 
 var is_walking = false

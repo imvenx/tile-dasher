@@ -65,6 +65,7 @@ func _input(event: InputEvent):
 		
 		
 func on_fall():
+	floor_detector.disconnect('fallen', on_fall)
 	fall_behaviour.start_falling()
 	dash_behaviour.cancel_dash()
 	$'../dash_progress_bar'.set_is_visible(false)

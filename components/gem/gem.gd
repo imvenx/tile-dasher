@@ -1,6 +1,7 @@
-extends Sprite2D
+extends Node2D
 
 @onready var area2d = $Area2D
+@onready var pick_sound = $SfxrStreamPlayer
 
 func _ready():
 	area2d.connect('body_entered', on_body_entered)
@@ -9,4 +10,9 @@ func _ready():
 	
 func on_body_entered(body: CharacterBody2D):
 	if body.is_in_group("player"):  # Replace with your player's name or group
-		queue_free()
+		pick_sound.play()
+		visible = false
+		pick_sound.connect("finished", queue_free)
+		
+		
+		

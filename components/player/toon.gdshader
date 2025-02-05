@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 // Number of discrete brightness steps for toon shading.
-uniform int TOON_STEPS_9 : hint_range(1, 8) = 2;
+uniform int TOON_STEPS_12 : hint_range(1, 8) = 2;
 
 // Extra multiplier for color “amplification”.
 uniform float COLOR_BOOST_5 : hint_range(0.0, 5.0) = 1;
@@ -26,7 +26,7 @@ void light() {
     float NdotL = max(dot(NORMAL, LIGHT_DIRECTION), 0.0);
 
     // Quantize (step) the dot product to produce discrete lighting bands.
-    float stepSize = 1.0 / float(TOON_STEPS_9);
+    float stepSize = 1.0 / float(TOON_STEPS_12);
     // We move NdotL into a range of [0, TOON_STEPS_9], floor it, then re-normalize.
     float toonValue = floor(NdotL / stepSize) * stepSize;
 

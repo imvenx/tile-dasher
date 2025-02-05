@@ -55,7 +55,7 @@ position = Vector2(0, -264)
 position = Vector2(-16, -248)
 
 [node name="tile_fall22" parent="tiles" instance=ExtResource("4_55gdq")]
-position = Vector2(-32, -248)
+position = Vector2(-32, -232)
 
 [node name="tile_fall29" parent="tiles" instance=ExtResource("4_55gdq")]
 position = Vector2(-64, -152)
@@ -65,9 +65,6 @@ position = Vector2(-80, -152)
 
 [node name="tile_fall37" parent="tiles" instance=ExtResource("4_55gdq")]
 position = Vector2(-80, -168)
-
-[node name="tile_fall33" parent="tiles" instance=ExtResource("4_55gdq")]
-position = Vector2(-48, -248)
 
 [node name="tile_fall41" parent="tiles" instance=ExtResource("4_55gdq")]
 position = Vector2(-80, -184)
@@ -100,10 +97,10 @@ position = Vector2(-32, -136)
 position = Vector2(-16, -136)
 
 [node name="tile_fall24" parent="tiles" instance=ExtResource("4_55gdq")]
-position = Vector2(0, -152)
+position = Vector2(16, -136)
 
 [node name="tile_fall25" parent="tiles" instance=ExtResource("4_55gdq")]
-position = Vector2(0, -168)
+position = Vector2(16, -152)
 
 [node name="tile_fall26" parent="tiles" instance=ExtResource("4_55gdq")]
 position = Vector2(16, -168)
@@ -118,7 +115,7 @@ position = Vector2(48, -168)
 position = Vector2(64, -168)
 
 [node name="tile_fall49" parent="tiles" instance=ExtResource("4_55gdq")]
-position = Vector2(64, -184)
+position = Vector2(80, -168)
 
 [node name="tile_fall50" parent="tiles" instance=ExtResource("4_55gdq")]
 position = Vector2(80, -184)
@@ -153,14 +150,11 @@ position = Vector2(-16, -200)
 [node name="tile_fall60" parent="tiles" instance=ExtResource("4_55gdq")]
 position = Vector2(-32, -200)
 
-[node name="tile_fall61" parent="tiles" instance=ExtResource("4_55gdq")]
-position = Vector2(-32, -184)
-
 [node name="tile_fall62" parent="tiles" instance=ExtResource("4_55gdq")]
 position = Vector2(-48, -184)
 
 [node name="tile_fall63" parent="tiles" instance=ExtResource("4_55gdq")]
-position = Vector2(-64, -184)
+position = Vector2(-48, -200)
 
 [node name="tile_fall64" parent="tiles" instance=ExtResource("4_55gdq")]
 position = Vector2(-16, -216)
@@ -206,7 +200,7 @@ height = 0.1
 position = Vector2(-80, -152)
 
 [node name="gem2" parent="." instance=ExtResource("6_s1bpp")]
-position = Vector2(-16, -232)
+position = Vector2(0, -200)
 
 [node name="gem3" parent="." instance=ExtResource("6_s1bpp")]
-position = Vector2(80, -200)
+position = Vector2(64, -216)

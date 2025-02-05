@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsss51k7x7nuf"]
+
+[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://components/player/toon.gdshader" id="1_5bywh"]
+[ext_resource type="Script" uid="uid://cxe50p56m0ohm" path="res://components/blink_bracer/blink_bracer.gd" id="1_8vcaw"]
+[ext_resource type="Texture2D" uid="uid://b3rvcaobe05qr" path="res://components/blink_bracer/blink-bracer.PNG" id="2_8vcaw"]
+[ext_resource type="Texture2D" uid="uid://cc8xgxur7orvv" path="res://components/blink_bracer/blink-bracer_n.png" id="3_pcc25"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qi51e"]
+shader = ExtResource("1_5bywh")
+shader_parameter/TOON_STEPS_12 = 2
+shader_parameter/COLOR_BOOST_5 = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gh4cy"]
+diffuse_texture = ExtResource("2_8vcaw")
+normal_texture = ExtResource("3_pcc25")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vcaw"]
+size = Vector2(16, 16)
+
+[node name="blink_bracer" type="Area2D"]
+script = ExtResource("1_8vcaw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qi51e")
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = SubResource("CanvasTexture_gh4cy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8vcaw")

@@ -10,16 +10,17 @@ signal fallen
 var fall_timer: Timer
 
 func _ready():
-	# Connect signals for the area
-	area2d.connect('area_entered', _on_area_2d_area_entered)
-	area2d.connect('area_exited', _on_area_2d_area_exited)
-	
 	# Initialize the timer
 	fall_timer = Timer.new()
 	fall_timer.wait_time = fall_delay
 	fall_timer.one_shot = true
-	fall_timer.connect('timeout', _on_fall_timer_timeout)
 	add_child(fall_timer)
+	fall_timer.connect('timeout', _on_fall_timer_timeout)
+	
+	# Connect signals for the area
+	area2d.connect('area_entered', _on_area_2d_area_entered)
+	area2d.connect('area_exited', _on_area_2d_area_exited)
+	
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group('floor'):
@@ -38,6 +39,8 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 func _on_fall_timer_timeout() -> void:
 	# If still not touching the floor after the delay, emit the signal
 	if touching_floor_points <= 0:
-		fall_timer.disconnect('timeout', _on_fall_timer_timeout)
 		has_fallen = true
 		fallen.emit()
+		#fall_timer.disconnect('timeout', _on_fall_timer_timeout)
+		#area2d.disconnect('area_entered', _on_area_2d_area_entered)
+		#area2d.disconnect('area_exited', _on_area_2d_area_exited)

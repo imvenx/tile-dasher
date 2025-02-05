@@ -172,10 +172,10 @@ position = Vector2(0, -248)
 position = Vector2(32, -184)
 
 [node name="gem" parent="." instance=ExtResource("7_8hd6v")]
-position = Vector2(-16, -200)
+position = Vector2(-32, -200)
 
 [node name="gem2" parent="." instance=ExtResource("7_8hd6v")]
-position = Vector2(0, -120)
+position = Vector2(-16, -136)
 
 [node name="gem3" parent="." instance=ExtResource("7_8hd6v")]
 position = Vector2(64, -88)
