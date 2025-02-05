@@ -38,7 +38,7 @@ func _physics_process(delta: float):
 	body.move_and_slide()
 
 func modify_speed(new_speed: float):
-	speed = new_speed
+	speed *= new_speed
 	
 func reset_speed():
 	speed = initial_speed

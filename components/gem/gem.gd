@@ -1,11 +1,11 @@
 extends Node2D
 
-@onready var area2d = $Area2D
 @onready var pick_sound = $SfxrStreamPlayer
+@onready var anim_player = $AnimationPlayer
 
 func _ready():
-	area2d.connect('body_entered', on_body_entered)
-	$AnimationPlayer.play("levitate")
+	connect('body_entered', on_body_entered)
+	anim_player.play("levitate")
 	
 	
 func on_body_entered(body: CharacterBody2D):

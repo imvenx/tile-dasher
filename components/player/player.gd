@@ -7,22 +7,28 @@ class_name Player
 @onready var move_8d_behaviour: Move8DBehaviour = $move_8d_behaviour
 @onready var rotate_behaviour: RotateBehaviour = $rotate_behaviour
 @onready var dash_sound: AudioStreamPlayer2D = $dash_behaviour/dash_sound
+@onready var state_machine: StateMachine = $state_machine
+@onready var dash_progress_bar = $'../dash_progress_bar'
+@onready var area_2d = $Area2D
 
 func _ready() -> void:
+	#state_machine.change_state('idle')
+	
 	floor_detector.connect('fallen', on_fall)
 	fall_behaviour.connect('ended_falling', on_ended_falling)
 	dash_behaviour.connect('dash', _on_dash_behaviour_dash)
 	move_8d_behaviour.connect('started_moving', on_start_moving)
 	move_8d_behaviour.connect('stoped_moving', on_stop_moving)
-
+	area_2d.connect("area_entered", on_area_entered)
+	state_machine.connect("anim_ended", on_anim_ended)
+	
 
 func _process(delta: float) -> void:
-	#$AnimationTree.set("parameters/TimeScale/scale", 0.1)
-	#var t = $AnimationTree.get("parameters/playback")
 	
 	if(fall_behaviour.is_falling):	return
-		
-	## MOVE
+	handle_movement_and_rotation()
+
+func handle_movement_and_rotation():
 	var input_vector = Vector2.ZERO
 	if Input.is_key_pressed(KEY_W):
 		input_vector.y -= 1
@@ -35,71 +41,54 @@ func _process(delta: float) -> void:
 	move_8d_behaviour.move_8d(input_vector)
 	rotate_behaviour.rotate(input_vector)
 	
-	#if Input.is_action_pressed('dash'):
-		#if not floor_detector.has_fallen:
-			#dash_behaviour.start_dashing()
-			#rotate_behaviour.modify_rotation_speed(4)
-			#move_8d_behaviour.modify_speed(10)
-
-
 func _input(event: InputEvent):
 			
 	if not floor_detector.has_fallen:
 		if event.is_action_pressed('dash'):
-			if $AnimationTree.get('parameters/StateMachine/playback').get_current_node() == 'walk':
-				$AnimationTree.set('parameters/TimeScale/scale', 0.3)
+			if state_machine.state == 'walk':
+				state_machine.change_anim_speed(0.3)
 			dash_behaviour.start_dashing()
 			rotate_behaviour.modify_rotation_speed(4)
-			move_8d_behaviour.modify_speed(10)
+			move_8d_behaviour.modify_speed(.5)
 		if event.is_action_released('dash'):
-			$AnimationTree.set('parameters/TimeScale/scale', 1)
+			state_machine.reset_anim_speed()
 			dash_behaviour.stop_dashing()
 			rotate_behaviour.reset_rotation_speed()
 			move_8d_behaviour.reset_speed()
 	
-		#print("Key K was pressed for the first time!")
-		#if event is InputEventKey:
-			#if (event as InputEvent).keycode == KEY_K:
-				#if event.pressed:
-			#print('asd')
-		
-		
 func on_fall():
 	floor_detector.disconnect('fallen', on_fall)
+	state_machine.disconnect("anim_ended", on_anim_ended)
+	move_8d_behaviour.disconnect('stoped_moving', on_stop_moving)
 	fall_behaviour.start_falling()
 	dash_behaviour.cancel_dash()
-	$'../dash_progress_bar'.set_is_visible(false)
+	dash_progress_bar.set_is_visible(false)
 	move_8d_behaviour.stop_moving()
-	move_8d_behaviour.disconnect('stoped_moving', on_stop_moving)
-	$state_machine/idle.visible = false
-	$state_machine/walk.visible = false
-	$state_machine/fall.visible = true
-	$AnimationTree.set("parameters/StateMachine/conditions/is_idle", false)
-	$AnimationTree.set("parameters/StateMachine/conditions/is_walking", false)
-	$AnimationTree.set("parameters/StateMachine/conditions/is_falling", true)
-
+	state_machine.change_state('fall')
 
 func _on_dash_behaviour_dash(dash_position: Vector2) -> void:
 	dash_sound.play()
 	position = dash_position
 
-
 func on_ended_falling():
-	print('player ended falling')
-	reset_scene()
-
-
-func reset_scene():
 	GlobalEvents.restart_level.emit()
-	
-func on_start_moving():
-	$state_machine/idle.visible = false
-	$state_machine/walk.visible = true
-	$AnimationTree.set("parameters/StateMachine/conditions/is_idle", false)
-	$AnimationTree.set("parameters/StateMachine/conditions/is_walking", true)
 
+func on_start_moving():
+	state_machine.change_state('run_scared')
+	#move_8d_behaviour.modify_speed(1.1)
+	
 func on_stop_moving():
-	$state_machine/idle.visible = true
-	$state_machine/walk.visible = false
-	$AnimationTree.set("parameters/StateMachine/conditions/is_idle", true)
-	$AnimationTree.set("parameters/StateMachine/conditions/is_walking", false)
+	state_machine.change_state('idle')
+
+
+func on_area_entered(area2d: Area2D):
+	if area2d.is_in_group("gem"):
+		state_machine.change_state('happy')
+		move_8d_behaviour.modify_speed(.9)
+		state_machine.change_anim_speed(.9)
+		
+func on_anim_ended(anim: String):
+	if(anim == 'happy'):
+		state_machine.change_state('walk')
+		
+	

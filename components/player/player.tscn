@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://c5oycs7smsf4m"]
+[gd_scene load_steps=68 format=4 uid="uid://c5oycs7smsf4m"]
 
 [ext_resource type="PackedScene" uid="uid://bh8uwy3lhrnnt" path="res://components/round_progress_bar/round_progress_bar.tscn" id="1_pxnim"]
 [ext_resource type="Script" uid="uid://bydr7oqoaswx4" path="res://components/player/player.gd" id="2_fwwnh"]
@@ -6,9 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cjc6cp5a21hs6" path="res://sound/energy-90321.mp3" id="3_vxcs8"]
 [ext_resource type="PackedScene" uid="uid://75pwb1i0ieac" path="res://components/move_8d_behaviour/move_8d_behaviour.tscn" id="4_16fba"]
 [ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://components/player/toon.gdshader" id="4_pdxi8"]
-[ext_resource type="Texture2D" uid="uid://bbmwl03wsq6uw" path="res://components/player/walk.PNG" id="5_16fba"]
 [ext_resource type="PackedScene" uid="uid://cr0fsgqgq5ert" path="res://components/rotate_behaviour/rotate_behaviour.tscn" id="5_hc4cx"]
-[ext_resource type="Texture2D" uid="uid://dff04sidgiid8" path="res://components/player/idle.PNG" id="5_pdxi8"]
 [ext_resource type="Texture2D" uid="uid://cc2esl5l61orm" path="res://components/player/idle_n.png" id="6_8rpwc"]
 [ext_resource type="Texture2D" uid="uid://dw5cxvpj8oxy" path="res://components/player/walk-normal.png" id="6_hc4cx"]
 [ext_resource type="PackedScene" uid="uid://bsrdnd0no6pen" path="res://components/dash_behaviour/dash_behaviour.tscn" id="6_wmnke"]
@@ -16,83 +14,15 @@
 [ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://components/fall_behaviour/fall_behaviour.tscn" id="8_l1d2p"]
 [ext_resource type="Texture2D" uid="uid://dmjt3ab4jchjx" path="res://components/player/fall.PNG" id="8_v44tt"]
 [ext_resource type="Texture2D" uid="uid://c0ylp3yiblyth" path="res://components/player/fall_n.png" id="9_l1d2p"]
+[ext_resource type="Texture2D" uid="uid://davlpaytpckbn" path="res://components/gem/gem.png" id="10_8rpwc"]
+[ext_resource type="Texture2D" uid="uid://d0ly8kooyyxb4" path="res://components/player/walk-scared.PNG" id="10_vckwg"]
+[ext_resource type="Texture2D" uid="uid://brm61cu30qbuu" path="res://components/player/walk-scared_n.png" id="11_qhwjt"]
+[ext_resource type="Texture2D" uid="uid://cqnoykmbw4skp" path="res://components/gem/gem_n.png" id="11_x3fw6"]
 [ext_resource type="AudioStream" uid="uid://bo0vbby1u86vj" path="res://components/tiles/fall.mp3" id="14_wmnke"]
 [ext_resource type="Script" uid="uid://dxx1ufxu8jy2h" path="res://addons/godot_sfxr/SfxrStreamPlayer.gd" id="18_8rpwc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
 radius = 4.0
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v44tt"]
-animation = &"fall"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hc4cx"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wmnke"]
-animation = &"walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v44tt"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l1d2p"]
-advance_mode = 2
-advance_condition = &"is_walking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pdxi8"]
-advance_mode = 2
-advance_condition = &"is_idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8rpwc"]
-advance_mode = 2
-advance_condition = &"is_falling"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3fw6"]
-advance_mode = 2
-advance_condition = &"is_falling"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8rpwc"]
-states/fall/node = SubResource("AnimationNodeAnimation_v44tt")
-states/fall/position = Vector2(424.5, 183)
-states/idle/node = SubResource("AnimationNodeAnimation_hc4cx")
-states/idle/position = Vector2(337.5, 51.3438)
-states/walk/node = SubResource("AnimationNodeAnimation_wmnke")
-states/walk/position = Vector2(520.5, 52.3125)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_v44tt"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_l1d2p"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_pdxi8"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_8rpwc"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_x3fw6")]
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hc4cx"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_x3fw6"]
-nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_8rpwc")
-nodes/StateMachine/position = Vector2(180, 20)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hc4cx")
-nodes/TimeScale/position = Vector2(500, 60)
-nodes/output/position = Vector2(760, 20)
-node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmnke"]
-shader = ExtResource("4_pdxi8")
-shader_parameter/TOON_STEPS_12 = 2
-shader_parameter/COLOR_BOOST_5 = 1.0
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_vxcs8"]
-diffuse_texture = ExtResource("5_pdxi8")
-normal_texture = ExtResource("6_8rpwc")
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_wmnke"]
-diffuse_texture = ExtResource("5_16fba")
-normal_texture = ExtResource("6_hc4cx")
-
-[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_x3fw6"]
-data = PackedByteArray("BQ0UGyEnKy8yNDU1NTQxLysnIh0XEQsE/ffw6uPe2NPOycXCv727u7q6u7y+wcTHy8/T2N3i6O7z+f8FCxAWGiAmKzA0ODs+QEFCQkJBQD48OTUxLSkkHxoUDwkE/fjy7ejj3trW0s/MycbFw8LBwcHBwsPFx8nLztHU2Nzf4+fs8PT4/QIGCg8SFhodIiYqLjI1ODo8Pj9AQUFBQD8+PDo4NTMwLCklIR0ZFRENCAT/+/by7uvn4+Dd2dbU0c/Ny8rIx8bGxcXFxsbHyMnKzM3P0dPV2Nrd3+Ll6Ovu8PP2+fz/AwYJDA4RFBYZGx0gIiUoKi0vMjQ1Nzg5Ojs7PDw8Ozs6OTg3NTMyMC4rKSckIh8cGRcUEQ4LCAUC/vv59vPw7uvp5uTi4N7c2tnX1dTT0tHQz87Ozc3NzczMzc3Nzs7P0NDR0tPU1dfY2dvc3d/g4uTl5+jq7O7v8fP09vj6+/3+AQMEBgcJCgwNDxAREhQVFhcYGRobHB0eHx8gISIkJicpKissLS4vLzAxMTExMjIxMTExMDAvLy4tLCsqKSgnJiUjIiEfHh0bGhgXFRMSEA8NDAoIBwUEAgH+/fv6+ff29PPy8e/u7ezr6uno5+bl5OPj4uHg4N/f3t7d3dzc3Nvb29vb29ra2tra2trb29vb29vc3Nzc3d3d3t7f39/g4OHh4uLj4+Tk5ebm5+fo6Onq6uvr7Ozt7u7v7/Dw8fLy8/P09PX29vf3+Pj5+fr6+/v8/P39/f7+//8BAQECAgIDAwQEBAUFBQUGBgYHBwcICAgICAkJCQkJCgoKCgoKCwsLCwsLCwsLDAwMDAwMDAwMDAwMDA0NDA0NDQ0NDQ0NDQ0NDQ0NDQ0MDAwMDAwMDAwMDAwMDAwMDAwMDAsLCwsLCwsLCwsLCwsLCgoKCgoKCgoKCgoKCQkJCQkJCQkJCQgICAgICAgICAgIBwcHBwcHBwcHBwYGBgcICQoLDAwNDg4PEBARERESEhMTExMUFBQUFBUVFRUVFRUVFRUVFRUVFRUUFBQUFBQUFBMTExMTEhISEhIRERERERAQEBAPDw8PDg4ODg0NDQ0MDAwMCwsLCwsKCgoKCQkJCQgICAgIBwcHBwcGBgYGBgUFBQUFBAQEBAQEAwMDAwMDAgICAgICAgEBAQEBAQEB/////////////v7+/v7+/v7+/v7+/v39/f39/f39/f39/f39/f39/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/P39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+////////////////////////////////////////////////////////////////////////////AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf///////////////////////////////////////////////wE=")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdxi8"]
-shader = ExtResource("4_pdxi8")
-shader_parameter/TOON_STEPS_12 = 2
-shader_parameter/COLOR_BOOST_5 = 1.0
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_l1d2p"]
-diffuse_texture = ExtResource("8_v44tt")
-normal_texture = ExtResource("9_l1d2p")
 
 [sub_resource type="Animation" id="Animation_fwwnh"]
 length = 0.001
@@ -144,6 +74,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("state_machine/happy:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_v44tt"]
 resource_name = "fall"
@@ -162,6 +104,22 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_pdxi8"]
+resource_name = "happy"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("state_machine/happy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="Animation" id="Animation_pxnim"]
 resource_name = "idle"
 length = 0.800003
@@ -177,6 +135,35 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_vckwg"]
+resource_name = "run_scared"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("state_machine/run_scared:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("state_machine/walk/walk_sound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_16fba"]
@@ -229,10 +216,167 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_fwwnh"),
 &"fall": SubResource("Animation_v44tt"),
+&"happy": SubResource("Animation_pdxi8"),
 &"idle": SubResource("Animation_pxnim"),
+&"run_scared": SubResource("Animation_vckwg"),
 &"walk": SubResource("Animation_16fba"),
 &"walk_slow": SubResource("Animation_hc4cx")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v44tt"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pdxi8"]
+animation = &"happy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hc4cx"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vckwg"]
+animation = &"run_scared"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wmnke"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v44tt"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l1d2p"]
+advance_mode = 2
+advance_expression = "state == \"walk\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pdxi8"]
+advance_mode = 2
+advance_expression = "state != \"walk\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8rpwc"]
+advance_mode = 2
+advance_expression = "state == fall"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3fw6"]
+advance_mode = 2
+advance_expression = "state == fall"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vckwg"]
+advance_mode = 2
+advance_expression = "state == \"happy\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qhwjt"]
+advance_mode = 2
+advance_expression = "state == \"happy\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4eo0i"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "state == \"happy\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5lnqj"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "state == \"walk\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5fydm"]
+advance_mode = 2
+advance_expression = "state == \"run_scared\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mae0f"]
+advance_mode = 2
+advance_expression = "state == \"run_scared\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0h0ss"]
+advance_mode = 2
+advance_expression = "state == \"run_scared\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dumqu"]
+advance_mode = 2
+advance_expression = "state == \"happy\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bkwtt"]
+advance_mode = 2
+advance_expression = "state == \"walk\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_buwvb"]
+advance_mode = 2
+advance_expression = "state == \"idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r8ffc"]
+advance_mode = 2
+advance_expression = "state == \"fall\""
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8rpwc"]
+states/Start/position = Vector2(161.5, 63.5)
+states/fall/node = SubResource("AnimationNodeAnimation_v44tt")
+states/fall/position = Vector2(303.75, 129.203)
+states/happy/node = SubResource("AnimationNodeAnimation_pdxi8")
+states/happy/position = Vector2(502, 0.351501)
+states/idle/node = SubResource("AnimationNodeAnimation_hc4cx")
+states/idle/position = Vector2(302, 0.703003)
+states/run_scared/node = SubResource("AnimationNodeAnimation_vckwg")
+states/run_scared/position = Vector2(766.5, 129.319)
+states/walk/node = SubResource("AnimationNodeAnimation_wmnke")
+states/walk/position = Vector2(510.5, 129.906)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_v44tt"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_l1d2p"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_pdxi8"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_8rpwc"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_x3fw6"), "idle", "happy", SubResource("AnimationNodeStateMachineTransition_vckwg"), "walk", "happy", SubResource("AnimationNodeStateMachineTransition_qhwjt"), "happy", "idle", SubResource("AnimationNodeStateMachineTransition_4eo0i"), "happy", "walk", SubResource("AnimationNodeStateMachineTransition_5lnqj"), "idle", "run_scared", SubResource("AnimationNodeStateMachineTransition_5fydm"), "walk", "run_scared", SubResource("AnimationNodeStateMachineTransition_mae0f"), "happy", "run_scared", SubResource("AnimationNodeStateMachineTransition_0h0ss"), "run_scared", "happy", SubResource("AnimationNodeStateMachineTransition_dumqu"), "run_scared", "walk", SubResource("AnimationNodeStateMachineTransition_bkwtt"), "run_scared", "idle", SubResource("AnimationNodeStateMachineTransition_buwvb"), "run_scared", "fall", SubResource("AnimationNodeStateMachineTransition_r8ffc")]
+graph_offset = Vector2(0, -60.5652)
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hc4cx"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_x3fw6"]
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_8rpwc")
+nodes/StateMachine/position = Vector2(180, 20)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hc4cx")
+nodes/TimeScale/position = Vector2(500, 60)
+nodes/output/position = Vector2(760, 20)
+node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmnke"]
+shader = ExtResource("4_pdxi8")
+shader_parameter/TOON_STEPS_12 = 2
+shader_parameter/COLOR_BOOST_5 = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pdxi8"]
+load_path = "res://.godot/imported/idle.PNG-cc1513ee5422d2085f33981378258b90.ctex"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vxcs8"]
+diffuse_texture = SubResource("CompressedTexture2D_pdxi8")
+normal_texture = ExtResource("6_8rpwc")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l1d2p"]
+load_path = "res://.godot/imported/walk.PNG-851f45aa7945f7eec395ed884bdea025.ctex"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wmnke"]
+diffuse_texture = SubResource("CompressedTexture2D_l1d2p")
+normal_texture = ExtResource("6_hc4cx")
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_x3fw6"]
+data = PackedByteArray("BQ0UGyEnKy8yNDU1NTQxLysnIh0XEQsE/ffw6uPe2NPOycXCv727u7q6u7y+wcTHy8/T2N3i6O7z+f8FCxAWGiAmKzA0ODs+QEFCQkJBQD48OTUxLSkkHxoUDwkE/fjy7ejj3trW0s/MycbFw8LBwcHBwsPFx8nLztHU2Nzf4+fs8PT4/QIGCg8SFhodIiYqLjI1ODo8Pj9AQUFBQD8+PDo4NTMwLCklIR0ZFRENCAT/+/by7uvn4+Dd2dbU0c/Ny8rIx8bGxcXFxsbHyMnKzM3P0dPV2Nrd3+Ll6Ovu8PP2+fz/AwYJDA4RFBYZGx0gIiUoKi0vMjQ1Nzg5Ojs7PDw8Ozs6OTg3NTMyMC4rKSckIh8cGRcUEQ4LCAUC/vv59vPw7uvp5uTi4N7c2tnX1dTT0tHQz87Ozc3NzczMzc3Nzs7P0NDR0tPU1dfY2dvc3d/g4uTl5+jq7O7v8fP09vj6+/3+AQMEBgcJCgwNDxAREhQVFhcYGRobHB0eHx8gISIkJicpKissLS4vLzAxMTExMjIxMTExMDAvLy4tLCsqKSgnJiUjIiEfHh0bGhgXFRMSEA8NDAoIBwUEAgH+/fv6+ff29PPy8e/u7ezr6uno5+bl5OPj4uHg4N/f3t7d3dzc3Nvb29vb29ra2tra2trb29vb29vc3Nzc3d3d3t7f39/g4OHh4uLj4+Tk5ebm5+fo6Onq6uvr7Ozt7u7v7/Dw8fLy8/P09PX29vf3+Pj5+fr6+/v8/P39/f7+//8BAQECAgIDAwQEBAUFBQUGBgYHBwcICAgICAkJCQkJCgoKCgoKCwsLCwsLCwsLDAwMDAwMDAwMDAwMDA0NDA0NDQ0NDQ0NDQ0NDQ0NDQ0MDAwMDAwMDAwMDAwMDAwMDAwMDAsLCwsLCwsLCwsLCwsLCgoKCgoKCgoKCgoKCQkJCQkJCQkJCQgICAgICAgICAgIBwcHBwcHBwcHBwYGBgcICQoLDAwNDg4PEBARERESEhMTExMUFBQUFBUVFRUVFRUVFRUVFRUVFRUUFBQUFBQUFBMTExMTEhISEhIRERERERAQEBAPDw8PDg4ODg0NDQ0MDAwMCwsLCwsKCgoKCQkJCQgICAgIBwcHBwcGBgYGBgUFBQUFBAQEBAQEAwMDAwMDAgICAgICAgEBAQEBAQEB/////////////v7+/v7+/v7+/v7+/v39/f39/f39/f39/f39/f39/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/P39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+////////////////////////////////////////////////////////////////////////////AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf///////////////////////////////////////////////wE=")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdxi8"]
+shader = ExtResource("4_pdxi8")
+shader_parameter/TOON_STEPS_12 = 2
+shader_parameter/COLOR_BOOST_5 = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_l1d2p"]
+diffuse_texture = ExtResource("8_v44tt")
+normal_texture = ExtResource("9_l1d2p")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4eo0i"]
+diffuse_texture = ExtResource("10_vckwg")
+normal_texture = ExtResource("11_qhwjt")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8rpwc"]
+load_path = "res://.godot/imported/happy.PNG-a0010f09c76f0f8c03f2de2c9617b494.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x3fw6"]
+load_path = "res://.godot/imported/happy_n.png-9aa814696b3d84e45326bd57a03aff82.ctex"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8rpwc"]
+diffuse_texture = SubResource("CompressedTexture2D_8rpwc")
+normal_texture = SubResource("CompressedTexture2D_x3fw6")
+texture_filter = 1
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vckwg"]
+diffuse_texture = ExtResource("10_8rpwc")
+normal_texture = ExtResource("11_x3fw6")
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_8rpwc"]
 data = PackedByteArray("JSUkJCQkJCQkIyMjI+vZ2dra2tra2tvb29vb29zc3Nzc3N3d3d3d3d3e3t7e3t4oKCgnJycnJycmJiYm7tzd3d3d3d3d3t7e3t7e3t/f39/f39/g4ODg4ODg4eHh8ysqKioqKikpKSkpKR/f39/f39/g4ODg4ODg4eHh4eHh4eHi4uLi4uLi4+Pj4+MkLSwsLCwsKysrKysq8+Hh4eHh4eLi4uLi4uLj4+Pj4+Pj4+Tk5OTk5OTk5OXlJS4uLi4tLS0tLSwsLOvi4+Pj4+Pj4+Pk5OTk5OTk5OXl5eXl5eXl5ebm5ubm7zAwLy8vLy4uLi4uLRvk5OTk5OTk5OXl5eXl5eXl5ubm5ubm5ubm5+fn5+fn5x8xMTAwMDAvLy8vLy7l5eXl5eXl5ubm5ubm5ubm5+fn5+fn5+fn5+jo6Ojo6CAyMTExMTEwMDAwLybm5ubm5ubm5ubn5+fn5+fn5+fo6Ojo6Ojo6Ojp6enp6TMyMjIyMTExMTEwMBXm5ufn5+fn5+fn5+jo6Ojo6Ojo6Ojp6enp6enp6enpGDMzMzIyMjIxMTExKOfn5+fn5+jo6Ojo6Ojo6Ojp6enp6enp6enp6urq6uoYMzMzMzMyMjIyMTEf5+fo6Ojo6Ojo6Ojp6enp6enp6enp6urq6urq6urq6is0NDMzMzMyMjIyMgTo6Ojo6Ojo6enp6enp6enp6erq6urq6urq6urq6+sQNDQ0NDMzMzMyMjIg6Ojo6Onp6enp6enp6enq6urq6urq6urq6uvr6+vrBzU0NDQ0MzMzMzIyIOjo6enp6enp6enp6erq6urq6urq6urr6+vr6+vr6xo1NDQ0NDQzMzMzMgXp6enp6enp6enq6urq6urq6urq6uvr6+vr6+vr6/Q1NTU0NDQ0MzMzMynp6enp6enp6erq6urq6urq6urr6+vr6+vr6+vr6+wsNTU0NDQ0NDMzMzPp6enp6enq6urq6urq6urq6uvr6+vr6+vr6+vr7Ow1NTU1NDQ0NDMzMyHp6enp6erq6urq6urq6urr6+vr6+vr6+vr6+zs7Ag1NTU1NDQ0NDMzMwXp6enq6urq6urq6urq6uvr6+vr6+vr6+vr7Ozs7DU1NTU0NDQ0NDMzGOnp6erq6urq6urq6urr6+vr6+vr6+vr6+zs7OzsNTU1NTU0NDQ0MzMY6enq6urq6urq6urq6uvr6+vr6+vr6+vr7Ozs7P41NTU1NTQ0NDQzM/zp6urq6urq6urq6urr6+vr6+vr6+vr6+zs7OzsIzU1NTU0NDQ0NDMY6erq6urq6urq6urq6+vr6+vr6+vr6+vs7Ozs7BE1NTU1NTQ0NDQzKunq6urq6urq6urq6+vr6+vr6+vr6+vs7Ozs7OwRNTU1NTU0NDQ0MyHq6urq6urq6urq6uvr6+vr6+vr6+vr7Ozs7OzsLTU1NTU0NDQ0NDP86urq6urq6urq6uvr6+vr6+vr6+vr7Ozs7OzsETY1NTU1NDQ0NDMY6urq6urq6urq6uvr6+vr6+vr6+vr7Ozs7OzsCDY1NTU1NDQ0NDMY6urq6urq6urq6uvr6+vr6+vr6+vr7Ozs7OzsETY1NTU1NDQ0NDMP6urq6urq6urq6+vr6+vr6+vr6+vs7Ozs7OzsLTU1NTU1NDQ0NDPq6urq6urq6urq6+vr6+vr6+vr6+vs7Ozs7OwRNjU1NTU0NDQ0Mwbq6urq6urq6urr6+vr6+vr6+vr6+zs7Ozs7Ag2NTU1NTQ0NDQzBurq6urq6urq6uvr6+vr6+vr6+vr7Ozs7OzsCDY1NTU1NDQ0NDT86urq6urq6urr6+vr6+vr6+vr6+zs7Ozs7OwaNjU1NTU0NDQ0M+rq6urq6urq6uvr6+vr6+vr6+vr7Ozs7Ozs9TY1NTU1NDQ0NDQG6urq6urq6urr6+vr6+vr6+vr6+zs7Ozs7OwtNTU1NTU0NDQ0GOrq6urq6urq6+vr6+vr6+vr6+vs7Ozs7OzsLTU1NTU1NDQ0NBjq6urq6urq6uvr6+vr6+vr6+vr7Ozs7Ozs9TY1NTU1NDQ0NDT86urq6urq6urr6+vr6+vr6+vr6+zs7Ozs7Bo2NTU1NTQ0NDQY6urq6urq6urr6+vr6+vr6+vr6+zs7Ozs7P42NTU1NTQ0NDQ06urq6urq6urr6+vr6+vr6+vr6+zs7Ozs7PU2NTU1NTQ0NDQ06urq6urq6urr6+vr6+vr6+vr6+zs7Ozs7P42NTU1NTQ0NDQq6urq6urq6urr6+vr6+vr6+vr6+zs7Ozs7BE2NTU1NTQ0NDQP6urq6urq6uvr6+vr6+vr6+vr7Ozs7Ozs7DY1NTU1NTQ0NDTq6urq6urq6+vr6+vr6+vr6+vs7Ozs7OzsJDU1NTU1NDQ0NPzq6urq6urq6+vr6+vr6+vr6+vs7Ozs7OwaNTU1NTU0NDQ0/Orq6urq6urr6+vr6+vr6+vr6+zs7Ozs7CQ1NTU1NTQ0NDTq6urq6urq6+vr6+vr6+vr6+vs7Ozs7Oz1NjU1NTU0NDQ0GOrq6urq6urr6+vr6+vr6+vr6+zs7Ozs7Bo1NTU1NTQ0NDTz6urq6urq6+vr6+vr6+vr6+vs7Ozs7OwINjU1NTU0NDQ0/Orq6urq6uvr6+vr6+vr6+vr7Ozs7Ozs/jY1NTU1NDQ0NAbq6urq6urr6+vr6+vr6+vr6+zs7Ozs7Ag2NTU1NTQ0NDT86urq6urq6+vr6+vr6+vr6+vs7Ozs7OwaNTU1NTU0NDQr6urq6urq6uvr6+vr6+vr6+vr7Ozs7Oz1NjU1NTU0NDQ0Burq6urq6urr6+vr6+vr6+vr6+zs7OzsIzU1NTU0NDQ0GOrq6urq6urr6+vr6+vr6+vr6+zs7OzsGjU1NTU0NDQ0Ierq6urq6urr6+vr6+vr6+vr6+zs7OzsGjU1NTU0NDQ0GOrq6urq6uvr6+vr6+vr6+vr6+zs7OzsLTU1NTU0NDQ0Burq6urq6uvr6+vr6+vr6+vr7Ozs7Oz+NTU1NTU0NDQr6urq6urq6+vr6+vr6+vr6+vs7Ozs7OwtNTU1NTQ0NDT86urq6urq6+vr6+vr6+vr6+vs7Ozs7Bo1NTU1NDQ0NA/q6urq6urr6+vr6+vr6+vr6+zs7OzsETU1NTU1NDQ0D+rq6urq6uvr6+vr6+vr6+vr7Ozs7OwaNTU1NTQ0NDQG6urq6urq6+vr6+vr6+vr6+vs7Ozs7Cw1NTU1NDQ0NOrq6urq6uvr6+vr6+vr6+vr7Ozs7Oz+NjU1NTU0NDQY6urq6urq6+vr6+vr6+vr6+vs7Ozs7Cw1NTU1NDQ0NOrq6urq6uvr6+vr6+vr6+vr7Ozs7OwaNTU1NTQ0NDT86urq6urr6+vr6+vr6+vr6+zs7OzsETU1NTU0NDQ0/Orq6urq6+vr6+vr6+vr6+vs7Ozs7Bo1NTU1NDQ0NPPq6urq6uvr6+vr6+vr6+vr7Ozs7OwsNTU1NTQ0NCvq6urq6urr6+vr6+vr6+vr6+zs7Oz+NTU1NTQ0NDQG6urq6urq6+vr6+vr6+vr6+vs7OzsIzU1NTU0NDQr6urq6urq6+vr6+vr6+vr6+vs7OzsETU1NTU0NDQ06urq6urq6+vr6+vr6+vr6+vs7OzsCDU1NTU0NDQ08+rq6urq6+vr6+vr6+vr6+vs7OzsCDU1NTU0NDQ08+rq6urq6+vr6+vr6+vr6+vs7OzsETU1NTU0NDQr6urq6urq6+vr6+vr6+vr6+vs7OzsIzU1NTU0NDQY6urq6urr6+vr6+vr6+vr6+zs7Oz+NTU1NTQ0NDTz6urq6urr6+vr6+vr6+vr6+zs7OwsNTU1NTQ0NAbq6urq6uvr6+vr6+vr6+vr7Ozs7Bo1NTU1NDQ0GOrq6urq6+vr6+vr6+vr6+vs7OzsETU1NTU0NDQi6urq6urr6+vr6+vr6+vr6+zs7OwRNTU1NTQ0NCLq6urq6urr6+vr6+vr6+vr6+zs7Bo1NTU1NDQ0D+rq6urq6+vr6+vr6+vr6+vs7OzsLDU1NTU0NDT86urq6urr6+vr6+vr6+vr6+zs7P41NTU1NDQ0Iurq6urq6+vr6+vr6+vr6+vs7OzsLDU1NTU0NDTz6urq6uvr6+vr6+vr6+vr7Ozs7Bo1NTU1NDQ0Burq6urq6+vr6+vr6+vr6+vs7OwRNTU1NTQ0NA/q6urq6uvr6+vr6+vr6+vr7OzsETU1NTU0NDQG6urq6urr6+vr6+vr6+vr6+zs7Bo1NTU1NDQ0/Orq6urq6+vr6+vr6+vr6+vs7OwsNTU1NDQ0NOrq6urq6+vr6+vr6+vr6+vs7Oz+NTU1NTQ0NA/q6urq6uvr6+vr6+vr6+vr7OzsIzU1NTU0NDTq6urq6uvr6+vr6+vr6+vr7OzsCDU1NTU0NDQG6urq6uvr6+vr6+vr6+vr6+zs9TU1NTU0NDQY6urq6urr6+vr6+vr6+vr6+zs7DU1NTU0NDQZ6urq6urr6+vr6+vr6+vr6+zs7DU1NTU0NDQZ6urq6urr6+vr6+vr6+vr6+zs9TU1NTU0NDQP6urq6urr6+vr6+vr6+vr6+zsCDU1NTU0NDT86urq6uvr6+vr6+vr6+vr6+zsIzU1NTQ0NCLq6urq6uvr6+vr6+vr6+vr7Oz+NTU1NTQ0NPzq6urq6+vr6+vr6+vr6+vs7OwsNTU1NDQ0GOrq6urq6+vr6+vr6+vr6+vs7BE1NTU0NDQr6urq6urr6+vr6+vr6+vr6+zs/jU1NTU0NDTz6urq6uvr6+vr6+vr6+vr7Oz1NTU1NTQ0NPzq6urq6+vr6+vr6+vr6+vs7PU1NTU1NDQ0/Orq6urr6+vr6+vr6+vr6+zs/jU1NTU0NDTz6urq6uvr6+vr6+vr6+vr7OwRNTU1NDQ0Iurq6urq6+vr6+vr6+vr6+vs7Cw1NTU0NDQG6urq6uvr6+vr6+vr6+vr7OwINTU1NTQ0K+rq6urq6+vr6+vr6+vr6+vs7DU1NTU0NDTz6urq6uvr6+vr6+vr6+vr7OwaNTU1NDQ0D+rq6urr6+vr6+vr6+vr6+zsCDU1NTU0NCLq6urq6+vr6+vr6+vr6+vs7P41NTU1NDQr6urq6uvr6+vr6+vr6+vr7Oz+NTU1NTQ0K+rq6urr6+vr6+vr6+vr6+zsCDU1NTQ0NBnq6urq6+vr6+vr6+vr6+vs7Bo1NTU0NDQG6urq6uvr6+vr6+vr6+vr7OwsNTU1NDQ08+rq6urr6+vr6+vr6+vr6+z+NTU1NTQ0Iurq6urr6+vr6+vr6+vr6+zsIzU1NTQ0NPPq6urr6+vr6+vr6+vr6+vsCDU1NTQ0NA/q6urq6+vr6+vr6+vr6+vs9TU1NTU0NCLq6urq6+vr6+vr6+vr6+vs7Cw1NTU0NDTq6urq6+vr6+vr6+vr6+vs7CM1NTU0NDTz6urq6+vr6+vr6+vr6+vr7CM1NTU0NDTq6urq6+vr6+vr6+vr6+vs7Cw1NTU0NCvq6urq6+vr6+vr6+vr6+vs7DU1NTU0NBnq6urr6+vr6+vr6+vr6+vsCDU1NTQ0NAbq6urr6+vr6+vr6+vr6+zsIzU1NTQ0NOrq6urr6+vr6+vr6+vr6+z+NTU1NDQ0Burq6uvr6+vr6+vr6+vr6+wjNTU1NDQr6urq6uvr6+vr6+vr6+vr7Ag1NTU0NDT86urq6+vr6+vr6+vr6+vs9TU1NTQ0NBDq6urq6+vr6+vr6+vr6+vsNTU1NTQ0EOrq6uvr6+vr6+vr6+vr6+wsNTU1NDQZ6urq6+vr6+vr6+vr6+vs7Cw1NTU0NBnq6urr6+vr6+vr6+vr6+zsNTU1NTQ0EOrq6uvr6+vr6+vr6+vr7PU1NTU0NDQG6urq6+vr6+vr6+vr6+vsCDU1NTQ0NPPq6urr6+vr6+vr6+vr6+wjNTU1NDQZ6urq6uvr6+vr6+vr6+vr/jU1NTQ0NPPq6urr6+vr6+vr6+vr6+wjNTU1NDQZ6urq6uvr6+vr6+vr6+vrCDU1NTQ0NOrq6urr6+vr6+vr6+vr6/U1NTU0NDTz6urq6+vr6+vr6+vr6+vsLDU1NTQ0Burq6uvr6+vr6+vr6+vr7CM1NTU0NBDq6urr6+vr6+vr6+vr6+waNTU1NDQZ6urq6+vr6+vr6+vr6+vsGjU1NTQ0Gerq6uvr6+vr6+vr6+vr7CM1NTU0NBDq6urr6+vr6+vr6+vr6+wsNTU0NDT86urq6+vr6+vr6+vr6+v1NTU1NDQ06urq6+vr6+vr6+vr6+vsETU1NTQ0Gerq6uvr6+vr6+vr6+vr7Cw1NTU0NPzq6urr6+vr6+vr6+vr6wg1NTU0NCLq6urr6+vr6+vr6+vr6+w1NTU0NDTq6urr6+vr6+vr6+vr6+waNTU1NDQG6urq6+vr6+vr6+vr6+sINTU1NDQZ6urq6+vr6+vr6+vr6+v1NTU1NDQr6urq6+vr6+vr6+vr6+vsNTU1NDQ06urq6+vr6+vr6+vr6+vsNTU1NDQ06urq6+vr6+vr6+vr6+vsNTU1NDQ06urq6+vr6+vr6+vr6+v1NTU1NDQi6urq6+vr6+vr6+vr6+v+NTU1NDQZ6urq6+vr6+vr6+vr6+sRNTU1NDQH6urq6+vr6+vr6+vr6+sjNTU0NDTz6urr6+vr6+vr6+vr6/U1NTU0NCLq6urr6+vr6+vr6+vr6xo1NTU0NPzq6urr6+vr6+vr6+vr9TU1NTQ0Iurq6uvr6+vr6+vr6+vrIzU1NDQ06urq6uvr6+vr6+vr6+sINTU1NDQG6urq6+vr6+vr6+vr6/U1NTU0NBnq6urr6+vr6+vr6+vr6yw1NTQ0K+rq6uvr6+vr6+vr6+vrIzU1NDQ06urq6+vr6+vr6+vr6+saNTU0NDTq6urr6+vr6+vr6+vr6xo1NTQ0NOrq6uvr6+vr6+vr6+vrIzU1NDQr6urq6+vr6+vr6+vr6+ssNTU0NCLq6urr6+vr6+vr6+vr9TU1NTQ0EOrq6uvr6+vr6+vr6+sINTU1NDT86urr6+vr6+vr6+vr6yM1NTQ0K+rq6uvr6+vr6+vr6+v1NTU1NDQQ6urq6+vr6+vr6+vr6xo1NTQ0K+rq6uvr6+vr6+vr6+v1NTU1NDQG6urq6+vr6+vr6+vr6yM1NTQ0Iurq6uvr6+vr6+vr6+sINTU0NDTz6urr6+vr6+vr6+vr9TU1NTQ0Burq6uvr6+vr6+vr6+ssNTU0NBnq6urr6+vr6+vr6+vrIzU1NDQZ6urq6+vr6+vr6+vr6xo1NTQ0Iurq6uvr6+vr6+vr6+saNTU0NCLq6urr6+vr6+vr6+vrGjU1NDQi6urq6+vr6+vr6+vr6yM1NTQ0Gerq6uvr6+vr6+vr6+ssNTU0NBDq6uvr6+vr6+vr6+vrNTU1NDT86urr6+vr6+vr6+vrCDU1NDQ06urq6+vr6+vr6+vr6xo1NTQ0Gerq6+vr6+vr6+vr6+s1NTU0NPzq6uvr6+vr6+vr6+sINTU1NCvq6uvr6+vr6+vr6+vrLDU1NDQH6urr6+vr6+vr6+vrCDU1NTQr6urr6+vr6+vr6+vr6zU1NTQ0/Orq6+vr6+vr6+vr6xo1NTQ0Gerq6+vr6+vr6+vr6wg1NTQ0Iurq6+vr6+vr6+vr6/U1NTU0NOrq6+vr6+vr6+vr6+s1NTU0NPPq6+vr6+vr6+vr6+ssNTU0NPzq6uvr6+vr6+vr6+sjNTU0NAfq6uvr6+vr6+vr6+sjNTU0NAfq6uvr6+vr6+vr6+sjNTU0NAfq6+vr6+vr6+vr7OwrNDQ0M/3r6+vr6+vr6+zs7Ow0MzMzM/Tr6+vr6+zs7Ozs7P4zMjIyIOvr6+zs7Ozs7Ozs7BAyMjExD+zs7Ozs7Ozs7O3t7SAxMTEw/ezs7Ozs7O3t7e3t9TEwMDAn7Ozs7e3t7e3t7e3tDzAvLy8O7e3t7e3t7e3t7e7uLy8vLi7t7e3t7e3t7e7u7u4PLi4uLQ7t7e3t7u7u7u7u7u4uLS0tJe3u7u7u7u7u7u7u7hYtLCws/e7u7u7u7u7u7+/v/iwsLCsV7u7u7u7v7+/v7+/vKysrKyPu7u/v7+/v7+/v7+8cKioqKvbv7+/v7+/v7+/w8A0qKikpBe/v7+/v7/Dw8PDwBikpKSgM7+/v8PDw8PDw8PD+KCgoKBPw8PDw8PDw8PDw8P4oJycnE/Dw8PDw8PDw8fHx/icnJiYS8PDw8PDx8fHx8fH+JiYmJhLw8PHx8fHx8fHx8QYlJSUlBfHx8fHx8fHx8fHyDCUkJCT98fHx8fHx8fLy8vIYJCQkI/Hx8fHy8vLy8vLy8iMjIyMX8vLy8vLy8vLy8vL+IyIiIgry8vLy8vLy8vLz8xEiIiEh+PLy8vLy8/Pz8/PzISEhIRXy8vPz8/Pz8/Pz8wUgICAgBPPz8/Pz8/Pz8/PzGiAfHxrz8/Pz8/Pz8/T09AUfHx8eBPPz8/P09PT09PT0GR4eHhP09PT09PT09PT09AkeHR0d+fT09PT09PT09PT5HR0dHAn09PT09PT19fX19RccHBwS9PT19fX19fX19fUOGxsbG/X19fX19fX19fX1BBsbGxr+9fX19fX19fX19v8aGhoaA/X19fX19vb29vb6GRkZGQj19vb29vb29vb29hkZGRgM9vb29vb29vb29vYYGBgYB/b29vb29vb29/f3FxcXFwf29vb29/f39/f39xcXFxYH9/f39/f39/f39/sWFhYWA/f39/f39/f39/f/FRUVFf739/f39/f3+Pj4AxUVFBT79/j4+Pj4+Pj4+AoUFBQQ+Pj4+Pj4+Pj4+PgQExMTCfj4+Pj4+Pj4+Pj8ExMSEgP4+Pj4+Pj5+fn5BhISEhL4+fn5+fn5+fn5+Q4REREI+fn5+fn5+fn5+f8RERAQ//n5+fn5+fn5+fkLEBAQCPn5+fn5+vr6+vr/Dw8PD/z6+vr6+vr6+vr6Cg8PDgf6+vr6+vr6+vr6Ag4ODg76+vr6+vr6+vr6+g0NDQ0C+vr6+vv7+/v7+wYNDQ0I+/v7+/v7+/v7+wIMDAwM+/v7+/v7+/v7+/0LCwsL//v7+/v7+/v7+/sJCwsLA/v7+/z8/Pz8/PwFCgoKBfz8/Pz8/Pz8/PwDCgkJBvz8/Pz8/Pz8/PwCCQkJB/z8/Pz8/Pz8/Pz/CAgICPz8/f39/f39/f3/CAgHB/39/f39/f39/f3/BwcHB/39/f39/f39/f3/BgYGBv39/f39/f39/f0BBgYGBf3+/v7+/v7+/v4CBQUFA/7+/v7+/v7+/v4CBAQEAv7+/v7+/v7+/v4DBAQEAf7+/v7+/v7+/v4DAwMD//////////////8DAgIC/////////////wECAgIB/////////////wEBAQH//////////////wEBAQEB")
@@ -256,21 +400,26 @@ shape = SubResource("CircleShape2D_7dm0k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player/Area2D"]
 shape = SubResource("CircleShape2D_7dm0k")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
+libraries = {
+&"": SubResource("AnimationLibrary_vxcs8")
+}
+
 [node name="AnimationTree" type="AnimationTree" parent="player"]
 callback_mode_discrete = 0
 tree_root = SubResource("AnimationNodeBlendTree_x3fw6")
+advance_expression_base_node = NodePath("../state_machine")
 anim_player = NodePath("../AnimationPlayer")
-parameters/StateMachine/conditions/is_falling = false
-parameters/StateMachine/conditions/is_idle = false
-parameters/StateMachine/conditions/is_walking = false
 parameters/TimeScale/scale = 1.0
 
-[node name="state_machine" type="Node2D" parent="player"]
-rotation = 1.5708
+[node name="state_machine" type="Node2D" parent="player" node_paths=PackedStringArray("anim_tree")]
+rotation = 1.57079
 scale = Vector2(0.5, 0.5)
 script = ExtResource("3_pdxi8")
+anim_tree = NodePath("../AnimationTree")
 
 [node name="idle" type="Sprite2D" parent="player/state_machine"]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_wmnke")
 texture = SubResource("CanvasTexture_vxcs8")
@@ -319,14 +468,26 @@ metadata/_custom_type_script = ExtResource("18_8rpwc")
 visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_pdxi8")
-position = Vector2(0, 2.73176)
+position = Vector2(0, 1.36588)
 texture = SubResource("CanvasTexture_l1d2p")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
-libraries = {
-&"": SubResource("AnimationLibrary_vxcs8")
-}
+[node name="run_scared" type="Sprite2D" parent="player/state_machine"]
+visible = false
+rotation = -3.14159
+texture = SubResource("CanvasTexture_4eo0i")
+hframes = 4
+
+[node name="happy" type="Sprite2D" parent="player/state_machine"]
+visible = false
+rotation = 3.14159
+texture = SubResource("CanvasTexture_8rpwc")
+hframes = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="player/state_machine/happy"]
+position = Vector2(8.37644e-05, -10)
+rotation = -1.57079
+texture = SubResource("CanvasTexture_vckwg")
 
 [node name="move_8d_behaviour" parent="player" node_paths=PackedStringArray("body") instance=ExtResource("4_16fba")]
 body = NodePath("..")

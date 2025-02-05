@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1ydayoxn4pdx"
-path="res://.godot/imported/idle.PNG-cc1513ee5422d2085f33981378258b90.ctex"
+uid="uid://brm61cu30qbuu"
+path="res://.godot/imported/walk-scared_n.png-c86caa09511c9a2596ef63d31f15a2d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://components/player/idle.PNG"
-dest_files=["res://.godot/imported/idle.PNG-cc1513ee5422d2085f33981378258b90.ctex"]
+source_file="res://components/player/walk-scared_n.png"
+dest_files=["res://.godot/imported/walk-scared_n.png-c86caa09511c9a2596ef63d31f15a2d6.ctex"]
 
 [params]
 

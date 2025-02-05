@@ -32,7 +32,7 @@ position = Vector2(-1, 16)
 stream = ExtResource("7_f7u7y")
 autoplay = true
 
-[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(-128, -128)
 rotation = -0.785397
 height = 0.1

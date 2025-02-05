@@ -41,6 +41,6 @@ func _on_fall_timer_timeout() -> void:
 	if touching_floor_points <= 0:
 		has_fallen = true
 		fallen.emit()
-		#fall_timer.disconnect('timeout', _on_fall_timer_timeout)
+		#fall_timer.diwwsconnect('timeout', _on_fall_timer_timeout)
 		#area2d.disconnect('area_entered', _on_area_2d_area_entered)
 		#area2d.disconnect('area_exited', _on_area_2d_area_exited)
