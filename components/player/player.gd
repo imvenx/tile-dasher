@@ -47,7 +47,7 @@ func _input(event: InputEvent):
 	if not floor_detector.has_fallen:
 		if event.is_action_pressed('dash'):
 			if state_machine.state == 'walk':
-				state_machine.change_anim_speed(0.3)
+				state_machine.change_anim_speed(0.5)
 			dash_behaviour.start_dashing()
 			rotate_behaviour.modify_rotation_speed(4)
 			move_8d_behaviour.change_speed(.5)
