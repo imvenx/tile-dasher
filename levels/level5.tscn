@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsiec8c0x075y"]
+[gd_scene load_steps=7 format=3 uid="uid://dsiec8c0x075y"]
 
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="2_ldkys"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="3_dm5g0"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="4_vp6pq"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="5_66nwl"]
+[ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="6_0dsjn"]
 [ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="6_t5gjd"]
 
 [node name="Node2D" type="Node2D"]
@@ -11,7 +12,7 @@
 [node name="tiles" type="Node" parent="."]
 
 [node name="tile_success" parent="tiles" instance=ExtResource("2_ldkys")]
-position = Vector2(0, -248)
+position = Vector2(0, -256)
 scale = Vector2(2, 2)
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_ldkys")]
@@ -104,6 +105,27 @@ position = Vector2(-32, -184)
 [node name="tile_fall53" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(-48, -184)
 
+[node name="tile_fall66" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-64, -184)
+
+[node name="tile_fall67" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-64, -200)
+
+[node name="tile_fall68" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-64, -216)
+
+[node name="tile_fall69" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-64, -216)
+
+[node name="tile_fall72" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-48, -216)
+
+[node name="tile_fall70" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-32, -216)
+
+[node name="tile_fall71" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(-32, -216)
+
 [node name="tile_fall56" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(-32, -168)
 
@@ -143,8 +165,17 @@ position = Vector2(48, -216)
 [node name="tile_fall61" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(48, -232)
 
+[node name="tile_fall62" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(48, -248)
+
 [node name="tile_fall63" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(0, -200)
+
+[node name="tile_fall64" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(0, -216)
+
+[node name="tile_fall65" parent="tiles" instance=ExtResource("4_vp6pq")]
+position = Vector2(0, -232)
 
 [node name="tile_fall47" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(-64, -152)
@@ -154,29 +185,6 @@ position = Vector2(-64, -136)
 
 [node name="tile_fall50" parent="tiles" instance=ExtResource("4_vp6pq")]
 position = Vector2(-48, -152)
-
-[node name="ColorRect" type="ColorRect" parent="tiles"]
-offset_left = -64.0
-offset_top = -128.0
-offset_right = -24.0
-offset_bottom = -88.0
-rotation = 0.785398
-scale = Vector2(0.312941, 0.312941)
-
-[node name="ColorRect2" type="ColorRect" parent="tiles"]
-offset_top = -160.0
-offset_right = 40.0
-offset_bottom = -120.0
-rotation = 0.785398
-scale = Vector2(0.312941, 0.312941)
-
-[node name="ColorRect3" type="ColorRect" parent="tiles"]
-offset_left = 64.0
-offset_top = -208.0
-offset_right = 104.0
-offset_bottom = -168.0
-rotation = 0.785398
-scale = Vector2(0.312941, 0.312941)
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -1
@@ -196,3 +204,12 @@ autoplay = true
 position = Vector2(-128, -128)
 rotation = -0.785397
 height = 0.1
+
+[node name="gem" parent="." instance=ExtResource("6_0dsjn")]
+position = Vector2(0, -152)
+
+[node name="gem2" parent="." instance=ExtResource("6_0dsjn")]
+position = Vector2(-64, -120)
+
+[node name="gem3" parent="." instance=ExtResource("6_0dsjn")]
+position = Vector2(64, -200)

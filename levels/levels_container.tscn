@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cty1j3pas531w"]
+[gd_scene load_steps=3 format=3 uid="uid://cty1j3pas531w"]
 
 [ext_resource type="Script" uid="uid://vnpm7i80qbfv" path="res://levels/levels_container.gd" id="1_c4a6t"]
+[ext_resource type="AudioStream" uid="uid://cqnh3vr4krpxs" path="res://game-song.mp3" id="2_c4a6t"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_c4a6t")
 
 [node name="smooth_transition_color" type="ColorRect" parent="."]
+visible = false
 z_index = 10
 offset_left = -1128.0
 offset_top = -928.0
@@ -13,3 +15,17 @@ offset_right = -1088.0
 offset_bottom = -888.0
 scale = Vector2(66.1714, 65.3046)
 color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 16.0
+
+[node name="Game-song" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 16)
+stream = ExtResource("2_c4a6t")
+volume_db = 5.0
+autoplay = true

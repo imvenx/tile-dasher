@@ -2,7 +2,7 @@ extends Node
 class_name FloorDetector
 
 @export var area2d: Area2D
-@export var fall_delay: float = 0.01  # Delay in seconds before detecting fall
+@export var fall_delay: float = 0.05  # Delay in seconds before detecting fall
 var touching_floor_points = 0
 var has_fallen = false
 signal fallen

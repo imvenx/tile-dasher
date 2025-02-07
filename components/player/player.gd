@@ -13,7 +13,7 @@ class_name Player
 var anim_speed = 1
 
 func _ready() -> void:
-	#state_machine.change_state('idle')
+	#state_machine.change_state('fall')
 	
 	floor_detector.connect('fallen', on_fall)
 	fall_behaviour.connect('ended_falling', on_ended_falling)
@@ -58,6 +58,7 @@ func _input(event: InputEvent):
 			move_8d_behaviour.reset_speed()
 	
 func on_fall():
+	$gems.visible = false
 	floor_detector.disconnect('fallen', on_fall)
 	state_machine.disconnect("anim_ended", on_anim_ended)
 	move_8d_behaviour.disconnect('stoped_moving', on_stop_moving)
@@ -75,19 +76,37 @@ func on_ended_falling():
 	GlobalEvents.restart_level.emit()
 
 func on_start_moving():
-	state_machine.change_state('run_scared')
+	state_machine.change_state('walk')
 	#move_8d_behaviour.change_speed(1.1)
 	
 func on_stop_moving():
 	state_machine.change_state('idle')
 
 
+var gems = 0
 func on_area_entered(area2d: Area2D):
 	if area2d.is_in_group("gem"):
+		gems += 1
+		get_node('gems/gem' + str(gems)).visible = true
+		(get_node('../CanvasLayer/Gem' + str(gems)) as Sprite2D
+		).modulate = Color(1,1,1,1)
 		state_machine.change_state('happy')
-		anim_speed -= .1
-		move_8d_behaviour.change_speed(anim_speed)
-		state_machine.change_anim_speed(anim_speed)
+		if(gems == 3):
+			state_machine.change_state('run_scared')
+			anim_speed += .1
+			move_8d_behaviour.change_speed(anim_speed)
+			state_machine.change_anim_speed(anim_speed)
+	
+	if area2d.name == "blink_bracer":
+		state_machine.change_state('happy')
+		$"pick-item".play()
+		await get_tree().create_timer(.1).timeout
+		get_tree().paused = true
+		$"pick-item".process_mode = Node.PROCESS_MODE_ALWAYS
+		await get_tree().create_timer(3).timeout
+		get_tree().paused = false
+		
+		
 		
 func on_anim_ended(anim: String):
 	if(anim == 'happy'):

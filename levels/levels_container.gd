@@ -16,6 +16,7 @@ var current_level: Node = null
 @export var level_index: int = 0
 
 func _ready() -> void:
+	smooth_transition_color.visible = true
 	GlobalEvents.level_completed.connect(on_level_completed)  # Ensure we're listening for the level completion event
 	GlobalEvents.restart_level.connect(on_restart_level)  # Ensure we're listening for the level completion event
 
@@ -33,16 +34,16 @@ func _load_level(level_path: String) -> void:
 	current_level = load(level_path).instantiate()
 	add_child(current_level)  # Add the new level
 
-func fade_out_and_change_scene() -> void:
+func fade_out_and_change_level(level:int) -> void:
 	var tween = get_tree().create_tween()
-	tween.tween_property(smooth_transition_color, "modulate:a", 1.0, 1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(smooth_transition_color, "modulate:a", 1.0, 1.0
+	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	await tween.finished
 
-	if level_index >= levels.size() - 1:
+	if level_index >= levels.size():
 		print('game finished')
 		return
 		
-	level_index += 1
 	if level_index < levels.size():
 		_load_level(levels[level_index])
 
@@ -51,7 +52,9 @@ func fade_out_and_change_scene() -> void:
 	tween.tween_property(smooth_transition_color, "modulate:a", 0.0, 1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 
 func on_level_completed() -> void:
-	fade_out_and_change_scene()
+	level_index += 1
+	fade_out_and_change_level(level_index)
 
 func on_restart_level():
-	_load_level(levels[level_index])
+	fade_out_and_change_level(level_index)
+	#_load_level(levels[level_index])

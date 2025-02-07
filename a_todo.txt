@@ -3,7 +3,16 @@
 [x] decouple camera2d from player and follow on x y
 [x] make start level transition
 [x] tiles sprites
-- player animated sprites 
+[x] player animated sprites 
+
+- home menu
+- levels menu
+- end level menu?
+- game music
+- store if has collected gems
+- store if can use dash
+- dash text tutorial
+
 ?- add shadows
 ?- add objects height, sort ordering based on height
 - sink on lava anim/sound
