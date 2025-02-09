@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://bik5xw0wq8lsj"]
+
+[ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="1_o8q58"]
+[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/lava-ambience-sound.wav" id="2_iy2cv"]
+[ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="3_m2b6b"]
+[ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="4_2rs62"]
+[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="5_xqjf2"]
+
+[node name="home_level" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("3_m2b6b")]
+position = Vector2(-40, -105)
+show_hud = false
+
+[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, 16)
+stream = ExtResource("2_iy2cv")
+autoplay = true
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(144, 128)
+autoscroll = Vector2(100, 100)
+screen_offset = Vector2(100, 100)
+
+[node name="lava" parent="Parallax2D" instance=ExtResource("1_o8q58")]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(1, 0)
+rotation = -0.785397
+height = 0.1
+
+[node name="tiles" type="Node" parent="."]
+
+[node name="tile" parent="tiles" instance=ExtResource("4_2rs62")]
+scale = Vector2(18.381, 18.381)
+
+[node name="tile_success" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(-80, -160)
+scale = Vector2(2, 2)
+is_goal = false
+go_to_level_number = 1
+text = "I"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="tiles/tile_success"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -7.5
+offset_top = 8.5
+offset_right = 3.5
+offset_bottom = 31.5
+scale = Vector2(0.273662, 0.273662)
+text = "I"
+fit_content = true
+scroll_active = false
+tab_size = 1
+context_menu_enabled = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="tiles/tile_success"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 12.5
+offset_top = 8.5
+offset_right = 23.5
+offset_bottom = 31.5
+scale = Vector2(0.273662, 0.273662)
+text = "II"
+fit_content = true
+scroll_active = false
+tab_size = 1
+context_menu_enabled = true
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="tiles/tile_success"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 32.0
+offset_top = 8.5
+offset_right = 52.0
+offset_bottom = 31.5
+scale = Vector2(0.273662, 0.273662)
+text = "III"
+fit_content = true
+scroll_active = false
+tab_size = 1
+context_menu_enabled = true
+
+[node name="tile_success2" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(-40, -160)
+scale = Vector2(2, 2)
+is_goal = false
+go_to_level_number = 2
+text = "V"
+
+[node name="tile_success3" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(0, -160)
+scale = Vector2(2, 2)
+is_goal = false
+go_to_level_number = 3
+text = "Z"
+
+[node name="tile_success4" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(40, -160)
+scale = Vector2(2, 2)
+is_goal = false
+
+[node name="tile_success5" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(80, -160)
+scale = Vector2(2, 2)
+is_goal = false
+
+[node name="levels_portals" type="Node2D" parent="tiles"]

@@ -6,12 +6,16 @@
 [x] player animated sprites 
 
 - home menu
+- fix home menu big tile collider
 - levels menu
 - end level menu?
 - game music
 - store if has collected gems
 - store if can use dash
 - dash text tutorial
+- change walk anim for improved version
+- add success tile animation and sound
+- improve normals player
 
 ?- add shadows
 ?- add objects height, sort ordering based on height

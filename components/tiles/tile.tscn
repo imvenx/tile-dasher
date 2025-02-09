@@ -9,7 +9,7 @@ size = Vector2(32, 32)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyuo2"]
 shader = ExtResource("3_ve6y3")
-shader_parameter/TOON_STEPS_9 = 2
+shader_parameter/TOON_STEPS_12 = 2
 shader_parameter/COLOR_BOOST_5 = 1.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8vivr"]

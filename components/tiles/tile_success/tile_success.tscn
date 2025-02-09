@@ -1,28 +1,77 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb02c455xi8vf"]
+[gd_scene load_steps=12 format=3 uid="uid://bb02c455xi8vf"]
 
 [ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_8feqh"]
 [ext_resource type="Script" uid="uid://of5s0msd320i" path="res://components/tiles/tile_success/tile_success.gd" id="2_ya3fq"]
 [ext_resource type="Texture2D" uid="uid://bqjy1tcb2x7et" path="res://components/tiles/tile_success/success-tile.PNG" id="3_bppbo"]
+[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://components/player/toon.gdshader" id="3_pieqs"]
 [ext_resource type="Texture2D" uid="uid://cfj6egyabbdb4" path="res://components/tiles/tile_success/success-tile_n.png" id="4_37jsw"]
+[ext_resource type="Texture2D" uid="uid://davlpaytpckbn" path="res://components/gem/gem.png" id="5_4u0pg"]
+[ext_resource type="Texture2D" uid="uid://cqnoykmbw4skp" path="res://components/gem/gem_n.png" id="7_phfcx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mp1b3"]
 size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyuo2"]
+shader = ExtResource("3_pieqs")
+shader_parameter/TOON_STEPS_12 = 2
+shader_parameter/COLOR_BOOST_5 = 1.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5n27o"]
 diffuse_texture = ExtResource("3_bppbo")
 normal_texture = ExtResource("4_37jsw")
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_pieqs"]
+diffuse_texture = ExtResource("5_4u0pg")
+normal_texture = ExtResource("7_phfcx")
+
 [node name="tile_success" instance=ExtResource("1_8feqh")]
 script = ExtResource("2_ya3fq")
 
-[node name="CollisionShape2D" parent="." index="0"]
+[node name="CollisionShape2D" parent="." index="0" groups=["floor"]]
 shape = SubResource("RectangleShape2D_mp1b3")
 
 [node name="border-sprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_jyuo2")
 texture = SubResource("CanvasTexture_5n27o")
 
 [node name="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_jyuo2")
 position = Vector2(5.36442e-07, 5.36442e-07)
 texture = SubResource("CanvasTexture_5n27o")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." index="3"]
+modulate = Color(0.0392157, 0.356863, 0.937255, 1)
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 38.0
+offset_bottom = 38.0
+scale = Vector2(0.1, 0.1)
+text = "I"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gems" type="Node2D" parent="." index="4"]
+visible = false
+
+[node name="gem1" type="Sprite2D" parent="gems" index="0"]
+modulate = Color(0.255659, 0.255659, 0.255659, 1)
+light_mask = 2
+position = Vector2(-2.44151, -10.4415)
+scale = Vector2(0.159905, 0.159905)
+texture = SubResource("CanvasTexture_pieqs")
+
+[node name="gem2" type="Sprite2D" parent="gems" index="1"]
+modulate = Color(0.255659, 0.255659, 0.255659, 1)
+light_mask = 2
+position = Vector2(0.0584862, -10.4415)
+scale = Vector2(0.159905, 0.159905)
+texture = SubResource("CanvasTexture_pieqs")
+
+[node name="gem3" type="Sprite2D" parent="gems" index="2"]
+modulate = Color(0.255659, 0.255659, 0.255659, 1)
+light_mask = 2
+position = Vector2(2.55849, -10.4415)
+scale = Vector2(0.159905, 0.159905)
+texture = SubResource("CanvasTexture_pieqs")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

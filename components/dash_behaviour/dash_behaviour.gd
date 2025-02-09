@@ -14,7 +14,7 @@ var energy_percent = 100
 func _ready():
 	visible = false
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_dashing:
 		if position.x >= max_dash_distance or energy_percent <= 0:
 			cancel_dash()

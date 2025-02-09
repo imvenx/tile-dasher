@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 	floor_detector.connect('fallen', on_fall)
 	fall_behaviour.connect('ended_falling', on_ended_falling)
-	dash_behaviour.connect('dash', _on_dash_behaviour_dash)
+	dash_behaviour.connect('dash', on_dash)
 	move_8d_behaviour.connect('started_moving', on_start_moving)
 	move_8d_behaviour.connect('stoped_moving', on_stop_moving)
 	area_2d.connect("area_entered", on_area_entered)
@@ -68,12 +68,12 @@ func on_fall():
 	move_8d_behaviour.stop_moving()
 	state_machine.change_state('fall')
 
-func _on_dash_behaviour_dash(dash_position: Vector2) -> void:
+func on_dash(dash_position: Vector2) -> void:
 	dash_sound.play()
-	position = dash_position
+	global_position = dash_position
 
 func on_ended_falling():
-	GlobalEvents.restart_level.emit()
+	Global.restart_level.emit()
 
 func on_start_moving():
 	state_machine.change_state('walk')
@@ -87,15 +87,19 @@ var gems = 0
 func on_area_entered(area2d: Area2D):
 	if area2d.is_in_group("gem"):
 		gems += 1
-		get_node('gems/gem' + str(gems)).visible = true
-		(get_node('../CanvasLayer/Gem' + str(gems)) as Sprite2D
-		).modulate = Color(1,1,1,1)
+		Global.gem_collected.emit(area2d.name)
 		state_machine.change_state('happy')
 		if(gems == 3):
-			state_machine.change_state('run_scared')
+			state_machine.change_state('happy')
+			#state_machine.change_state('run_scared')
 			anim_speed += .1
 			move_8d_behaviour.change_speed(anim_speed)
 			state_machine.change_anim_speed(anim_speed)
+		
+		await get_tree().create_timer(.2).timeout
+		get_node('gems/' + area2d.name).visible = true
+		(get_node('../hud/' + area2d.name) as Sprite2D
+		).modulate = Color(1,1,1,1)
 	
 	if area2d.name == "blink_bracer":
 		state_machine.change_state('happy')
@@ -110,6 +114,9 @@ func on_area_entered(area2d: Area2D):
 		
 func on_anim_ended(anim: String):
 	if(anim == 'happy'):
-		state_machine.change_state('walk')
+		if gems == 3:
+			state_machine.change_state('run_scared')
+		else:
+			state_machine.change_state('walk')
 		
 	

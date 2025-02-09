@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsiec8c0x075y"]
+[gd_scene load_steps=6 format=3 uid="uid://dsiec8c0x075y"]
 
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="2_ldkys"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="3_dm5g0"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="4_vp6pq"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="5_66nwl"]
 [ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="6_0dsjn"]
-[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="6_t5gjd"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -14,10 +13,10 @@
 [node name="tile_success" parent="tiles" instance=ExtResource("2_ldkys")]
 position = Vector2(0, -256)
 scale = Vector2(2, 2)
+is_goal = true
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_ldkys")]
 scale = Vector2(2, 2)
-is_goal = false
 
 [node name="player" parent="tiles" instance=ExtResource("3_dm5g0")]
 
@@ -195,17 +194,12 @@ screen_offset = Vector2(100, 100)
 
 [node name="lava" parent="Parallax2D" instance=ExtResource("5_66nwl")]
 
-[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-1, 16)
-stream = ExtResource("6_t5gjd")
-autoplay = true
-
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
 position = Vector2(-128, -128)
 rotation = -0.785397
 height = 0.1
 
-[node name="gem" parent="." instance=ExtResource("6_0dsjn")]
+[node name="gem1" parent="." instance=ExtResource("6_0dsjn")]
 position = Vector2(0, -152)
 
 [node name="gem2" parent="." instance=ExtResource("6_0dsjn")]

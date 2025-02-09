@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhafsp1luxtag"]
+[gd_scene load_steps=5 format=3 uid="uid://bhafsp1luxtag"]
 
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="2_6ilhl"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="3_adppw"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="4_rv0x7"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="5_4egkl"]
-[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="6_i4qay"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -13,10 +12,10 @@
 [node name="tile_success" parent="tiles" instance=ExtResource("2_6ilhl")]
 position = Vector2(0, -448)
 scale = Vector2(2, 2)
+is_goal = true
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_6ilhl")]
 scale = Vector2(2, 2)
-is_goal = false
 
 [node name="player" parent="tiles" instance=ExtResource("3_adppw")]
 
@@ -128,14 +127,6 @@ position = Vector2(-16, -344)
 [node name="tile_fall58" parent="tiles" instance=ExtResource("4_rv0x7")]
 position = Vector2(-32, -344)
 
-[node name="tile_fall66" parent="tiles" instance=ExtResource("4_rv0x7")]
-physics_interpolation_mode = 2
-position = Vector2(16, -136)
-rotation = 0.785398
-scale = Vector2(0.327866, 0.327866)
-script = null
-metadata/_edit_use_anchors_ = true
-
 [node name="tile_fall49" parent="tiles" instance=ExtResource("4_rv0x7")]
 position = Vector2(-32, -296)
 
@@ -162,11 +153,6 @@ autoscroll = Vector2(100, 100)
 screen_offset = Vector2(100, 100)
 
 [node name="lava" parent="Parallax2D" instance=ExtResource("5_4egkl")]
-
-[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-1, 16)
-stream = ExtResource("6_i4qay")
-autoplay = true
 
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
 position = Vector2(-128, -128)

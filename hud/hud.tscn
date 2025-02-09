@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqkvppm3y6woj"]
+
+[ext_resource type="Texture2D" uid="uid://davlpaytpckbn" path="res://components/gem/gem.png" id="2_546lt"]
+
+[node name="hud" type="CanvasLayer"]
+
+[node name="gem1" type="Sprite2D" parent="."]
+modulate = Color(0.282353, 0.282353, 0.282353, 0.639216)
+position = Vector2(64, 64)
+scale = Vector2(3, 3)
+texture = ExtResource("2_546lt")
+
+[node name="gem2" type="Sprite2D" parent="."]
+modulate = Color(0.282353, 0.282353, 0.282353, 0.639216)
+position = Vector2(112, 64)
+scale = Vector2(3, 3)
+texture = ExtResource("2_546lt")
+
+[node name="gem3" type="Sprite2D" parent="."]
+modulate = Color(0.282353, 0.282353, 0.282353, 0.639216)
+position = Vector2(160, 64)
+scale = Vector2(3, 3)
+texture = ExtResource("2_546lt")

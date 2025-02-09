@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="4_6et1j"]
 [ext_resource type="Shader" uid="uid://ccd6yuc2skwrt" path="res://components/lava/lava.gdshader" id="13_o6dmv"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="13_s07ge"]
-[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="15_vpyym"]
+[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/lava-ambience-sound.wav" id="15_vpyym"]
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="16_i3naf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]

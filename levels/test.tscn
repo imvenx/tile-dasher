@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://s00ksg5rk6qr"]
+
+[ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="1_72lju"]
+
+[node name="Test" type="Node2D"]
+
+[node name="player_container" parent="." instance=ExtResource("1_72lju")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -56.0
+offset_top = -48.0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.141176, 0.254902, 0.392157, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]

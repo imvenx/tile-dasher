@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://k76phtxwt48n"]
+[gd_scene load_steps=6 format=3 uid="uid://k76phtxwt48n"]
 
-[ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_045es"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="4_yydhl"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="5_8hd6v"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="5_bekh1"]
 [ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="7_8hd6v"]
-[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="7_f7u7y"]
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="8_jq2cn"]
 
 [node name="Node2D" type="Node2D"]
@@ -27,10 +25,14 @@ offset_right = 24.0
 offset_bottom = 40.0
 text = "Be carefull, the floor is falling apart"
 
-[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-1, 16)
-stream = ExtResource("7_f7u7y")
-autoplay = true
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 0.839216)
+z_index = 1
+offset_left = -2.0
+offset_top = -11.0
+offset_right = 6.0
+offset_bottom = 13.0
+text = "I"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(-128, -128)
@@ -41,12 +43,14 @@ height = 0.1
 
 [node name="tiles" type="Node" parent="."]
 
-[node name="tile" parent="tiles" instance=ExtResource("1_045es")]
-scale = Vector2(2, 2)
-
 [node name="tile_success" parent="tiles" instance=ExtResource("8_jq2cn")]
 position = Vector2(0, -272)
 scale = Vector2(2, 2)
+is_goal = true
+
+[node name="tile_success2" parent="tiles" instance=ExtResource("8_jq2cn")]
+scale = Vector2(2, 2)
+is_goal = false
 
 [node name="tile_fall14" parent="tiles" instance=ExtResource("5_8hd6v")]
 position = Vector2(0, -24)
@@ -171,11 +175,11 @@ position = Vector2(0, -248)
 [node name="tile_fall30" parent="tiles" instance=ExtResource("5_8hd6v")]
 position = Vector2(32, -184)
 
-[node name="gem" parent="." instance=ExtResource("7_8hd6v")]
+[node name="gem3" parent="." instance=ExtResource("7_8hd6v")]
 position = Vector2(-32, -200)
 
 [node name="gem2" parent="." instance=ExtResource("7_8hd6v")]
 position = Vector2(-16, -136)
 
-[node name="gem3" parent="." instance=ExtResource("7_8hd6v")]
+[node name="gem1" parent="." instance=ExtResource("7_8hd6v")]
 position = Vector2(64, -88)

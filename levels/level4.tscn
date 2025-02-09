@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://vbbemqlx8xf7"]
+[gd_scene load_steps=8 format=3 uid="uid://vbbemqlx8xf7"]
 
 [ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_8s3b3"]
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="2_cc5tm"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="4_mdw0g"]
 [ext_resource type="PackedScene" uid="uid://dsss51k7x7nuf" path="res://components/blink_bracer/blink_bracer.tscn" id="5_mj76i"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="5_naavy"]
-[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="6_gh4cy"]
 [ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="7_cc5tm"]
 
 [node name="Node2D" type="Node2D"]
@@ -24,6 +23,7 @@ scale = Vector2(2, 2)
 [node name="tile_success" parent="tiles" instance=ExtResource("2_cc5tm")]
 position = Vector2(0, -240)
 scale = Vector2(2, 2)
+is_goal = true
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_cc5tm")]
 scale = Vector2(2, 2)
@@ -229,21 +229,16 @@ screen_offset = Vector2(100, 100)
 
 [node name="lava" parent="Parallax2D" instance=ExtResource("5_naavy")]
 
-[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-1, 16)
-stream = ExtResource("6_gh4cy")
-autoplay = true
-
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
 position = Vector2(-128, -128)
 rotation = -0.785397
 height = 0.1
 
-[node name="gem" parent="." instance=ExtResource("7_cc5tm")]
+[node name="gem3" parent="." instance=ExtResource("7_cc5tm")]
 position = Vector2(0, -200)
 
 [node name="gem2" parent="." instance=ExtResource("7_cc5tm")]
 position = Vector2(136, -224)
 
-[node name="gem3" parent="." instance=ExtResource("7_cc5tm")]
+[node name="gem1" parent="." instance=ExtResource("7_cc5tm")]
 position = Vector2(248, -208)

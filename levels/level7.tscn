@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjop1sq45rdo2"]
+[gd_scene load_steps=5 format=3 uid="uid://cjop1sq45rdo2"]
 
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="1_5jh5v"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="2_f5oyx"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="3_jt2a3"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="4_e4yfa"]
-[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/555380__andreivstudio__lava-ambience.wav" id="5_njina"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -16,7 +15,6 @@ scale = Vector2(2, 2)
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("1_5jh5v")]
 scale = Vector2(2, 2)
-is_goal = false
 
 [node name="player" parent="tiles" instance=ExtResource("2_f5oyx")]
 
@@ -92,11 +90,6 @@ autoscroll = Vector2(100, 100)
 screen_offset = Vector2(100, 100)
 
 [node name="lava" parent="Parallax2D" instance=ExtResource("4_e4yfa")]
-
-[node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-1, 16)
-stream = ExtResource("5_njina")
-autoplay = true
 
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
 position = Vector2(-128, -128)
