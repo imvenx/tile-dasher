@@ -38,32 +38,26 @@ func set_last_unlocked_level(val: int):
 var current_level = 0
 
 func _ready():
-	blinkBracerPicked.connect(
-		func(): 
-			hasBlinkBracer = true
-			setItem('hasBlinkBracer', true)
-			)
 	#deleteAllStorage()
-	pass
+	blinkBracerPicked.connect(func(): 
+			hasBlinkBracer = true
+			setItem('hasBlinkBracer', true))
 
 var path = "user://save.json"
 
 func setItem(key: String, val):
-	# Load existing data to avoid overwriting other keys
 	var data_to_save = {}
 
 	if FileAccess.file_exists(path):
-		var file = FileAccess.open(path, FileAccess.READ)
-		data_to_save = JSON.parse_string(file.get_as_text()) as Dictionary
-		file.close()
+		var readFile = FileAccess.open(path, FileAccess.READ)
+		data_to_save = JSON.parse_string(readFile.get_as_text()) as Dictionary
+		readFile.close()
 
-	# Update or add the new value
 	data_to_save[key] = val
 
-	# Save the updated data back to the file
-	var file = FileAccess.open(path, FileAccess.WRITE)
-	file.store_string(JSON.stringify(data_to_save))
-	file.close()
+	var writeFile = FileAccess.open(path, FileAccess.WRITE)
+	writeFile.store_string(JSON.stringify(data_to_save))
+	writeFile.close()
 
 func getItem(key: String, default_value = null):
 	if FileAccess.file_exists('user://save.json'):
@@ -78,3 +72,6 @@ func getItem(key: String, default_value = null):
 func deleteAllStorage():
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(path)
+		
+static func coalesce(value, default_value):
+	return value if value != null else default_value

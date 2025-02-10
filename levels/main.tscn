@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="4_6et1j"]
 [ext_resource type="Shader" uid="uid://ccd6yuc2skwrt" path="res://components/lava/lava.gdshader" id="13_o6dmv"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="13_s07ge"]
-[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/lava-ambience-sound.wav" id="15_vpyym"]
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="16_i3naf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
@@ -100,6 +99,9 @@ shader_parameter/R = 0.0
 shader_parameter/G = 0.0
 shader_parameter/B = 0.0
 shader_parameter/blur_strength3 = 5.0
+
+[sub_resource type="Resource" id="Resource_qy63d"]
+metadata/__load_path__ = "res://sound/lava-ambience-sound.wav"
 
 [node name="Node2D" type="Node2D"]
 
@@ -313,7 +315,7 @@ color = Color(1, 0.376471, 0.32549, 1)
 
 [node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-1, 16)
-stream = ExtResource("15_vpyym")
+stream = SubResource("Resource_qy63d")
 autoplay = true
 
 [node name="tile_fall" parent="." instance=ExtResource("2_s07ge")]

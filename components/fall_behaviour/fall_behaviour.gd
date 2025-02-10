@@ -6,7 +6,10 @@ class_name FallBehaviour
 var fall_timer: float = 0.0
 var is_falling = false
 signal ended_falling
-@onready var fall_sound: AudioStreamPlayer2D = $sound
+var fall_sound: AudioStreamPlayer2D
+
+func _ready():
+	fall_sound = get_node_or_null('sound')
 
 func _process(delta):
 	if not is_falling: return

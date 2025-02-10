@@ -1,10 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://bik5xw0wq8lsj"]
 
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="1_o8q58"]
-[ext_resource type="AudioStream" uid="uid://0ja3x7majytu" path="res://sound/lava-ambience-sound.wav" id="2_iy2cv"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="3_m2b6b"]
 [ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="4_2rs62"]
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="5_xqjf2"]
+
+[sub_resource type="Resource" id="Resource_pqjpr"]
+metadata/__load_path__ = "res://sound/lava-ambience-sound.wav"
 
 [node name="home_level" type="Node2D"]
 
@@ -14,7 +16,7 @@ show_hud = false
 
 [node name="lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-1, 16)
-stream = ExtResource("2_iy2cv")
+stream = SubResource("Resource_pqjpr")
 autoplay = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
