@@ -12,6 +12,7 @@
 [x] store if can use dash
 - add exit level tile behind start tile
 - add success tile animation and sound
+- properly map wasd input
 - add crazygames API
 ?- end level menu
 ?- store collected gems only after finish level

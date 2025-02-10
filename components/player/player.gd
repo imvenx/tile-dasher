@@ -8,14 +8,14 @@ class_name Player
 @onready var rotate_behaviour: RotateBehaviour = $rotate_behaviour
 @onready var dash_sound: AudioStreamPlayer2D = $dash_behaviour/dash_sound
 @onready var state_machine: StateMachine = $state_machine
-@onready var dash_progress_bar = $'../dash_progress_bar'
+@onready var dash_progress_bar: DashProgressBar = $'../dash_progress_bar'
 @onready var area_2d = $Area2D
 var anim_speed = 1
 
 func _ready() -> void:
 	#state_machine.change_state('fall')
 	
-	floor_detector.connect('fallen', on_fall)
+	floor_detector.connect('fallen', onFall)
 	fall_behaviour.connect('ended_falling', on_ended_falling)
 	dashBehaviour.connect('dash', on_dash)
 	move_8d_behaviour.connect('started_moving', on_start_moving)
@@ -58,13 +58,13 @@ func _input(event: InputEvent):
 			rotate_behaviour.reset_rotation_speed()
 			move_8d_behaviour.reset_speed()
 	
-func on_fall():
+func onFall():
 	$gems.visible = false
-	floor_detector.disconnect('fallen', on_fall)
+	fall_behaviour.start_falling()
+	floor_detector.disconnect('fallen', onFall)
 	state_machine.disconnect("anim_ended", on_anim_ended)
 	move_8d_behaviour.disconnect('stoped_moving', on_stop_moving)
-	fall_behaviour.start_falling()
-	dashBehaviour.cancelDash()
+	#dashBehaviour.cancelDash()
 	dashBehaviour.queue_free()
 	dash_progress_bar.setIsVisible(false)
 	move_8d_behaviour.stop_moving()
@@ -106,13 +106,15 @@ func on_area_entered(area2d: Area2D):
 		).modulate = Color(1,1,1,1)
 	
 	if area2d.name == "blink_bracer":
+		$"pick-item".process_mode = Node.PROCESS_MODE_ALWAYS
+		$"pick-item".play()
+		dash_progress_bar.setIsVisible(false)
+		dashBehaviour.cancelDash()
 		state_machine.change_state('happy')
 		$state_machine/happy/gem.visible = false
 		$state_machine/happy/blink_bracer.visible = true
-		$"pick-item".play()
 		await get_tree().create_timer(.1).timeout
 		get_tree().paused = true
-		$"pick-item".process_mode = Node.PROCESS_MODE_ALWAYS
 		await get_tree().create_timer(3).timeout
 		get_tree().paused = false
 		

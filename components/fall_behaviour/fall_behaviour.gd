@@ -6,7 +6,7 @@ class_name FallBehaviour
 var fall_timer: float = 0.0
 var is_falling = false
 signal ended_falling
-@export var fall_sound: AudioStreamPlayer2D
+@onready var fall_sound: AudioStreamPlayer2D = $sound
 
 func _process(delta):
 	if not is_falling: return

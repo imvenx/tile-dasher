@@ -6,6 +6,6 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	
 	if body.is_in_group("player"): 
-		print('player took blink bracer')
-		queue_free()
+		#print('player took blink bracer')
 		Global.blinkBracerPicked.emit()
+		queue_free()

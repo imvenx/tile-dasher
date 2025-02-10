@@ -555,11 +555,10 @@ attenuation = 1.6245
 [node name="floor_detector" parent="player" node_paths=PackedStringArray("area2d") instance=ExtResource("7_v44tt")]
 area2d = NodePath("../Area2D")
 
-[node name="fall_behaviour" parent="player" node_paths=PackedStringArray("obj", "fall_sound") instance=ExtResource("8_l1d2p")]
+[node name="fall_behaviour" parent="player" node_paths=PackedStringArray("obj") instance=ExtResource("8_l1d2p")]
 obj = NodePath("..")
-fall_sound = NodePath("AudioStreamPlayer2D")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="player/fall_behaviour"]
+[node name="sound" type="AudioStreamPlayer2D" parent="player/fall_behaviour"]
 stream = ExtResource("14_wmnke")
 volume_db = -20.0
 

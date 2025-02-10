@@ -5,7 +5,7 @@ class_name DashBehaviour
 @export var dashCooldownTime = 1.0  # Full cooldown duration in seconds
 @export var maxDashDistance = 100
 @export var clampyDash: bool = true  # Enables clampy movement
-@export var clampyIntervalFrames: int = 6  # How many frames before updating position
+@export var clampyIntervalFrames: int = 5  # How many frames before updating position
 var initialDashJumpStep = 10
 var initialDashEnergySpent = 20
 

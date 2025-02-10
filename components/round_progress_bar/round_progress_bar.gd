@@ -1,4 +1,5 @@
 extends Node2D
+class_name DashProgressBar
 
 @onready var progress_bar: Sprite2D = $sprite
 @export var obj: Node
