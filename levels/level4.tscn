@@ -23,7 +23,6 @@ scale = Vector2(2, 2)
 [node name="tile_success" parent="tiles" instance=ExtResource("2_cc5tm")]
 position = Vector2(0, -240)
 scale = Vector2(2, 2)
-is_goal = true
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_cc5tm")]
 scale = Vector2(2, 2)
@@ -242,3 +241,10 @@ position = Vector2(136, -224)
 
 [node name="gem1" parent="." instance=ExtResource("7_cc5tm")]
 position = Vector2(248, -208)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 176.0
+offset_top = -104.0
+offset_right = 336.0
+offset_bottom = -48.0
+text = "Hold \"K\" and release to teleport"

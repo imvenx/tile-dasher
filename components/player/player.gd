@@ -3,7 +3,7 @@ class_name Player
 
 @onready var floor_detector:FloorDetector = $floor_detector
 @onready var fall_behaviour: FallBehaviour = $fall_behaviour
-@onready var dash_behaviour: DashBehaviour = $dash_behaviour
+@onready var dashBehaviour: DashBehaviour = $dash_behaviour
 @onready var move_8d_behaviour: Move8DBehaviour = $move_8d_behaviour
 @onready var rotate_behaviour: RotateBehaviour = $rotate_behaviour
 @onready var dash_sound: AudioStreamPlayer2D = $dash_behaviour/dash_sound
@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 	floor_detector.connect('fallen', on_fall)
 	fall_behaviour.connect('ended_falling', on_ended_falling)
-	dash_behaviour.connect('dash', on_dash)
+	dashBehaviour.connect('dash', on_dash)
 	move_8d_behaviour.connect('started_moving', on_start_moving)
 	move_8d_behaviour.connect('stoped_moving', on_stop_moving)
 	area_2d.connect("area_entered", on_area_entered)
@@ -43,17 +43,18 @@ func handle_movement_and_rotation():
 	rotate_behaviour.rotate(input_vector)
 	
 func _input(event: InputEvent):
-			
+	if not Global.hasBlinkBracer: return
+	
 	if not floor_detector.has_fallen:
 		if event.is_action_pressed('dash'):
 			if state_machine.state == 'walk':
 				state_machine.change_anim_speed(0.5)
-			dash_behaviour.start_dashing()
+			dashBehaviour.startDashing()
 			rotate_behaviour.modify_rotation_speed(4)
 			move_8d_behaviour.change_speed(.5)
 		if event.is_action_released('dash'):
 			state_machine.change_anim_speed(anim_speed)
-			dash_behaviour.stop_dashing()
+			dashBehaviour.stopDashing()
 			rotate_behaviour.reset_rotation_speed()
 			move_8d_behaviour.reset_speed()
 	
@@ -63,9 +64,9 @@ func on_fall():
 	state_machine.disconnect("anim_ended", on_anim_ended)
 	move_8d_behaviour.disconnect('stoped_moving', on_stop_moving)
 	fall_behaviour.start_falling()
-	dash_behaviour.cancel_dash()
-	dash_behaviour.queue_free()
-	dash_progress_bar.set_is_visible(false)
+	dashBehaviour.cancelDash()
+	dashBehaviour.queue_free()
+	dash_progress_bar.setIsVisible(false)
 	move_8d_behaviour.stop_moving()
 	state_machine.change_state('fall')
 
@@ -90,8 +91,10 @@ func on_area_entered(area2d: Area2D):
 		gems += 1
 		Global.gem_collected.emit(area2d.name)
 		state_machine.change_state('happy')
+		$state_machine/happy/gem.visible = true
+		$state_machine/happy/blink_bracer.visible = false
 		if(gems == 3):
-			state_machine.change_state('happy')
+			#state_machine.change_state('happy')
 			#state_machine.change_state('run_scared')
 			anim_speed += .1
 			move_8d_behaviour.change_speed(anim_speed)
@@ -104,6 +107,8 @@ func on_area_entered(area2d: Area2D):
 	
 	if area2d.name == "blink_bracer":
 		state_machine.change_state('happy')
+		$state_machine/happy/gem.visible = false
+		$state_machine/happy/blink_bracer.visible = true
 		$"pick-item".play()
 		await get_tree().create_timer(.1).timeout
 		get_tree().paused = true

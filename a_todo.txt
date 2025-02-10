@@ -1,45 +1,38 @@
+## CORE
 [x] decouple progressbar from dash_behaviour
 [x] make tile agnostic to reuse for all type of tiles on player enter
 [x] decouple camera2d from player and follow on x y
 [x] make start level transition
 [x] tiles sprites
 [x] player animated sprites 
-
-- home menu
-- fix home menu big tile collider
-- levels menu
+[x] home menu
+[x] store if has collected gems
+[x] game music
+- change pick blink bracer sound and add text
+- store collected gems only after finish level
+- add exit level tile behind start tile
 - end level menu?
-- game music
-- store if has collected gems
 - store if can use dash
 - dash text tutorial
-- change walk anim for improved version
 - add success tile animation and sound
-- improve normals player
 
+## REFINE
+- fix home menu big tile collider
+- improve normals player
+- sink on lava anim/sound
+
+## OTHER
 ?- add shadows
 ?- add objects height, sort ordering based on height
-- sink on lava anim/sound
 - adjustable difficulty (time tiles take to fall) easy/normal/hard
-
 - power ups / downs:  (or challenge badges etc..)
-	- invisibility (player is invisible making it harder to do platforming)
-
-- ideas levels:
-	- go back and forth on same bridge to get key to open chest
-	
-
-- to design cool levels:
-	- add bomb
-	- make level menu
-	- add collectables, gems
-	- add keys
+	- invisibility (player is invisible making it harder to do platforming)	
 
 - sound:
-	- add player falling sound
-	- add tile breaking sound and tile falling sound
-	- add steps sound
-	- add dash loading/unloadingw sound
+	[x] add player falling sound
+	[x] add tile breaking sound and tile falling sound
+	[x] add steps sound
+	[x] add dash loading/unloadingw sound
 
 - ideas for replayability / completionist / badges
 	- complete level destroying all falling tiles

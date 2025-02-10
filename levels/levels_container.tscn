@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cty1j3pas531w"]
 
 [ext_resource type="Script" uid="uid://vnpm7i80qbfv" path="res://levels/levels_container.gd" id="1_c4a6t"]
-[ext_resource type="AudioStream" uid="uid://cqnh3vr4krpxs" path="res://game-song.mp3" id="2_c4a6t"]
+[ext_resource type="AudioStream" uid="uid://cqnh3vr4krpxs" path="res://sound/game-song.mp3" id="2_c4a6t"]
 [ext_resource type="AudioStream" uid="uid://cf641dv1xvghr" path="res://sound/lava-ambience-sound.mp3" id="3_vhwtf"]
 
 [sub_resource type="GDScript" id="GDScript_vhwtf"]
@@ -33,7 +33,6 @@ script = SubResource("GDScript_vhwtf")
 [node name="Game-song" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 16)
 stream = ExtResource("2_c4a6t")
-volume_db = 5.0
 autoplay = true
 
 [node name="Lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]

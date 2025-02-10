@@ -36,8 +36,12 @@ height = 0.1
 [node name="tile" parent="tiles" instance=ExtResource("4_2rs62")]
 scale = Vector2(18.381, 18.381)
 
+[node name="tile2" parent="tiles" instance=ExtResource("4_2rs62")]
+position = Vector2(304, 0)
+scale = Vector2(18.381, 18.381)
+
 [node name="tile_success" parent="tiles" instance=ExtResource("5_xqjf2")]
-position = Vector2(-80, -160)
+position = Vector2(-64, -160)
 scale = Vector2(2, 2)
 is_goal = false
 go_to_level_number = 1
@@ -86,27 +90,45 @@ tab_size = 1
 context_menu_enabled = true
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("5_xqjf2")]
-position = Vector2(-40, -160)
+position = Vector2(-24, -160)
 scale = Vector2(2, 2)
 is_goal = false
 go_to_level_number = 2
 text = "V"
 
 [node name="tile_success3" parent="tiles" instance=ExtResource("5_xqjf2")]
-position = Vector2(0, -160)
+position = Vector2(16, -160)
 scale = Vector2(2, 2)
 is_goal = false
 go_to_level_number = 3
 text = "Z"
 
 [node name="tile_success4" parent="tiles" instance=ExtResource("5_xqjf2")]
-position = Vector2(40, -160)
+position = Vector2(56, -160)
 scale = Vector2(2, 2)
 is_goal = false
+go_to_level_number = 4
+text = "W"
 
 [node name="tile_success5" parent="tiles" instance=ExtResource("5_xqjf2")]
-position = Vector2(80, -160)
+position = Vector2(264, -160)
 scale = Vector2(2, 2)
 is_goal = false
+go_to_level_number = 5
+text = "IW"
+
+[node name="tile_success6" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(304, -160)
+scale = Vector2(2, 2)
+is_goal = false
+go_to_level_number = 6
+text = "VW"
+
+[node name="tile_success7" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(344, -160)
+scale = Vector2(2, 2)
+is_goal = false
+go_to_level_number = 7
+text = "ZW"
 
 [node name="levels_portals" type="Node2D" parent="tiles"]

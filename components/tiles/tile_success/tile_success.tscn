@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_8feqh"]
 [ext_resource type="Script" uid="uid://of5s0msd320i" path="res://components/tiles/tile_success/tile_success.gd" id="2_ya3fq"]
 [ext_resource type="Texture2D" uid="uid://bqjy1tcb2x7et" path="res://components/tiles/tile_success/success-tile.PNG" id="3_bppbo"]
-[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://components/player/toon.gdshader" id="3_pieqs"]
+[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://shaders/toon.gdshader" id="3_pieqs"]
 [ext_resource type="Texture2D" uid="uid://cfj6egyabbdb4" path="res://components/tiles/tile_success/success-tile_n.png" id="4_37jsw"]
 [ext_resource type="Texture2D" uid="uid://davlpaytpckbn" path="res://components/gem/gem.png" id="5_4u0pg"]
 [ext_resource type="Texture2D" uid="uid://cqnoykmbw4skp" path="res://components/gem/gem_n.png" id="7_phfcx"]

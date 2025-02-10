@@ -1,17 +1,19 @@
-[gd_scene load_steps=70 format=4 uid="uid://c5oycs7smsf4m"]
+[gd_scene load_steps=73 format=4 uid="uid://c5oycs7smsf4m"]
 
 [ext_resource type="PackedScene" uid="uid://bh8uwy3lhrnnt" path="res://components/round_progress_bar/round_progress_bar.tscn" id="1_pxnim"]
 [ext_resource type="Script" uid="uid://iuxgc4nbxcxm" path="res://components/player/player_container.gd" id="1_qhwjt"]
 [ext_resource type="Script" uid="uid://bydr7oqoaswx4" path="res://components/player/player.gd" id="2_fwwnh"]
 [ext_resource type="Script" uid="uid://cda3dowomturs" path="res://components/player/state_machine.gd" id="3_pdxi8"]
 [ext_resource type="AudioStream" uid="uid://cjc6cp5a21hs6" path="res://sound/dash.mp3" id="3_vxcs8"]
-[ext_resource type="AudioStream" uid="uid://dednh78g03wjc" path="res://components/player/pick-item.mp3" id="3_x3fw6"]
 [ext_resource type="PackedScene" uid="uid://75pwb1i0ieac" path="res://components/move_8d_behaviour/move_8d_behaviour.tscn" id="4_16fba"]
-[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://components/player/toon.gdshader" id="4_pdxi8"]
+[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://shaders/toon.gdshader" id="4_pdxi8"]
 [ext_resource type="PackedScene" uid="uid://cr0fsgqgq5ert" path="res://components/rotate_behaviour/rotate_behaviour.tscn" id="5_hc4cx"]
+[ext_resource type="AudioStream" uid="uid://bqyexryqxp1ys" path="res://sound/pick-item.mp3" id="5_qhwjt"]
 [ext_resource type="Texture2D" uid="uid://cc2esl5l61orm" path="res://components/player/idle_n.png" id="6_8rpwc"]
 [ext_resource type="Texture2D" uid="uid://dw5cxvpj8oxy" path="res://components/player/walk-normal.png" id="6_hc4cx"]
+[ext_resource type="Texture2D" uid="uid://b3rvcaobe05qr" path="res://components/blink_bracer/blink-bracer.PNG" id="6_qhwjt"]
 [ext_resource type="PackedScene" uid="uid://bsrdnd0no6pen" path="res://components/dash_behaviour/dash_behaviour.tscn" id="6_wmnke"]
+[ext_resource type="Texture2D" uid="uid://cc8xgxur7orvv" path="res://components/blink_bracer/blink-bracer_n.png" id="7_4eo0i"]
 [ext_resource type="PackedScene" uid="uid://deg8ko62xh357" path="res://components/floor_detector/floor_detector.tscn" id="7_v44tt"]
 [ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://components/fall_behaviour/fall_behaviour.tscn" id="8_l1d2p"]
 [ext_resource type="Texture2D" uid="uid://davlpaytpckbn" path="res://components/gem/gem.png" id="10_8rpwc"]
@@ -22,7 +24,7 @@
 [ext_resource type="Script" uid="uid://dxx1ufxu8jy2h" path="res://addons/godot_sfxr/SfxrStreamPlayer.gd" id="18_8rpwc"]
 [ext_resource type="PackedScene" uid="uid://cqkvppm3y6woj" path="res://hud/hud.tscn" id="20_vckwg"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_vckwg"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_5lnqj"]
 diffuse_texture = ExtResource("10_8rpwc")
 normal_texture = ExtResource("11_x3fw6")
 
@@ -385,6 +387,10 @@ diffuse_texture = SubResource("CompressedTexture2D_8rpwc")
 normal_texture = SubResource("CompressedTexture2D_x3fw6")
 texture_filter = 1
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_vckwg"]
+diffuse_texture = ExtResource("6_qhwjt")
+normal_texture = ExtResource("7_4eo0i")
+
 [node name="player_container" type="Node2D"]
 script = ExtResource("1_qhwjt")
 
@@ -399,8 +405,7 @@ rotation = -1.5708
 script = ExtResource("2_fwwnh")
 
 [node name="pick-item" type="AudioStreamPlayer" parent="player"]
-stream = ExtResource("3_x3fw6")
-volume_db = -10.0
+stream = ExtResource("5_qhwjt")
 
 [node name="gems" type="Node2D" parent="player"]
 
@@ -409,21 +414,21 @@ visible = false
 position = Vector2(-3.99998, -4.00001)
 rotation = -3.14159
 scale = Vector2(0.264252, 0.264252)
-texture = SubResource("CanvasTexture_vckwg")
+texture = SubResource("CanvasTexture_5lnqj")
 
 [node name="gem2" type="Sprite2D" parent="player/gems"]
 visible = false
 position = Vector2(-5, -1.81e-05)
 rotation = -3.14159
 scale = Vector2(0.264252, 0.264252)
-texture = SubResource("CanvasTexture_vckwg")
+texture = SubResource("CanvasTexture_5lnqj")
 
 [node name="gem3" type="Sprite2D" parent="player/gems"]
 visible = false
 position = Vector2(-4.00001, 3.99999)
 rotation = -3.14159
 scale = Vector2(0.264252, 0.264252)
-texture = SubResource("CanvasTexture_vckwg")
+texture = SubResource("CanvasTexture_5lnqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 shape = SubResource("CircleShape2D_7dm0k")
@@ -452,6 +457,7 @@ script = ExtResource("3_pdxi8")
 anim_tree = NodePath("../AnimationTree")
 
 [node name="idle" type="Sprite2D" parent="player/state_machine"]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_wmnke")
 texture = SubResource("CanvasTexture_vxcs8")
@@ -511,12 +517,18 @@ texture = SubResource("CanvasTexture_4eo0i")
 hframes = 4
 
 [node name="happy" type="Sprite2D" parent="player/state_machine"]
-visible = false
 rotation = 3.14159
 texture = SubResource("CanvasTexture_8rpwc")
 hframes = 2
 
 [node name="gem" type="Sprite2D" parent="player/state_machine/happy"]
+visible = false
+position = Vector2(8.37644e-05, -10)
+rotation = -1.57079
+texture = SubResource("CanvasTexture_5lnqj")
+
+[node name="blink_bracer" type="Sprite2D" parent="player/state_machine/happy"]
+visible = false
 position = Vector2(8.37644e-05, -10)
 rotation = -1.57079
 texture = SubResource("CanvasTexture_vckwg")

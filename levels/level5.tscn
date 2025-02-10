@@ -13,10 +13,11 @@
 [node name="tile_success" parent="tiles" instance=ExtResource("2_ldkys")]
 position = Vector2(0, -256)
 scale = Vector2(2, 2)
-is_goal = true
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_ldkys")]
 scale = Vector2(2, 2)
+is_goal = false
+text = "IW"
 
 [node name="player" parent="tiles" instance=ExtResource("3_dm5g0")]
 

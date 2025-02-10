@@ -2,15 +2,15 @@ extends Node2D
 
 @onready var progress_bar: Sprite2D = $sprite
 @export var obj: Node
-var _is_visible = true
+var isVisible = true
 
 const FRAME_COUNT = 17 
 
 
 func _process(delta: float) -> void:
-	if not _is_visible: return
+	if not isVisible: return
 
-	var progress = obj.get_progress()
+	var progress = obj.getProgress()
 	
 	if progress >= 100:
 		visible = false
@@ -22,6 +22,6 @@ func _process(delta: float) -> void:
 	progress_bar.frame = frame_index
 
 
-func set_is_visible(__is_visible: bool):
-	_is_visible = __is_visible
-	visible = _is_visible
+func setIsVisible(_isVisible: bool):
+	isVisible = _isVisible
+	visible = isVisible

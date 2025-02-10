@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c0x33jola6cj8" path="res://components/tiles/IMG_0041.PNG" id="1_8vivr"]
 [ext_resource type="Texture2D" uid="uid://di0fw13vpi2u5" path="res://components/tiles/IMG_0041_n.png" id="2_ve6y3"]
-[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://components/player/toon.gdshader" id="3_ve6y3"]
+[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://shaders/toon.gdshader" id="3_ve6y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(32, 32)
