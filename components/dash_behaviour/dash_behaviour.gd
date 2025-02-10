@@ -6,6 +6,8 @@ class_name DashBehaviour
 @export var maxDashDistance = 100
 @export var clampyDash: bool = true  # Enables clampy movement
 @export var clampyIntervalFrames: int = 6  # How many frames before updating position
+var initialDashJumpStep = 10
+var initialDashEnergySpent = 20
 
 signal dash(dashPosition: Vector2)
 
@@ -41,11 +43,11 @@ func startDashing():
 	if energyPercent <= 0: 
 		return
 		
-	position.x += 10
-	energyPercent -= 25
+	position.x += initialDashJumpStep
+	energyPercent -= initialDashEnergySpent
 	isDashing = true
 	visible = true
-	clampyCounter = 0  # Reset counter for clampy dash
+	clampyCounter = 0
 	$unload.play()
 
 func stopDashing():

@@ -8,13 +8,13 @@
 [x] home menu
 [x] store if has collected gems
 [x] game music
-- change pick blink bracer sound and add text
-- store collected gems only after finish level
+[x] change pick blink bracer sound and add text
+[x] store if can use dash
 - add exit level tile behind start tile
-- end level menu?
-- store if can use dash
-- dash text tutorial
 - add success tile animation and sound
+- add crazygames API
+?- end level menu
+?- store collected gems only after finish level
 
 ## REFINE
 - fix home menu big tile collider
