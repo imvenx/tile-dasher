@@ -30,8 +30,12 @@ func _physics_process(delta: float) -> void:
 func start_dashing():
 	if energy_percent <= 0: 
 		return
+		
+	energy_percent -= 15
 	is_dashing = true
 	visible = true
+	$unload.play()
+
 
 func stop_dashing():
 	if not is_dashing: return
@@ -41,6 +45,9 @@ func stop_dashing():
 	adjust_cooldown_based_on_distance()
 	position.x = 0
 	modulate = Color(1, 1, 1, 1)
+	$unload.stop()
+	$reload.play()
+	
 
 func cancel_dash():
 	visible = false
@@ -48,6 +55,8 @@ func cancel_dash():
 	adjust_cooldown_based_on_distance()
 	position.x = 0
 	modulate = Color(1, 1, 1, 1)
+	$unload.stop()
+	$reload.play()
 
 func adjust_cooldown_based_on_distance():
 	var distance_covered = position.x
@@ -63,6 +72,9 @@ func update_cooldown_progress(delta: float):
 	if energy_percent < 100:
 		var energy_recovered = delta / dash_cooldown_time * 100
 		energy_percent = clamp(energy_percent + energy_recovered, 0, 100)
+	else:
+		$reload.stop()
+		
 
 func update_opacity():
 	modulate = Color(0, 10, 100, energy_percent / 100)

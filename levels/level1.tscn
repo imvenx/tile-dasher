@@ -25,15 +25,6 @@ offset_right = 24.0
 offset_bottom = 40.0
 text = "Be carefull, the floor is falling apart"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="."]
-modulate = Color(0, 0, 0, 0.839216)
-z_index = 1
-offset_left = -2.0
-offset_top = -11.0
-offset_right = 6.0
-offset_bottom = 13.0
-text = "I"
-
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(-128, -128)
 rotation = -0.785397
@@ -46,11 +37,12 @@ height = 0.1
 [node name="tile_success" parent="tiles" instance=ExtResource("8_jq2cn")]
 position = Vector2(0, -272)
 scale = Vector2(2, 2)
-is_goal = true
+text = "O"
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("8_jq2cn")]
 scale = Vector2(2, 2)
 is_goal = false
+text = "I"
 
 [node name="tile_fall14" parent="tiles" instance=ExtResource("5_8hd6v")]
 position = Vector2(0, -24)
@@ -175,11 +167,13 @@ position = Vector2(0, -248)
 [node name="tile_fall30" parent="tiles" instance=ExtResource("5_8hd6v")]
 position = Vector2(32, -184)
 
-[node name="gem3" parent="." instance=ExtResource("7_8hd6v")]
+[node name="gems" type="Node" parent="."]
+
+[node name="gem3" parent="gems" instance=ExtResource("7_8hd6v")]
 position = Vector2(-32, -200)
 
-[node name="gem2" parent="." instance=ExtResource("7_8hd6v")]
+[node name="gem2" parent="gems" instance=ExtResource("7_8hd6v")]
 position = Vector2(-16, -136)
 
-[node name="gem1" parent="." instance=ExtResource("7_8hd6v")]
+[node name="gem1" parent="gems" instance=ExtResource("7_8hd6v")]
 position = Vector2(64, -88)

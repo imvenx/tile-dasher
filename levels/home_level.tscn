@@ -44,6 +44,7 @@ go_to_level_number = 1
 text = "I"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="tiles/tile_success"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 offset_left = -7.5
 offset_top = 8.5
@@ -57,6 +58,7 @@ tab_size = 1
 context_menu_enabled = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="tiles/tile_success"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 offset_left = 12.5
 offset_top = 8.5
@@ -70,6 +72,7 @@ tab_size = 1
 context_menu_enabled = true
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="tiles/tile_success"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 offset_left = 32.0
 offset_top = 8.5

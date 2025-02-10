@@ -16,7 +16,7 @@ func _ready() -> void:
 			
 		if is_disabled:
 			modulate = Color(.5,.5,.5,1)
-			$RichTextLabel.modulate = Color(1,1,1,.1)
+			$RichTextLabel.modulate = Color(1,1,1,.05)
 	
 		#else: $RichTextLabel.text = numbers[go_to_level_number - 1]
 			

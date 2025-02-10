@@ -64,6 +64,7 @@ func on_fall():
 	move_8d_behaviour.disconnect('stoped_moving', on_stop_moving)
 	fall_behaviour.start_falling()
 	dash_behaviour.cancel_dash()
+	dash_behaviour.queue_free()
 	dash_progress_bar.set_is_visible(false)
 	move_8d_behaviour.stop_moving()
 	state_machine.change_state('fall')
