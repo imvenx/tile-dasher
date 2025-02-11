@@ -60,6 +60,9 @@ func on_level_completed() -> void:
 	#print(gems_collected)
 	#Global.current_level += 1
 	#fade_out_and_change_level(Global.current_level)
+	CrazySdk.happytime()
+	CrazySdk.gameplayStop()
+
 	if(Global.current_level + 1 > Global.last_unlocked_level):
 		Global.set_last_unlocked_level(Global.current_level + 1)
 	set_current_level_scene(0)
@@ -71,6 +74,7 @@ func on_restart_level():
 
 
 func on_go_to_level(levelNumber: int):
+	CrazySdk.gameplayStart()
 	set_current_level_scene(levelNumber)
 	fade_out_and_change_level(levels[levelNumber])
 

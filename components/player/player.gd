@@ -13,6 +13,7 @@ class_name Player
 var anim_speed = 1
 
 func _ready() -> void:
+
 	#state_machine.change_state('fall')
 	
 	floor_detector.connect('fallen', onFall)
