@@ -14,6 +14,8 @@ var anim_speed = 1
 
 func _ready() -> void:
 
+	changeSuit(Global.currentSuit)
+
 	#state_machine.change_state('fall')
 	
 	floor_detector.connect('fallen', onFall)
@@ -32,13 +34,18 @@ func _process(delta: float) -> void:
 
 func handle_movement_and_rotation():
 	var input_vector = Vector2.ZERO
-	if Input.is_key_pressed(KEY_W):
+	
+	#if Input.is_key_pressed(KEY_W):
+	if Input.is_action_pressed("ui_up"):
 		input_vector.y -= 1
-	if Input.is_key_pressed(KEY_S):
+	#if Input.is_key_pressed(KEY_S):
+	if Input.is_action_pressed("ui_down"):
 		input_vector.y += 1
-	if Input.is_key_pressed(KEY_A):
+	if Input.is_action_pressed("ui_left"):
+	#if Input.is_key_pressed(KEY_A):
 		input_vector.x -= 1
-	if Input.is_key_pressed(KEY_D):
+	if Input.is_action_pressed("ui_right"):
+	#if Input.is_key_pressed(KEY_D):
 		input_vector.x += 1
 	move_8d_behaviour.move_8d(input_vector)
 	rotate_behaviour.rotate(input_vector)
@@ -107,6 +114,7 @@ func on_area_entered(area2d: Area2D):
 		).modulate = Color(1,1,1,1)
 	
 	if area2d.name == "blink_bracer":
+		CrazySdk.happytime()
 		$"pick-item".process_mode = Node.PROCESS_MODE_ALWAYS
 		$"pick-item".play()
 		dash_progress_bar.setIsVisible(false)
@@ -118,7 +126,7 @@ func on_area_entered(area2d: Area2D):
 		get_tree().paused = true
 		await get_tree().create_timer(3).timeout
 		get_tree().paused = false
-		
+		dash_progress_bar.setIsVisible(true)
 		
 		
 func on_anim_ended(anim: String):
@@ -127,5 +135,21 @@ func on_anim_ended(anim: String):
 			state_machine.change_state('run_scared')
 		else:
 			state_machine.change_state('walk')
-		
 	
+
+func changeSuit(suit: String):
+	if(suit == 'green'):
+		var _material: ShaderMaterial = $state_machine/idle.material
+		_material.set_shader_parameter('tolerance', 0)
+	
+	if(suit == 'orange'):
+		var _material: ShaderMaterial = $state_machine/idle.material
+		_material.set_shader_parameter('targetColor', Vector3(0,1,0))
+		_material.set_shader_parameter('replacementColor', Vector3(1,0.6,0.2))
+		_material.set_shader_parameter('tolerance', 0.8)
+
+	if(suit == 'ninja'):
+		var _material: ShaderMaterial = $state_machine/idle.material
+		_material.set_shader_parameter('targetColor', Vector3(0,1,0))
+		_material.set_shader_parameter('replacementColor', Vector3(0.1,0.1,0.1))
+		_material.set_shader_parameter('tolerance', 1)

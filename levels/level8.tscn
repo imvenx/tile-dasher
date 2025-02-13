@@ -1,0 +1,121 @@
+[gd_scene load_steps=6 format=3 uid="uid://diqu5qnwsnaet"]
+
+[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="1_8cf2o"]
+[ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="2_thltt"]
+[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="3_1eeqx"]
+[ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="4_fsixi"]
+[ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="5_thltt"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tiles" type="Node" parent="."]
+
+[node name="tile_success" parent="tiles" instance=ExtResource("1_8cf2o")]
+position = Vector2(0, -240)
+scale = Vector2(2, 2)
+text = "O"
+
+[node name="tile_success2" parent="tiles" instance=ExtResource("1_8cf2o")]
+scale = Vector2(2, 2)
+is_goal = false
+text = "X"
+
+[node name="player" parent="tiles" instance=ExtResource("2_thltt")]
+
+[node name="tile_fall14" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -24)
+
+[node name="tile_fall15" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -56)
+
+[node name="tile_fall17" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -40)
+
+[node name="tile_fall18" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -104)
+
+[node name="tile_fall19" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -120)
+
+[node name="tile_fall16" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -72)
+
+[node name="tile_fall35" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -88)
+
+[node name="tile_fall38" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-40, -136)
+
+[node name="tile_fall42" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-80, -168)
+
+[node name="tile_fall45" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-80, -152)
+
+[node name="tile_fall46" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-96, -152)
+
+[node name="tile_fall47" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-96, -168)
+
+[node name="tile_fall43" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-56, -200)
+
+[node name="tile_fall48" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-120, -192)
+
+[node name="tile_fall49" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-144, -216)
+
+[node name="tile_fall50" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-120, -240)
+
+[node name="tile_fall51" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-96, -264)
+
+[node name="tile_fall52" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-56, -264)
+
+[node name="tile_fall39" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(32, -72)
+
+[node name="tile_fall36" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -136)
+
+[node name="tile_fall37" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -152)
+
+[node name="tile_fall40" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -168)
+
+[node name="tile_fall41" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -184)
+
+[node name="tile_fall44" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -200)
+
+[node name="tile_fall53" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(0, -216)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(144, 128)
+autoscroll = Vector2(100, 100)
+screen_offset = Vector2(100, 100)
+
+[node name="lava" parent="Parallax2D" instance=ExtResource("4_fsixi")]
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+position = Vector2(-128, -144)
+rotation = -0.785397
+height = 0.1
+
+[node name="gem1" parent="." instance=ExtResource("5_thltt")]
+position = Vector2(32, -72)
+
+[node name="gem2" parent="." instance=ExtResource("5_thltt")]
+position = Vector2(-88, -160)
+
+[node name="gem3" parent="." instance=ExtResource("5_thltt")]
+position = Vector2(-120, -192)

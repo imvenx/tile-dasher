@@ -17,22 +17,38 @@ signal blinkBracerPicked
 
 var hasBlinkBracer = getItem('hasBlinkBracer', false)
 
+var lastLevelPlayed = getItem('lastLevelPlayed', 1)
+func setLastLevelPlayed(val: int):
+	lastLevelPlayed = int(val)
+	setItem('lastLevelPlayed', val)
+
+var currentSuit = getItem('currentSuit', 'green')
+func setCurrentSuit(val: String):
+	currentSuit = val
+	setItem('currentSuit', val)
+var unlockedSuits = getItem('unlockedSuits', ['green'])
+func addUnlockedSuit(suit: String):
+	if not unlockedSuits.has(suit):
+		unlockedSuits.push_front(suit)
+	setItem('unlockedSuits', unlockedSuits)
+
 var defaultCollectedGems = [
 	[], [], [], [], [], [], [], [], [], [], [], [], [], [],
 	[], [], [], [], [], [], [], [], [], [], [], [], [], [],
 ]
 
-@onready var collected_gems: Array = getItem('collected_gems', defaultCollectedGems)
-func set_collected_gems(level: int, gem: String):
-	collected_gems[level - 1].push_front(gem)
-	setItem('collected_gems', collected_gems)
+@onready var collectedGems: Array = getItem('collectedGems', defaultCollectedGems)
+func addCollectedGem(level: int, gem: String):
+	if not collectedGems[level - 1].has(gem):
+		collectedGems[level - 1].push_front(gem)
+	setItem('collectedGems', collectedGems)
 
 var defaultUnlockedLevel = 1
-@onready var last_unlocked_level = getItem('last_unlocked_level', defaultUnlockedLevel)
-func set_last_unlocked_level(val: int):
-	last_unlocked_level = val
-	setItem('last_unlocked_level', val)
-	#save("last_unlocked_level", val)
+@onready var lastUnlockedLevel = getItem('lastUnlockedLevel', defaultUnlockedLevel)
+func setLastUnlockedLevel(val: int):
+	lastUnlockedLevel = val
+	setItem('lastUnlockedLevel', val)
+	#save("lastUnlockedLevel", val)
 	
 
 var current_level = 0

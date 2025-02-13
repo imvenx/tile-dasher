@@ -1,22 +1,22 @@
 shader_type canvas_item;
 
-//uniform vec3 targetColor = vec3(0.0, 1.0, 0.0); // Green color
-//uniform vec3 replacementColor2 = vec3(.0, 0.0, 0.0); // Red color
-//uniform float tolerance5 : hint_range(0.0, 1.0) = 0.8; // How close a color needs to be to targetColor to be replaced
+uniform vec3 targetColor = vec3(0.0, 1, 0.0);
+uniform vec3 replacementColor = vec3(0, 0.5, 1);
+uniform float tolerance : hint_range(0.0, 1.0) = 0.8;
 
-//void fragment() {
-    //vec4 texColor = texture(TEXTURE, UV);
-//
-    //// Compute color difference
-    //float diff = distance(texColor.rgb, targetColor);
-//
-    //// If within tolerance5, replace with new color
-    //if (diff < tolerance5) {
-        //texColor.rgb = replacementColor2;
-    //}
-//
-    //COLOR = texColor;
-//}
+void fragment() {
+    vec4 texColor = texture(TEXTURE, UV);
+
+    // Compute color difference
+    float diff = distance(texColor.rgb, targetColor);
+
+    // If within tolerance, replace with new color
+    if (diff < tolerance) {
+        texColor.rgb = replacementColor;
+    }
+
+    COLOR = texColor;
+}
 
 // Number of discrete brightness steps for toon shading.
 uniform int TOON_STEPS_12 : hint_range(1, 8) = 2;

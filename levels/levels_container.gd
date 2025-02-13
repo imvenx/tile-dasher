@@ -11,6 +11,7 @@ var levels = [
 	"res://levels/level5.tscn",
 	"res://levels/level6.tscn",
 	"res://levels/level7.tscn",
+	"res://levels/level8.tscn",
 ]
 
 var current_level_scene: Node = null
@@ -60,11 +61,10 @@ func on_level_completed() -> void:
 	#print(gems_collected)
 	#Global.current_level += 1
 	#fade_out_and_change_level(Global.current_level)
-	CrazySdk.happytime()
 	CrazySdk.gameplayStop()
 
-	if(Global.current_level + 1 > Global.last_unlocked_level):
-		Global.set_last_unlocked_level(Global.current_level + 1)
+	if(Global.current_level + 1 > Global.lastUnlockedLevel):
+		Global.setLastUnlockedLevel(Global.current_level + 1)
 	set_current_level_scene(0)
 	fade_out_and_change_level(levels[Global.current_level])
 
@@ -80,8 +80,8 @@ func on_go_to_level(levelNumber: int):
 
 
 func on_gem_collected(gem: String):
-	Global.set_collected_gems(Global.current_level, gem)
-	#Global.collected_gems[Global.current_level - 1].push_front(gem)
+	Global.addCollectedGem(Global.current_level, gem)
+	#Global.collectedGems[Global.current_level - 1].push_front(gem)
 
 
 func set_current_level_scene(val: int):

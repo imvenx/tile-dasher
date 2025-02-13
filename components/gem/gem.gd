@@ -8,10 +8,10 @@ func _ready():
 	connect('body_entered', on_body_entered)
 	anim_player.play("levitate")
 	
-	#print(Global.collected_gems)
-	#print(Global.collected_gems[Global.current_level - 1].has(name))
+	#print(Global.collectedGems)
+	#print(Global.collectedGems[Global.current_level - 1].has(name))
 	#print(name)
-	if Global.collected_gems[Global.current_level - 1].has(name):
+	if Global.collectedGems[Global.current_level - 1].has(name):
 		modulate = Color(.5,.5,.5,.5)
 	
 func on_body_entered(body: CharacterBody2D):

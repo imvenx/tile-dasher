@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=4 uid="uid://c5oycs7smsf4m"]
+[gd_scene load_steps=72 format=4 uid="uid://c5oycs7smsf4m"]
 
 [ext_resource type="PackedScene" uid="uid://bh8uwy3lhrnnt" path="res://components/round_progress_bar/round_progress_bar.tscn" id="1_pxnim"]
 [ext_resource type="Script" uid="uid://iuxgc4nbxcxm" path="res://components/player/player_container.gd" id="1_qhwjt"]
@@ -6,9 +6,8 @@
 [ext_resource type="Script" uid="uid://cda3dowomturs" path="res://components/player/state_machine.gd" id="3_pdxi8"]
 [ext_resource type="AudioStream" uid="uid://cjc6cp5a21hs6" path="res://sound/dash.mp3" id="3_vxcs8"]
 [ext_resource type="PackedScene" uid="uid://75pwb1i0ieac" path="res://components/move_8d_behaviour/move_8d_behaviour.tscn" id="4_16fba"]
-[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://shaders/toon.gdshader" id="4_pdxi8"]
+[ext_resource type="AudioStream" uid="uid://cp05ammoeb7ie" path="res://sound/pick-item.mp3" id="5_5lnqj"]
 [ext_resource type="PackedScene" uid="uid://cr0fsgqgq5ert" path="res://components/rotate_behaviour/rotate_behaviour.tscn" id="5_hc4cx"]
-[ext_resource type="AudioStream" uid="uid://bqyexryqxp1ys" path="res://sound/pick-item.mp3" id="5_qhwjt"]
 [ext_resource type="Texture2D" uid="uid://cc2esl5l61orm" path="res://components/player/idle_n.png" id="6_8rpwc"]
 [ext_resource type="Texture2D" uid="uid://dw5cxvpj8oxy" path="res://components/player/walk-normal.png" id="6_hc4cx"]
 [ext_resource type="Texture2D" uid="uid://b3rvcaobe05qr" path="res://components/blink_bracer/blink-bracer.PNG" id="6_qhwjt"]
@@ -16,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cc8xgxur7orvv" path="res://components/blink_bracer/blink-bracer_n.png" id="7_4eo0i"]
 [ext_resource type="PackedScene" uid="uid://deg8ko62xh357" path="res://components/floor_detector/floor_detector.tscn" id="7_v44tt"]
 [ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://components/fall_behaviour/fall_behaviour.tscn" id="8_l1d2p"]
+[ext_resource type="Shader" uid="uid://csticrmygq75t" path="res://shaders/player.gdshader" id="9_5fydm"]
 [ext_resource type="Texture2D" uid="uid://davlpaytpckbn" path="res://components/gem/gem.png" id="10_8rpwc"]
 [ext_resource type="Texture2D" uid="uid://d0ly8kooyyxb4" path="res://components/player/walk-scared.PNG" id="10_vckwg"]
 [ext_resource type="Texture2D" uid="uid://brm61cu30qbuu" path="res://components/player/walk-scared_n.png" id="11_qhwjt"]
@@ -336,7 +336,10 @@ nodes/output/position = Vector2(760, 20)
 node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wmnke"]
-shader = ExtResource("4_pdxi8")
+shader = ExtResource("9_5fydm")
+shader_parameter/targetColor = Vector3(0, 1, 0)
+shader_parameter/replacementColor = Vector3(0.5, 0, 0.5)
+shader_parameter/tolerance = 0.0
 shader_parameter/TOON_STEPS_12 = 2
 shader_parameter/COLOR_BOOST_5 = 1.0
 
@@ -356,11 +359,6 @@ normal_texture = ExtResource("6_hc4cx")
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_x3fw6"]
 data = PackedByteArray("BQ0UGyEnKy8yNDU1NTQxLysnIh0XEQsE/ffw6uPe2NPOycXCv727u7q6u7y+wcTHy8/T2N3i6O7z+f8FCxAWGiAmKzA0ODs+QEFCQkJBQD48OTUxLSkkHxoUDwkE/fjy7ejj3trW0s/MycbFw8LBwcHBwsPFx8nLztHU2Nzf4+fs8PT4/QIGCg8SFhodIiYqLjI1ODo8Pj9AQUFBQD8+PDo4NTMwLCklIR0ZFRENCAT/+/by7uvn4+Dd2dbU0c/Ny8rIx8bGxcXFxsbHyMnKzM3P0dPV2Nrd3+Ll6Ovu8PP2+fz/AwYJDA4RFBYZGx0gIiUoKi0vMjQ1Nzg5Ojs7PDw8Ozs6OTg3NTMyMC4rKSckIh8cGRcUEQ4LCAUC/vv59vPw7uvp5uTi4N7c2tnX1dTT0tHQz87Ozc3NzczMzc3Nzs7P0NDR0tPU1dfY2dvc3d/g4uTl5+jq7O7v8fP09vj6+/3+AQMEBgcJCgwNDxAREhQVFhcYGRobHB0eHx8gISIkJicpKissLS4vLzAxMTExMjIxMTExMDAvLy4tLCsqKSgnJiUjIiEfHh0bGhgXFRMSEA8NDAoIBwUEAgH+/fv6+ff29PPy8e/u7ezr6uno5+bl5OPj4uHg4N/f3t7d3dzc3Nvb29vb29ra2tra2trb29vb29vc3Nzc3d3d3t7f39/g4OHh4uLj4+Tk5ebm5+fo6Onq6uvr7Ozt7u7v7/Dw8fLy8/P09PX29vf3+Pj5+fr6+/v8/P39/f7+//8BAQECAgIDAwQEBAUFBQUGBgYHBwcICAgICAkJCQkJCgoKCgoKCwsLCwsLCwsLDAwMDAwMDAwMDAwMDA0NDA0NDQ0NDQ0NDQ0NDQ0NDQ0MDAwMDAwMDAwMDAwMDAwMDAwMDAsLCwsLCwsLCwsLCwsLCgoKCgoKCgoKCgoKCQkJCQkJCQkJCQgICAgICAgICAgIBwcHBwcHBwcHBwYGBgcICQoLDAwNDg4PEBARERESEhMTExMUFBQUFBUVFRUVFRUVFRUVFRUVFRUUFBQUFBQUFBMTExMTEhISEhIRERERERAQEBAPDw8PDg4ODg0NDQ0MDAwMCwsLCwsKCgoKCQkJCQgICAgIBwcHBwcGBgYGBgUFBQUFBAQEBAQEAwMDAwMDAgICAgICAgEBAQEBAQEB/////////////v7+/v7+/v7+/v7+/v39/f39/f39/f39/f39/f39/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/P39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+////////////////////////////////////////////////////////////////////////////AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf///////////////////////////////////////////////wE=")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdxi8"]
-shader = ExtResource("4_pdxi8")
-shader_parameter/TOON_STEPS_12 = 2
-shader_parameter/COLOR_BOOST_5 = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vckwg"]
 load_path = "res://.godot/imported/fall.PNG-19c2ebdca1b29799e547eb28621f8fe5.ctex"
@@ -392,6 +390,7 @@ diffuse_texture = ExtResource("6_qhwjt")
 normal_texture = ExtResource("7_4eo0i")
 
 [node name="player_container" type="Node2D"]
+z_index = 2
 script = ExtResource("1_qhwjt")
 
 [node name="hud" parent="." instance=ExtResource("20_vckwg")]
@@ -405,7 +404,7 @@ rotation = -1.5708
 script = ExtResource("2_fwwnh")
 
 [node name="pick-item" type="AudioStreamPlayer" parent="player"]
-stream = ExtResource("5_qhwjt")
+stream = ExtResource("5_5lnqj")
 
 [node name="gems" type="Node2D" parent="player"]
 
@@ -457,7 +456,6 @@ script = ExtResource("3_pdxi8")
 anim_tree = NodePath("../AnimationTree")
 
 [node name="idle" type="Sprite2D" parent="player/state_machine"]
-visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_wmnke")
 texture = SubResource("CanvasTexture_vxcs8")
@@ -505,18 +503,21 @@ metadata/_custom_type_script = ExtResource("18_8rpwc")
 [node name="fall" type="Sprite2D" parent="player/state_machine"]
 visible = false
 texture_filter = 1
-material = SubResource("ShaderMaterial_pdxi8")
+material = SubResource("ShaderMaterial_wmnke")
 position = Vector2(0, 1.36588)
 texture = SubResource("CanvasTexture_l1d2p")
 hframes = 2
 
 [node name="run_scared" type="Sprite2D" parent="player/state_machine"]
 visible = false
+material = SubResource("ShaderMaterial_wmnke")
 rotation = -3.14159
 texture = SubResource("CanvasTexture_4eo0i")
 hframes = 4
 
 [node name="happy" type="Sprite2D" parent="player/state_machine"]
+visible = false
+material = SubResource("ShaderMaterial_wmnke")
 rotation = 3.14159
 texture = SubResource("CanvasTexture_8rpwc")
 hframes = 2
@@ -565,6 +566,7 @@ volume_db = -20.0
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
 remote_path = NodePath("../../dash_progress_bar")
 update_rotation = false
+update_scale = false
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 editor_description = "process callback was set to idle to avoid jittering laggy effect on web export "

@@ -10,17 +10,28 @@
 [x] game music
 [x] change pick blink bracer sound and add text
 [x] store if can use dash
-- add exit level tile behind start tile
-- add success tile animation and sound
-- properly map wasd input
-- add crazygames API
-?- end level menu
-?- store collected gems only after finish level
+[x] add success tile animation and sound
+[x] add ninja suit and others for ad watch and 
+	posibility to go back to default suit
+[x] change k for space bar for dash
+[x] on finish level teleport player below respective platform
+[x] properly map wasd input
+[x] add crazygames API
+[x] fix home menu big tile collider
+- add total of 12 levels at least
+- add credits, socials
+- fix fall after touching tile on successfull dash
+- dont save gems unless finish level
+- add moving tile with nodes path children
 
 ## REFINE
-- fix home menu big tile collider
+- add exit level tile behind start tile
+- add skip level with ad tile after die 2 times 
+- prevent player move on success platform anim start
 - improve normals player
-- sink on lava anim/sound
+- sink on lava anim/sound/particles
+?- store collected gems only after finish level
+?- end level menu
 
 ## OTHER
 ?- add shadows

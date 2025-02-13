@@ -13,11 +13,12 @@
 [node name="tile_success" parent="tiles" instance=ExtResource("2_1xfnq")]
 position = Vector2(0, -240)
 scale = Vector2(2, 2)
-is_goal = true
+text = "O"
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_1xfnq")]
 scale = Vector2(2, 2)
 is_goal = false
+text = "Z"
 
 [node name="player" parent="tiles" instance=ExtResource("3_6uckl")]
 

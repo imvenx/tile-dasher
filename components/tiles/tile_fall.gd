@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var warning_duration: float = 0.8  # Warning duration in seconds
+@export var warning_duration: float = 1
 
 #var is_falling: bool = false
 var is_warning: bool = false

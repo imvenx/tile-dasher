@@ -1,20 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://bb02c455xi8vf"]
+[gd_scene load_steps=18 format=3 uid="uid://bb02c455xi8vf"]
 
 [ext_resource type="PackedScene" uid="uid://cyo8nrtpugyd8" path="res://components/tiles/tile.tscn" id="1_8feqh"]
 [ext_resource type="Script" uid="uid://of5s0msd320i" path="res://components/tiles/tile_success/tile_success.gd" id="2_ya3fq"]
 [ext_resource type="Texture2D" uid="uid://bqjy1tcb2x7et" path="res://components/tiles/tile_success/success-tile.PNG" id="3_bppbo"]
-[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://shaders/toon.gdshader" id="3_pieqs"]
+[ext_resource type="Material" uid="uid://djkq2aknh7ype" path="res://components/materials/toon-material.tres" id="3_wurau"]
 [ext_resource type="Texture2D" uid="uid://cfj6egyabbdb4" path="res://components/tiles/tile_success/success-tile_n.png" id="4_37jsw"]
 [ext_resource type="Texture2D" uid="uid://davlpaytpckbn" path="res://components/gem/gem.png" id="5_4u0pg"]
 [ext_resource type="Texture2D" uid="uid://cqnoykmbw4skp" path="res://components/gem/gem_n.png" id="7_phfcx"]
+[ext_resource type="Texture2D" uid="uid://jit7rricb63d" path="res://shaders/IMG_0058.PNG" id="8_wurau"]
+[ext_resource type="Texture2D" uid="uid://ceevex0x2cklv" path="res://components/tiles/tile_success/IMG_0058_n.png" id="9_n3mvd"]
+[ext_resource type="AudioStream" uid="uid://bmwvy8jvlbnby" path="res://components/tiles/tile_success/Success platform activate.mp3" id="10_n3mvd"]
+[ext_resource type="Texture2D" uid="uid://bp5v7u8iklmh1" path="res://icon.svg" id="11_pv3bv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mp1b3"]
 size = Vector2(32, 32)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyuo2"]
-shader = ExtResource("3_pieqs")
-shader_parameter/TOON_STEPS_12 = 2
-shader_parameter/COLOR_BOOST_5 = 1.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5n27o"]
 diffuse_texture = ExtResource("3_bppbo")
@@ -24,6 +23,19 @@ normal_texture = ExtResource("4_37jsw")
 diffuse_texture = ExtResource("5_4u0pg")
 normal_texture = ExtResource("7_phfcx")
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_pv3bv"]
+diffuse_texture = ExtResource("8_wurau")
+normal_texture = ExtResource("9_n3mvd")
+
+[sub_resource type="Gradient" id="Gradient_n3mvd"]
+colors = PackedColorArray(0.337255, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pv3bv"]
+gradient = SubResource("Gradient_n3mvd")
+fill = 1
+fill_from = Vector2(0.477723, 0.485149)
+fill_to = Vector2(0.180693, 0.163366)
+
 [node name="tile_success" instance=ExtResource("1_8feqh")]
 script = ExtResource("2_ya3fq")
 
@@ -31,16 +43,18 @@ script = ExtResource("2_ya3fq")
 shape = SubResource("RectangleShape2D_mp1b3")
 
 [node name="border-sprite" parent="." index="1"]
-material = SubResource("ShaderMaterial_jyuo2")
+material = ExtResource("3_wurau")
 texture = SubResource("CanvasTexture_5n27o")
 
 [node name="Sprite2D" parent="." index="2"]
-material = SubResource("ShaderMaterial_jyuo2")
+visible = false
+material = ExtResource("3_wurau")
 position = Vector2(5.36442e-07, 5.36442e-07)
 texture = SubResource("CanvasTexture_5n27o")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." index="3"]
 modulate = Color(0.0392157, 0.356863, 0.937255, 1)
+z_index = 1
 offset_left = -2.0
 offset_top = -2.0
 offset_right = 38.0
@@ -73,5 +87,27 @@ light_mask = 2
 position = Vector2(2.55849, -10.4415)
 scale = Vector2(0.159905, 0.159905)
 texture = SubResource("CanvasTexture_pieqs")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="5"]
+material = ExtResource("3_wurau")
+scale = Vector2(0.22, 0.22)
+texture = SubResource("CanvasTexture_pv3bv")
+hframes = 7
+
+[node name="SuccessPlatformActivate" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = ExtResource("10_n3mvd")
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="7"]
+z_index = 2
+energy = 5.0
+texture = SubResource("GradientTexture2D_pv3bv")
+texture_scale = 0.2
+
+[node name="PointLight2D2" type="PointLight2D" parent="." index="8"]
+visible = false
+position = Vector2(0, -1)
+scale = Vector2(0.296453, 0.296453)
+texture = ExtResource("11_pv3bv")
+height = 63.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

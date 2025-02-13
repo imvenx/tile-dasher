@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://curvmrgt18ouk"]
+
+[ext_resource type="Material" uid="uid://c5cv5tfdnx4j7" path="res://unshaded-material.tres" id="1_opg1p"]
+[ext_resource type="Script" uid="uid://cryjrfen4m1w7" path="res://components/store-suit-item/store-suit-item.gd" id="2_wluqs"]
+[ext_resource type="Texture2D" uid="uid://map7pl6x7ehf" path="res://components/store-suit-item/IMG_0059.PNG" id="3_opg1p"]
+[ext_resource type="AudioStream" uid="uid://c080ra8ojkhgi" path="res://components/store-suit-item/change-cothes-sound.mp3" id="4_wluqs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8q58"]
+size = Vector2(111.175, 111.175)
+
+[node name="ninja" type="Node2D"]
+material = ExtResource("1_opg1p")
+script = ExtResource("2_wluqs")
+
+[node name="sprite2d" type="Sprite2D" parent="."]
+modulate = Color(0.163861, 0.163861, 0.163861, 0.435294)
+z_index = 1
+material = ExtResource("1_opg1p")
+position = Vector2(-0.000518799, 3.08826)
+scale = Vector2(1.74599, 1.74599)
+texture = ExtResource("3_opg1p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 1
+offset_left = -64.8529
+offset_top = 23.0
+offset_right = 65.1471
+offset_bottom = 63.0
+text = "Suit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3.8147e-06, -4.76837e-07)
+shape = SubResource("RectangleShape2D_o8q58")
+
+[node name="tooltip" type="ColorRect" parent="."]
+z_index = 3
+offset_left = -104.0
+offset_top = -112.0
+offset_right = 216.0
+offset_bottom = -40.0
+scale = Vector2(0.653361, 0.653361)
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="tooltip"]
+z_index = 4
+layout_mode = 0
+offset_top = 1.0
+offset_right = 251.0
+offset_bottom = 56.0
+scale = Vector2(1.27572, 1.27572)
+text = "Press ENTER to watch an ad and unlock this custom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="change-clothes-sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-120, 0)
+stream = ExtResource("4_wluqs")
+volume_db = 10.0

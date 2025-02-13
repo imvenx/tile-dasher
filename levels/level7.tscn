@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjop1sq45rdo2"]
+[gd_scene load_steps=6 format=3 uid="uid://cjop1sq45rdo2"]
 
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="1_5jh5v"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="2_f5oyx"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="3_jt2a3"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="4_e4yfa"]
+[ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="5_5jh5v"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="tiles" type="Node" parent="."]
 
 [node name="tile_success" parent="tiles" instance=ExtResource("1_5jh5v")]
-position = Vector2(0, -176)
+position = Vector2(0, -304)
 scale = Vector2(2, 2)
+text = "O"
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("1_5jh5v")]
 scale = Vector2(2, 2)
@@ -47,6 +49,30 @@ position = Vector2(0, -136)
 [node name="tile_fall37" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(0, -152)
 
+[node name="tile_fall38" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(0, -168)
+
+[node name="tile_fall39" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(0, -184)
+
+[node name="tile_fall40" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(0, -200)
+
+[node name="tile_fall41" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(0, -216)
+
+[node name="tile_fall42" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(0, -232)
+
+[node name="tile_fall43" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(0, -264)
+
+[node name="tile_fall44" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(0, -248)
+
+[node name="tile_fall73" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(0, -280)
+
 [node name="tile_fall54" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(16, -88)
 
@@ -71,6 +97,30 @@ position = Vector2(80, -88)
 [node name="tile_fall50" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(48, -88)
 
+[node name="tile_fall78" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(112, -120)
+
+[node name="tile_fall79" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(96, -120)
+
+[node name="tile_fall80" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(56, -120)
+
+[node name="tile_fall81" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(40, -120)
+
+[node name="tile_fall74" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-80, -160)
+
+[node name="tile_fall75" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-48, -176)
+
+[node name="tile_fall82" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-32, -176)
+
+[node name="tile_fall76" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-96, -160)
+
 [node name="tile_fall57" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(64, -88)
 
@@ -83,6 +133,83 @@ position = Vector2(96, -88)
 [node name="tile_fall53" parent="tiles" instance=ExtResource("3_jt2a3")]
 modulate = Color(0, 0.709804, 1, 1)
 position = Vector2(112, -88)
+warning_duration = 1.5
+
+[node name="tile_fall83" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(16, -232)
+
+[node name="tile_fall84" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(32, -232)
+
+[node name="tile_fall85" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(16, -232)
+
+[node name="tile_fall86" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(32, -232)
+
+[node name="tile_fall87" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(48, -232)
+
+[node name="tile_fall88" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(64, -232)
+
+[node name="tile_fall89" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(80, -232)
+
+[node name="tile_fall90" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(48, -232)
+
+[node name="tile_fall91" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(64, -232)
+
+[node name="tile_fall92" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(80, -232)
+
+[node name="tile_fall93" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(96, -232)
+
+[node name="tile_fall94" parent="tiles" instance=ExtResource("3_jt2a3")]
+modulate = Color(0, 0.709804, 1, 1)
+position = Vector2(112, -232)
+warning_duration = 1.5
+
+[node name="tile_fall56" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-96, -120)
+
+[node name="tile_fall58" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-80, -120)
+
+[node name="tile_fall59" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-96, -120)
+
+[node name="tile_fall60" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-80, -120)
+
+[node name="tile_fall61" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-64, -120)
+
+[node name="tile_fall62" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-48, -120)
+
+[node name="tile_fall63" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-32, -120)
+
+[node name="tile_fall64" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-64, -120)
+
+[node name="tile_fall65" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-48, -120)
+
+[node name="tile_fall66" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-32, -120)
+
+[node name="tile_fall67" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-16, -120)
+
+[node name="tile_fall68" parent="tiles" instance=ExtResource("3_jt2a3")]
+modulate = Color(0, 0.709804, 1, 1)
+position = Vector2(-112, -120)
+warning_duration = 1.5
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -1
@@ -97,3 +224,12 @@ screen_offset = Vector2(100, 100)
 position = Vector2(-128, -128)
 rotation = -0.785397
 height = 0.1
+
+[node name="gem1" parent="." instance=ExtResource("5_5jh5v")]
+position = Vector2(112, -88)
+
+[node name="gem2" parent="." instance=ExtResource("5_5jh5v")]
+position = Vector2(-112, -120)
+
+[node name="gem3" parent="." instance=ExtResource("5_5jh5v")]
+position = Vector2(112, -232)

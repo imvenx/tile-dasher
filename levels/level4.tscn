@@ -23,10 +23,12 @@ scale = Vector2(2, 2)
 [node name="tile_success" parent="tiles" instance=ExtResource("2_cc5tm")]
 position = Vector2(0, -240)
 scale = Vector2(2, 2)
+text = "O"
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_cc5tm")]
 scale = Vector2(2, 2)
 is_goal = false
+text = "W"
 
 [node name="player" parent="tiles" instance=ExtResource("3_mj76i")]
 
@@ -234,7 +236,7 @@ rotation = -0.785397
 height = 0.1
 
 [node name="gem3" parent="." instance=ExtResource("7_cc5tm")]
-position = Vector2(0, -200)
+position = Vector2(32, -200)
 
 [node name="gem2" parent="." instance=ExtResource("7_cc5tm")]
 position = Vector2(136, -224)

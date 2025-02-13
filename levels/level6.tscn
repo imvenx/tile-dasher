@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhafsp1luxtag"]
+[gd_scene load_steps=6 format=3 uid="uid://bhafsp1luxtag"]
 
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="2_6ilhl"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="3_adppw"]
 [ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="4_rv0x7"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="5_4egkl"]
+[ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="5_nnkdi"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,6 +13,7 @@
 [node name="tile_success" parent="tiles" instance=ExtResource("2_6ilhl")]
 position = Vector2(0, -448)
 scale = Vector2(2, 2)
+text = "O"
 
 [node name="tile_success2" parent="tiles" instance=ExtResource("2_6ilhl")]
 scale = Vector2(2, 2)
@@ -159,3 +161,12 @@ screen_offset = Vector2(100, 100)
 position = Vector2(-128, -128)
 rotation = -0.785397
 height = 0.1
+
+[node name="gem1" parent="." instance=ExtResource("5_nnkdi")]
+position = Vector2(0, -392)
+
+[node name="gem2" parent="." instance=ExtResource("5_nnkdi")]
+position = Vector2(-48, -392)
+
+[node name="gem3" parent="." instance=ExtResource("5_nnkdi")]
+position = Vector2(48, -392)

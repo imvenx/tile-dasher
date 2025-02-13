@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bah04alr48bbj"]
+
+[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://shaders/toon.gdshader" id="1_3o0ft"]
+[ext_resource type="Texture2D" uid="uid://c0x33jola6cj8" path="res://components/tiles/IMG_0041.PNG" id="2_jar1h"]
+[ext_resource type="Texture2D" uid="uid://di0fw13vpi2u5" path="res://components/tiles/IMG_0041_n.png" id="3_depsx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyuo2"]
+shader = ExtResource("1_3o0ft")
+shader_parameter/TOON_STEPS_12 = 2
+shader_parameter/COLOR_BOOST_5 = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8vivr"]
+diffuse_texture = ExtResource("2_jar1h")
+normal_texture = ExtResource("3_depsx")
+
+[node name="big-tile" type="Area2D" groups=["floor"]]
+scale = Vector2(18.381, 18.381)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7.61656, -5.98444, -7.67096, 5.87563, -6.03884, 7.61656, 5.98444, 7.67096, 7.45335, 6.36527, 7.61656, -5.87563, 6.03884, -7.72537, -5.87563, -7.67096)
+
+[node name="border-sprite" type="Sprite2D" parent="."]
+modulate = Color(0.615422, 0.615422, 0.615422, 1)
+material = SubResource("ShaderMaterial_jyuo2")
+scale = Vector2(0.25, 0.25)
+texture = SubResource("CanvasTexture_8vivr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jyuo2")
+position = Vector2(4.17233e-07, 4.17233e-07)
+scale = Vector2(0.21875, 0.21875)
+texture = SubResource("CanvasTexture_8vivr")
