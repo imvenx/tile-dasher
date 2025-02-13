@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c6jk2ksvkfrwq"]
+
+[node name="tile_move_config" type="Node"]
+metadata/speed = 20
+metadata/reverse = true
+metadata/loop = false
+metadata/initialDelay = 0.0
+metadata/isDisabled = false
+metadata/startOnPlayerEnter = false

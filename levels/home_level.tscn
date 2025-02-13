@@ -1,27 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://bik5xw0wq8lsj"]
+[gd_scene load_steps=9 format=3 uid="uid://bik5xw0wq8lsj"]
 
 [ext_resource type="Script" uid="uid://xkmf7mf23e4r" path="res://levels/home_level.gd" id="1_bk3ur"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="1_o8q58"]
 [ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="3_m2b6b"]
 [ext_resource type="PackedScene" uid="uid://bah04alr48bbj" path="res://components/tiles/big_tile.tscn" id="4_bk3ur"]
-[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://shaders/toon.gdshader" id="4_m2b6b"]
 [ext_resource type="PackedScene" uid="uid://curvmrgt18ouk" path="res://components/store-suit-item/store-suit-item.tscn" id="5_d5a51"]
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="5_xqjf2"]
-[ext_resource type="Script" uid="uid://dh176w4o0mj0h" path="res://components/tiles/tile_fall.gd" id="6_xqjf2"]
-[ext_resource type="Texture2D" uid="uid://dn4w18pa3yw0m" path="res://components/tiles/broken-tile.png" id="8_v1ieb"]
-[ext_resource type="PackedScene" uid="uid://bi4a57kwd51l7" path="res://components/fall_behaviour/fall_behaviour.tscn" id="9_wxsmv"]
-[ext_resource type="AudioStream" uid="uid://b6wo3bjm28nss" path="res://components/tiles/tile-fall.mp3" id="10_jrl3g"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(32, 32)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyuo2"]
-shader = ExtResource("4_m2b6b")
-shader_parameter/TOON_STEPS_12 = 2
-shader_parameter/COLOR_BOOST_5 = 1.0
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ea2o8"]
-light_mode = 1
+[ext_resource type="PackedScene" uid="uid://c6jk2ksvkfrwq" path="res://components/tiles/tile-move/tile_move_config.tscn" id="8_iy2cv"]
+[ext_resource type="PackedScene" uid="uid://1lfo5m1xy0l2" path="res://components/tiles/tile-move/tile-move.tscn" id="11_xqjf2"]
 
 [node name="home_level" type="Node2D"]
 script = ExtResource("1_bk3ur")
@@ -53,7 +39,7 @@ height = 0.1
 [node name="big-tile" parent="tiles" instance=ExtResource("4_bk3ur")]
 
 [node name="big-tile2" parent="tiles" instance=ExtResource("4_bk3ur")]
-position = Vector2(304, 0)
+position = Vector2(320, 0)
 
 [node name="big-tile3" parent="tiles" instance=ExtResource("4_bk3ur")]
 position = Vector2(720, 0)
@@ -129,71 +115,75 @@ go_to_level_number = 4
 text = "W"
 
 [node name="tile_success5" parent="tiles" instance=ExtResource("5_xqjf2")]
-position = Vector2(232, -160)
+position = Vector2(248, -160)
 scale = Vector2(2, 2)
 is_goal = false
 go_to_level_number = 5
 text = "IW"
 
 [node name="tile_success6" parent="tiles" instance=ExtResource("5_xqjf2")]
-position = Vector2(280, -160)
+position = Vector2(296, -160)
 scale = Vector2(2, 2)
 is_goal = false
 go_to_level_number = 6
 text = "VW"
 
 [node name="tile_success7" parent="tiles" instance=ExtResource("5_xqjf2")]
-position = Vector2(328, -160)
+position = Vector2(344, -160)
 scale = Vector2(2, 2)
 is_goal = false
 go_to_level_number = 7
 text = "ZW"
 
 [node name="tile_success8" parent="tiles" instance=ExtResource("5_xqjf2")]
-position = Vector2(376, -160)
+position = Vector2(392, -160)
 scale = Vector2(2, 2)
 is_goal = false
 go_to_level_number = 8
-text = "X"
+text = "IX"
+
+[node name="tile_success9" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(648, -160)
+scale = Vector2(2, 2)
+is_goal = false
+go_to_level_number = 5
+text = "IX"
+
+[node name="tile_success10" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(696, -160)
+scale = Vector2(2, 2)
+is_goal = false
+go_to_level_number = 6
+text = "VX"
+
+[node name="tile_success11" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(744, -160)
+scale = Vector2(2, 2)
+is_goal = false
+go_to_level_number = 7
+text = "ZX"
+
+[node name="tile_success12" parent="tiles" instance=ExtResource("5_xqjf2")]
+position = Vector2(792, -160)
+scale = Vector2(2, 2)
+is_goal = false
+go_to_level_number = 8
+text = "Q"
 
 [node name="levels_portals" type="Node2D" parent="tiles"]
 
-[node name="tile_fall" type="Area2D" parent="tiles" groups=["floor"]]
-position = Vector2(456, 0)
-script = ExtResource("6_xqjf2")
+[node name="tile_move" parent="tiles" instance=ExtResource("11_xqjf2")]
+z_index = 1
+position = Vector2(480, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tiles/tile_fall"]
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_h2yge")
+[node name="tile_move_config" parent="tiles/tile_move" instance=ExtResource("8_iy2cv")]
+metadata/speed = 30
+metadata/isDisabled = true
 
-[node name="border-sprite" type="Sprite2D" parent="tiles/tile_fall"]
-modulate = Color(0.615422, 0.615422, 0.615422, 1)
-material = SubResource("ShaderMaterial_jyuo2")
-position = Vector2(2.38419e-07, 2.38419e-07)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("8_v1ieb")
+[node name="waypoints" type="Node2D" parent="tiles/tile_move"]
 
-[node name="fall_behaviour" parent="tiles/tile_fall" node_paths=PackedStringArray("obj") instance=ExtResource("9_wxsmv")]
-obj = NodePath("..")
-
-[node name="shadow" type="ColorRect" parent="tiles/tile_fall"]
-visible = false
-z_index = -1
-material = SubResource("CanvasItemMaterial_ea2o8")
-offset_right = 16.0
-offset_bottom = 16.0
-color = Color(0, 0, 0, 0.513726)
-
-[node name="tile-break-sound" type="AudioStreamPlayer2D" parent="tiles/tile_fall"]
-stream = ExtResource("10_jrl3g")
-volume_db = 10.0
-max_distance = 20.0
-
-[node name="Sprite2D" type="Sprite2D" parent="tiles/tile_fall"]
-material = SubResource("ShaderMaterial_jyuo2")
-position = Vector2(0, 5.96046e-08)
-scale = Vector2(0.4375, 0.4375)
-texture = ExtResource("8_v1ieb")
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move/waypoints"]
+position = Vector2(80, 0)
 
 [node name="store" type="Node2D" parent="."]
 z_index = 1
@@ -254,5 +244,3 @@ offset_right = 269.706
 offset_bottom = -164.646
 scale = Vector2(1.76798, 1.76798)
 text = "Mining Suits Enterprise"
-
-[connection signal="body_entered" from="tiles/tile_fall" to="tiles/tile_fall" method="_on_body_entered"]

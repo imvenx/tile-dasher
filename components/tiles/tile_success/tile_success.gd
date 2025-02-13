@@ -33,6 +33,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if is_disabled: return
 	
 	if(body.is_in_group('player')):
+		disconnect("body_entered", _on_body_entered)
 		player = body
 	
 		if go_to_level_number != 0:
@@ -69,11 +70,11 @@ func playActivateAnim():
 		position.y -= 1
 		player.position.y -= 1
 		if(go_to_level_number != 0):
-			scale /= 1.005
-			player.scale /= 1.005
+			scale /= 1.003
+			player.scale /= 1.003
 		else:
-			scale *= 1.005
-			player.scale *= 1.005
+			scale *= 1.003
+			player.scale *= 1.003
 		
 		#player.position.y = 1
 		await get_tree().create_timer(0.03).timeout  # Adjust time per frame

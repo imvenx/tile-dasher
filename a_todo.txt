@@ -18,11 +18,14 @@
 [x] properly map wasd input
 [x] add crazygames API
 [x] fix home menu big tile collider
+- make move tile optional param to start moving after player steps on it
 - add total of 12 levels at least
 - add credits, socials
 - fix fall after touching tile on successfull dash
 - dont save gems unless finish level
 - add moving tile with nodes path children
+- move tile on home menu should start moving only after beat level 8
+- add remaining suits
 
 ## REFINE
 - add exit level tile behind start tile
@@ -32,6 +35,7 @@
 - sink on lava anim/sound/particles
 ?- store collected gems only after finish level
 ?- end level menu
+- add settings, sound vol, game vol
 
 ## OTHER
 ?- add shadows

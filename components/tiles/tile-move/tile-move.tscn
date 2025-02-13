@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://1lfo5m1xy0l2"]
+
+[ext_resource type="Texture2D" uid="uid://1n8bwyo2esyd" path="res://components/tiles/tile-move/tile-move.PNG" id="1_5n2pg"]
+[ext_resource type="Script" uid="uid://do5hs3c7r60ih" path="res://components/tiles/tile-move/tile_move.gd" id="1_8kxsn"]
+[ext_resource type="Texture2D" uid="uid://1k7lvsc7uu5m" path="res://components/tiles/tile-move/IMG_0060_n.png" id="2_5n2pg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5n2pg"]
+size = Vector2(32, 32)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jjlj1"]
+diffuse_texture = ExtResource("1_5n2pg")
+normal_texture = ExtResource("2_5n2pg")
+
+[node name="tile_move" type="Area2D" groups=["floor"]]
+script = ExtResource("1_8kxsn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5n2pg")
+
+[node name="shadow" type="Sprite2D" parent="."]
+modulate = Color(0.362829, 0.362829, 0.362829, 1)
+texture = SubResource("CanvasTexture_jjlj1")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(0.903226, 0.903226)
+texture = SubResource("CanvasTexture_jjlj1")
+hframes = 6

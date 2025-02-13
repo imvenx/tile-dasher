@@ -5,3 +5,6 @@ func _ready():
 		'tiles/tile_success' + str(int(Global.lastLevelPlayed))).position.x
 	$player.position.y = get_node(
 		'tiles/tile_success' + str(int(Global.lastLevelPlayed))).position.y + 40
+	
+	if Global.lastUnlockedLevel > 7:
+		$tiles/tile_move.setDisabled(false)
