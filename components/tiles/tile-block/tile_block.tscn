@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3vxm88ppme36"]
+
+[ext_resource type="Texture2D" uid="uid://26h0bpychctv" path="res://components/tiles/tile-block/Sprite-0001.png" id="1_qusv4"]
+[ext_resource type="Texture2D" uid="uid://cr3sjg4dn0gv2" path="res://components/tiles/tile-block/Sprite-0001_n.png" id="2_nruc4"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ttkh6"]
+diffuse_texture = ExtResource("1_qusv4")
+normal_texture = ExtResource("2_nruc4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqsdu"]
+size = Vector2(32, 32)
+
+[node name="tile-block" type="RigidBody2D"]
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_ttkh6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eqsdu")

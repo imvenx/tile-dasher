@@ -3,19 +3,23 @@ shader_type canvas_item;
 uniform vec3 targetColor = vec3(0.0, 1, 0.0);
 uniform vec3 replacementColor = vec3(0, 0.5, 1);
 uniform float tolerance : hint_range(0.0, 1.0) = 0.8;
+uniform float opacity = 1;
+uniform bool isReplacementColorDisabled = false;
 
 void fragment() {
-    vec4 texColor = texture(TEXTURE, UV);
+	if (!isReplacementColorDisabled){
+	    vec4 texColor = texture(TEXTURE, UV);
 
-    // Compute color difference
-    float diff = distance(texColor.rgb, targetColor);
+	    // Compute color difference
+	    float diff = distance(texColor.rgb, targetColor);
 
-    // If within tolerance, replace with new color
-    if (diff < tolerance) {
-        texColor.rgb = replacementColor;
-    }
+	    // If within tolerance, replace with new color
+	    if (diff < tolerance) {
+	        texColor.rgb = replacementColor;
+	    }
 
-    COLOR = texColor;
+	    COLOR = texColor;
+	}
 }
 
 // Number of discrete brightness steps for toon shading.

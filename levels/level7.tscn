@@ -100,14 +100,17 @@ position = Vector2(48, -88)
 [node name="tile_fall78" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(112, -120)
 
+[node name="tile_fall95" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(80, -120)
+
 [node name="tile_fall79" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(96, -120)
 
 [node name="tile_fall80" parent="tiles" instance=ExtResource("3_jt2a3")]
-position = Vector2(56, -120)
+position = Vector2(64, -120)
 
 [node name="tile_fall81" parent="tiles" instance=ExtResource("3_jt2a3")]
-position = Vector2(40, -120)
+position = Vector2(48, -120)
 
 [node name="tile_fall74" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(-80, -160)
@@ -120,6 +123,9 @@ position = Vector2(-32, -176)
 
 [node name="tile_fall76" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(-96, -160)
+
+[node name="tile_fall77" parent="tiles" instance=ExtResource("3_jt2a3")]
+position = Vector2(-112, -160)
 
 [node name="tile_fall57" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(64, -88)
@@ -142,28 +148,16 @@ position = Vector2(16, -232)
 position = Vector2(32, -232)
 
 [node name="tile_fall85" parent="tiles" instance=ExtResource("3_jt2a3")]
-position = Vector2(16, -232)
+position = Vector2(80, -232)
 
 [node name="tile_fall86" parent="tiles" instance=ExtResource("3_jt2a3")]
-position = Vector2(32, -232)
-
-[node name="tile_fall87" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(48, -232)
 
 [node name="tile_fall88" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(64, -232)
 
-[node name="tile_fall89" parent="tiles" instance=ExtResource("3_jt2a3")]
-position = Vector2(80, -232)
-
-[node name="tile_fall90" parent="tiles" instance=ExtResource("3_jt2a3")]
-position = Vector2(48, -232)
-
 [node name="tile_fall91" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(64, -232)
-
-[node name="tile_fall92" parent="tiles" instance=ExtResource("3_jt2a3")]
-position = Vector2(80, -232)
 
 [node name="tile_fall93" parent="tiles" instance=ExtResource("3_jt2a3")]
 position = Vector2(96, -232)

@@ -1,0 +1,1908 @@
+[gd_scene load_steps=18 format=4 uid="uid://bdxijf17ho8ht"]
+
+[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="1_bneb3"]
+[ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="2_4vsbj"]
+[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="3_e4vtt"]
+[ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="7_p0mio"]
+[ext_resource type="Shader" uid="uid://dp2i5rsqv60t" path="res://shaders/toon.gdshader" id="8_pqoev"]
+[ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="8_q3nwp"]
+[ext_resource type="Script" uid="uid://vwnm530qwn48" path="res://components/gem/gem.gd" id="9_lger7"]
+[ext_resource type="Texture2D" uid="uid://davlpaytpckbn" path="res://components/gem/gem.png" id="10_p0mio"]
+[ext_resource type="Texture2D" uid="uid://cqnoykmbw4skp" path="res://components/gem/gem_n.png" id="11_q3nwp"]
+[ext_resource type="Script" uid="uid://dxx1ufxu8jy2h" path="res://addons/godot_sfxr/SfxrStreamPlayer.gd" id="12_2yjt6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lf3p4"]
+shader = ExtResource("8_pqoev")
+shader_parameter/TOON_STEPS_12 = 2
+shader_parameter/COLOR_BOOST_5 = 1.0
+
+[sub_resource type="Animation" id="Animation_lf3p4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_omn1t"]
+resource_name = "levitate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1.86606, 1.86607, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.7, 0.7), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lf3p4"]
+_data = {
+&"RESET": SubResource("Animation_lf3p4"),
+&"levitate": SubResource("Animation_omn1t")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_p477x"]
+diffuse_texture = ExtResource("10_p0mio")
+normal_texture = ExtResource("11_q3nwp")
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_6713g"]
+data = PackedByteArray("DhobFw8F+e/m4N3e4unz/QkTGyEjIRwVC//06uPe3eDl7vgEDhgeIiIfGRAF+e/m4N3e4unz/QkTGyEjIRwVC//06+Pf3eDl7vgEDhgeIiIfGRAF+e/m4N7e4unz/QkTGyEjIRwUC//06+Pf3uDl7vgEDhgeIiIfGRAF+e/n4d7e4unz/QkTGyAiIRwUC//06+Pf3uDm7vgEDhceIiIfGRAF+e/n4d7e4unz/QkTGyAiIRwUC//06+Pf3uDm7vgEDhceIiIfGBAF+u/n4d7e4+rz/QkTGyAiIRwUC//06+Pf3uDm7vgEDhceIiIfGBAF+u/n4d7f4+rz/QkTGyAiIRwUC//06+Pf3uDm7vgEDhceIiIfGBAF+u/n4d7f4+rz/QkTGyAiIRwUC//06+Tf3uDm7vgEDhceISIfGBAF+u/n4d7f4+rz/QkTGyAiIRwUC//06+Tf3uDm7vgEDhceISIeGBAF+u/n4d7f4+rz/QkTGyAiIBwUC//06+Tf3uDm7vgEDhceISIeGA8F+u/n4d7f4+rz/QkTGyAiIBwUC//06+Tf3uHm7vgEDhceISEeGA8F+vDn4d7f4+rz/QkTGyAiIBwUCv/06+Tf3uHm7vgEDhceISEeGA8F+vDn4d/f4+rz/QkTGyAiIBsUCv/06+Tg3uHm7vgEDhcdISEeGA8F+vDn4d/f4+rz/QkTGiAiIBsUCv/16+Tg3+Hm7vgEDhcdISEeGA8F+vDn4d/f4+rz/QkTGh8hIBsUCv/16+Tg3+Hm7vgEDhcdISEeGA8F+vDn4t/f4+rz/QkTGh8hIBsUCv/16+Tg3+Hm7vgEDhcdISEeGA8F+vDn4t/g4+rz/QkSGh8hIBsUCv/16+Tg3+Hn7vgEDhcdISEeGA8F+vDo4t/g4+rz/QkSGh8hIBsUCv/16+Tg3+Hn7/gEDhcdISEeGA8F+vDo4t/g5Orz/QkSGh8hIBsUCv/17OTg3+Hn7/gEDhYdICEeGA8F+vDo4t/g5Orz/QkSGh8hIBsUCv/17OTg3+Hn7/gEDhYdICEeFw8F+vDo4t/g5Orz/QkSGh8hHxsTCv/17OXg3+Hn7/gEDhYdICEdFw8F+vDo4t/g5Ovz/QkSGh8hHxsTCv/17OXg3+Ln7/gEDhYdICAdFw8F+vDo4t/g5Ovz/QkSGh8hHxsTCv/17OXg3+Ln7/gEDhYdICAdFw8F+vDo4uDg5Ovz/QkSGh8hHxsTCv/17OXh4OLn7/gEDhYdICAdFw8F+vDo4uDg5Ovz/QkSGh8gHxoTCv/17OXh4OLn7/gEDhYcICAdFw8F+vDo4uDg5Ov0/QkSGh8gHxoTCv/17OXh4OLn7/gEDRYcICAdFw8F+vDo4+Dg5Ov0/QkSGR4gHxoTCv/17OXh4OLn7/gEDRYcICAdFw8F+vDo4+Dh5Ov0/QkSGR4gHxoTCv/17OXh4OLn7/gEDRYcICAdFw8F+vDo4+Dh5Ov0/QkSGR4gHxoTCv/17OXh4OLn7/gEDRYcICAdFw8F+vDo4+Dh5Ov0/gkSGR4gHxoTCv/17OXh4OLn7/gEDRYcHyAdFw8F+vDo4+Dh5ev0/gkSGR4gHxoTCv/17OXh4OLo7/kEDRYcHyAdFw8F+vDp4+Dh5ev0/gkSGR4gHhoTCv/17OXh4OLo7/kEDRYcHx8dFw8F+vHp4+Dh5ev0/ggSGR4gHhoTCv/17Obh4OPo7/kEDRYcHx8cFw8F+vHp4+Hh5ev0/ggSGR4gHhoTCv/17Obh4OPo7/kEDRYcHx8cFw4F+vHp4+Hh5ev0/ggSGR4gHhoTCv/17Obi4ePo7/kEDRUcHx8cFg4F+vHp4+Hh5ev0/ggRGR4fHhoTCv/17ebi4ePo7/kEDRUcHx8cFg4F+vHp4+Hh5ev0/ggRGR4fHhoTCv/17ebi4ePo7/kEDRUbHx8cFg4F+vHp4+Hh5ez0/ggRGR0fHhkTCv/17ebi4ePo8PkDDRUbHx8cFg4F+vHp5OHi5ez0/ggRGR0fHhkSCv/17ebi4ePo8PkDDRUbHx8cFg4F+vHp5OHi5ez0/ggRGB0fHhkSCv/17ebi4ePo8PkDDRUbHh8cFg4F+vHp5OHi5ez0/ggRGB0fHhkSCv/17ebi4ePo8PkDDRUbHh8cFg4F+vHp5OHi5ez0/ggRGB0fHhkSCv/17ebi4ePo8PkDDRUbHh8cFg4F+vHp5OHi5uz0/ggRGB0fHRkSCv/17ebi4ePo8PkDDRUbHh4cFg4F+vHp5OHi5uz0/ggRGB0fHRkSCv/17ebi4eTo8PkDDRUbHh4bFg4F+vHp5OLi5uz0/ggRGB0fHRkSCv/17ebj4uTp8PkDDRUbHh4bFg4F+vHq5OLi5uz0/ggRGB0eHRkSCf/27efj4uTp8PkDDRUbHh4bFg4F+vHq5OLi5uz0/ggRGB0eHRkSCf/27efj4uTp8PkDDWMsC/Pk3Nzh7fsLGSImIxoN/O7i29vh7PsLGSIlIxoN/O7i29vh7PsLGSIlIhoM/O7i3Nvh7fsLGSIlIhoM/O7i3Nvh7fsLGSIlIhoM/O7i3Nvh7fsLGSIlIhoM/O7i3Nvh7fsLGSIlIhoM/O7i3Nvh7fsLGSIlIhoM/O7i3Nvh7fsLGSIlIhkM/O7i3Nzi7fsLGSIlIhkM/O7i3Nzi7fsLGSIlIhkM/O7i3Nzi7fsLGCIlIhkM/O7i3Nzi7fsLGCIlIhkM/O7i3Nzi7fsLGCIlIhkM/O7i3Nzi7fsLGCElIhkM/O7i3Nzi7fsLGCElIhkM/O7i3Nzi7fsLGCElIhkM/O7j3Nzi7fsLGCElIhkM/O7j3Nzi7fsLGCElIhkM/O7j3Nzi7fsLGCElIhkM/O7j3Nzi7fsLGCElIhkM/O7j3Nzi7fsLGCElIhkM/O7j3Nzi7fsLGCElIhkM/O7j3Nzi7fsLGCEkIhkM/O7j3Nzi7fsLGCEkIhkM/O7j3dzi7fsLGCEkIhkM/O7j3dzi7fsLGCEkIRkM/O7j3dzi7fsLGCEkIRkM/O7j3dzi7fsLGCEkIRkM/O7j3dzi7fsLGCEkIRkM/O7j3dzi7fsLGCEkIRkM/O7j3d3i7fsLGCEkIRkM/O7j3d3i7fsLGCEkIRkM/O7j3d3i7fsLGCEkIRkM/O7j3d3i7fsLGCEkIRkM/O7j3d3i7fsLGCEkIRkM/O7j3d3j7fsLGCEkIRkM/O7j3d3j7fsLGCEkIRkM/O7j3d3j7fsLGCEkIRkM/O7j3d3j7fsLGCAkIRkM/O7j3d3j7fsLGCAkIRgM/O7j3d3j7fsLGCAkIRgM/O7j3d3j7fsLGCAkIRgM/O7j3d3j7fsLGCAkIRgM/O7j3d3j7fsLGCAkIRgM/O/k3d3j7vsLFyAjIRgM/O/k3d3j7vsLFyAjIRgM/O/k3d3j7vsLFyAjIRgM/O/k3t3j7vsLFyAjIRgM/O/k3t3j7vsLFyAjIRgM/O/k3t3j7vsLFyAjIBgM/O/k3t3j7vsLFyAjIBgM/O/k3t3j7vsLFyAjIBgM/O/k3t7j7vsLFyAjIBgM/O/k3t7j7vsLFyAjIBgM/O/k3t7j7vsLFyAjIBgM/O/k3t7j7vsLFyAjIBgM/O/k3t7j7vsLFyAjIBgM/O/k3t7j7vsLFyAjIBgM/O/k3t7j7vsLFyAjIBgM/O/k3t7j7vsLFyAjIBgM/O/k3t7j7vsLFyAjIBgM/O/k3t7j7vsLFyAjIBgM/O/k3t7k7vsLFx8jIBgM/O/k3t7k7vsLFx8jIBgM/O/k3t7k7vsKFx8jIBgM/e/k3t7k7vsKFx8jIBgM/e/k3t7k7vsKFx8iIBgM/e/k3t7k7vsKFx8iIBgM/e/k3t7k7vsKFx8iIBgL/e/k397k7vsKFx8iIBgL/e/k397k7vsKFx8iIBgL/e/l397k7vsKFx8iIBcL/e/l397k7vsKFx8iIBcL/e/l397k7vsKFx8iHxcL/e/l397k7vsKFx8iHxcL/e/l39/k7vsKFx8iHxcL/e/l39/k7vsKFx8iHxcL/e/l39/k7vsKFh8iHxcL/e/l39/k7vsKFh8iHxcL/e/l39/k7vsKFh8iHxcL/e/l39/k7vsKFh8iHxcL/e/l39/k7vsKFh8iHxcL/e/l39/k7vsKFh8iHxcL/e/l39/k7vsKFh8iHxcL/e/l39/k7vsKFh8iHxcL/e/l39/k7vsKFh8iHxcL/e/l39/k7vsKFh4iHxcL/e/l39/k7/wKFh4iHxcL/e/l39/k7/wKFh4hHxcL/fDl39/l7/wKFh4hHxcL/fDl39/l7/wKFh4hHxcL/fDl39/l7/wKFh4hHxcL/fDl4N/l7/wKFh4hHxcL/fDl4N/l7/wKFh4hHxcL/fDl4N/l7/wKFh4hHxcL/fDl4N/l7/wKFh4hHxcL/fDl4N/l7/wKFh4hHhcL/fDl4ODl7/wKFh4hHhcL/fDl4ODl7/wKFh4hHhcL/fDm4ODl7/wKFh4hHhcL/fDm4ODl7/wKFh4hHhcL/fDm4ODl7/wKFh4hHhcL/fDm4ODl7/wKFh4hHhcL/fDm4ODl7/wKFh4hHhYL/fDm4ODl7/wKFh4hHhYL/fDm4ODl7/wKFh4hHhYL/fDm4ODl7/wKFh4hHhYL/fDm4ODl7/wKFh4hHhYL/fDm4ODl7/wKFh4hHhYL/fDm4ODl7/wKFh4hHhYL/fDm4ODl7/wKFR0gHhYL/fDm4ODl7/wKFR0gHhYL/fDm4ODl7/wKFR0gHhYL/fDm4ODl7/wKFR0gHhYL/fDm4eDl7/wKFR0gHhYL/fDm4eDm7/wKFR0gHhYL/fDm4eDm7/wKFR0gHhYL/fDm4eDm7/wKFR0gHhYL/fDm4eDm7/wKFR0gHhYL/fDm4eHm7/wKFR0gHhYL/fDm4eHm7/wKFR0gHRYL/fDm4eHm7/wKFR0gHRYL/fDm4eHm7/wKFR0gHRYL/fDm4eHm7/wKFR0gHRYL/fDm4eHm7/wKFR0gHRYL/fDm4eHm7/wKFR0gHRYL/fDn4eHm7/wKFR0gHRYL/fDn4eHm7/wKFR0gHRYL/fDn4eHm7/wKFR0gHRYL/fDn4eHm8PwKFR0gHRYL/fDn4eHm8PwKFR0gHRYL/fDn4eHm8PwKFR0fHRYL/fDn4eHm8PwKFR0fHRYL/fDn4eHm8PwKFR0fHRYL/fHn4eHm8PwKFRwfHRYL/fHn4eHm8PwKFRwfHRUL/fHn4eHm8PwKFRwfHRUK/fHn4uHm8PwKFRwfHRUK/fHn4uHm8PwJFRwfHRUK/fHn4uHm8PwJFRwfHRUK/fHn4uHm8PwJFRwfHRUK/fHn4uLm8PwJFRwfHRUK/fHn4uLn8PwJFRwfHRUK/fHn4uLn8PwJFRwfHRUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHn4uLn8PwJFBwfHBUK/fHo4uLn8PwJFBweHBUK/fHo4uLn8PwJFBweHBUK/fHo4uLn8PwJFBweHBUK/fHo4uLn8PwJFBweHBUK/fHo4uLn8PwJFBweHBUK/fHo4uLn8PwJFBweHBUK/fHo4uLn8PwJFBweHBUK/fHo4uLn8PwJFBweHBUK/fHo4uLn8PwJFBseHBUK/fHo4uLn8PwJFBseHBUK/fHo4+Ln8PwJFBseHBUK/fHo4+Ln8PwJFBseHBUK/fHo4+Ln8PwJFBseHBUK/fHo4+Ln8PwJFBseHBUK/fHo4+Ln8PwJFBseHBUK/fHo4+Ln8PwJFBseHBUK/fHo4+Ln8PwJFBseHBUK/fHo4+Pn8PwJFBseHBUK/fHo4+Pn8PwJFBseHBUK/fHo4+Pn8PwJFBseHBUK/fHo4+Pn8PwJFBseHBUK/fHo4+Pn8PwJFBseHBUK/fHo4+Pn8PwJFBseHBUK/fHo4+Pn8PwJFBseGxQK/fHo4+Pn8PwJFBseGxQK/fHo4+Po8PwJFBseGxQK/fHo4+Po8PwJFBseGxQK/fHo4+Po8PwJFBseGxQK/fHo4+Po8PwJFBseGxQK/fHo4+Po8PwJFBseGxQK/fHo4+Po8fwJFBseGxQK/fHo4+Po8fwJFBseGxQK/fHo4+Po8fwJFBseGxQK/fHo4+Po8fwJFBseGxQK/fHo4+Po8fwJFBseGxQK/fHo4+Po8fwJFBsdGxQK/fHo4+Po8fwJFBsdGxQK/fHo4+Po8fwJFBsdGxQK/fHo4+Po8fwJExsdGxQK/fHo4+Po8fwJExsdGxQK/fHo4+Po8fwJExsdGxQK/fHo4+Po8fwJExsdGxQK/fLo4+Po8fwJExsdGxQK/fLo4+Po8fwJExsdGxQK/fLp4+Po8fwJExsdGxQK/fLp5OPo8fwJExsdGxQK/fLp5OPo8fwJExsdGxQK/fLp5OPo8fwJExodGxQK/fLp5OPo8fwJExodGxQK/fLp5OPo8fwJExodGxQK/fLp5OPo8fwJExodGxQK/fLp5OPo8fwJExodGxQK/fLp5OPo8fwJExodGxQK/fLp5OTo8fwJExodGxQK/fLp5OTo8fwJExodGxQK/fLp5OTo8fwJExodGxQK/fLp5OTo8fwJExodGxQK/fLp5OTo8fwJExodGxQK/fLp5OTo8fwJExodGxQK/fLp5OTo8fwJExodGxQK/fLp5OTo8fwJExodGxQK/fLp5OTo8fwJExodGxQK/fLp5OTo8fwJExodGhQK/fLp5OTo8fwJExodGhQK/fLp5OTo8fwJExodGhQK/fLp5OTo8fwJExodGhQK/fLp5OTo8fwJExodGhQK/fLp5OTo8fwJExodGhQK/fLp5OTp8fwJExodGhQK/fLp5OTp8fwJExodGhQK/fLp5OTp8fwJExocGhQK/fLp5OTp8fwJExocGhQK/fLp5OTp8fwJExocGhQK/fLp5OTp8fwJExocGhQK/fLp5OTp8fwJExocGhMK/fLp5OTp8fwJExocGhMK/fLp5OTp8fwJExocGhMK/fLp5OTp8fwJExocGhMK/fLp5OTp8fwJExocGhMK/fLp5OTp8fwJExocGhMK/fLp5OTp8fwJExocGhMJ/fLp5eTp8fwJExocGhMJ/fLp5eTp8fwJExocGhMJ/fLp5eTp8fwJExocGhMJ/fLp5eTp8fwJExocGhMJ/fLp5eTp8fwJExocGhMJ/fLp5eTp8fwJExkcGhMJ/fLp5eTp8fwJExkcGhMJ/fLq5eXp8fwJExkcGhMJ/fLq5eXp8fwJExkcGhMJ/fLq5eXp8fwJExkcGhMJ/fLq5eXp8fwJEhkcGhMJ/fLq5eXp8fwJEhkcGhMJ/fLq5eXp8fwJEhkcGhMJ/fLq5eXp8fwJEhkcGhMJ/fLq5eXp8fwJEhkcGhMJ/fLq5eXp8fwIEhkcGhMJ/fLq5eXp8fwIEhkcGhMJ/fLq5eXp8vwIEhkcGhMJ/fLq5eXp8vwIEhkcGhMJ/fLq5eXp8vwIEhkcGRMJ/fLq5eXp8vwIEhkcGRMJ/fLq5eXp8vwIEhkcGRMJ/fLq5eXp8vwIEhkcGRMJ/fLq5eXp8vwIEhkcGRMJ/fLq5eXp8vwIEhkbGRMJ/fLq5eXp8vwIEhkbGRMJ/fLq5eXp8vwIEhkbGRMJ/fLq5eXp8vwIEhkbGRMJ/fLq5eXp8vwIEhkbGRMJ/fLq5eXq8vwIEhkbGRMJ/fLq5eXq8vwIEhkbGRMJ/fLq5eXq8vwIEhkbGRMJ/fLq5eXq8vwIEhkbGRMJ/fPq5eXq8vwIEhkbGRMJ/fPq5eXq8vwIEhkbGRMJ/fPq5eXq8vwIEhkbGRMJ/fPq5uXq8vwIEhkbGRMJ/fPq5uXq8vwIEhkbGRMJ/fPq5uXq8vwIEhkbGRMJ/fPq5uXq8vwIEhkbGRMJ/fPq5uXq8vwIEhkbGRMJ/fPq5uXq8vwIEhkbGRMJ/fPq5uXq8vwIEhkbGRMJ/fPq5ubq8vwIEhgbGRMJ/fPq5ubq8vwIEhgbGRMJ/fPq5ubq8vwIEhgbGRIJ/fPq5ubq8vwIEhgbGRIJ/fPq5ubq8vwIEhgbGRIJ/fPq5ubq8vwIEhgbGRIJ/fPq5ubq8vwIEhgbGRIJ/fPr5ubq8vwIEhgbGRIJ/fPr5ubq8vwIEhgbGRIJ/fPr5ubq8vwIEhgbGRIJ/fPr5ubq8vwIEhgbGRIJ/fPr5ubq8vwIEhgbGRIJ/fPr5ubq8vwIEhgbGRIJ/fPr5ubq8vwIEhgbGRIJ/fPr5ubq8vwIEhgbGBIJ/fPr5ubq8vwIEhgbGBIJ/fPr5ubq8vwIEhgaGBIJ/fPr5ubq8vwIEhgaGBIJ/fPr5ubq8vwIEhgaGBIJ/fPr5ubq8vwIEhgaGBIJ/fPr5ubq8vwIEhgaGBIJ/fPr5ubq8vwIERgaGBIJ/fPr5ubq8vwIERgaGBIJ/fPr5ubq8vwIERgaGBIJ/fPr5ubq8vwIERgaGBIJ/fPr5ubq8vwIERgaGBIJ/fPr5ubq8vwIERgaGBIJ/fPr5ubq8vwIERgaGBIJ/fPr5ubq8vwIERgaGBIJ/fPr5+br8vwIERgaGBIJ/fPr5+br8vwIERgaGBIJ/fPr5+br8vwIERgaGBIJ/fPr5+br8vwIERgaGBIJ/fPr5+br8vwIERgaGBIJ/fPr5+br8vwIERgaGBIJ/fPr5+br8vwIERgaGBIJ/fPr5+fr8vwIERgaGBIJ/fPr5+fr8vwIERgaGBIJ/fPr5+fr8vwIERgaGBIJ/fPr5+fr8vwIERcaGBIJ/fPr5+fr8vwIERcaGBIJ/fPr5+fr8vwIERcaGBIJ/fPr5+fr8/wIERcaGBIJ/fPr5+fr8/wIERcaGBIJ/fPr5+fr8/wIERcaGBIJ/fPr5+fr8/wIERcaGBIJ/fPr5+fr8/wIERcaGBIJ/fPr5+fr8/wIERcaGBIJ/fPr5+fr8/wIERcaGBIJ/fPr5+fr8/wIERcaGBIJ/fPr5+fr8/wIERcaGBIJ/fPs5+fr8/wIERcZGBIJ/fPs5+fr8/wIERcZFxIJ/fPs5+fr8/wIERcZFxEJ/fPs5+fr8/wIERcZFxEJ/fPs5+fr8/wIERcZFxEJ/fPs5+fr8/wIERcZFxEJ/fPs5+fr8/wIERcZFxEJ/fPs5+fr8/wIERcZFxEJ/fPs5+fr8/0IERcZFxEJ/fPs5+fr8/0IERcZFxEJ/fPs5+fr8/0IERcZFxEJ/fTs5+fr8/0IERcZFxEJ/fTs5+fr8/0IERcZFxEJ/fTs5+fr8/0IERcZFxEI/fTs6Ofr8/0IERcZFxEI/fTs6Ofr8/0IERcZFxEI/fTs6Ofr8/0IERcZFxEI/fTs6Ofr8/0IERcZFxEI/fTs6Ofr8/0IERcZFxEI/fTs6Ofr8/0IERcZFxEI/fTs6Ojr8/0IERcZFxEI/fTs6Ojs8/0IERcZFxEI/fTs6Ojs8/0IERcZFxEI/fTs6Ojs8/0IEBcZFxEI/fTs6Ojs8/0IEBcZFxEI/fTs6Ojs8/0IEBcZFxEI/fTs6Ojs8/0IEBYZFxEI/fTs6Ojs8/0IEBYZFxEI/fTs6Ojs8/0IEBYZFxEI/fTs6Ojs8/0IEBYZFxEI/fTs6Ojs8/0IEBYZFxEI/fTs6Ojs8/0IEBYZFxEI/fTs6Ojs8/0IEBYZFxEI/fTs6Ojs8/0IEBYZFxEI/fTs6Ojs8/0IEBYZFxEI/fTs6Ojs8/0IEBYZFxEI/fTs6Ojs8/0IEBYYFxEI/fTs6Ojs8/0IEBYYFxEI/fTs6Ojs8/0IEBYYFxEI/fTs6Ojs8/0IEBYYFhEI/fTs6Ojs8/0HEBYYFhEI/fTs6Ojs8/0HEBYYFhEI/fTs6Ojs8/0HEBYYFhEI/fTs6Ojs8/0HEBYYFhEI/fTt6Ojs8/0HEBYYFhEI/fTt6Ojs8/0HEBYYFhEI/fTt6Ojs8/0HEBYYFhEI/fTt6Ojs8/0HEBYYFhEI/fTt6Ojs8/0HEBYYFhEI/fTt6Ojs8/0HEBYYFhEI/fTt6ejs8/0HEBYYFhEI/fTt6ejs8/0HEBYYFhEI/fTt6ejs8/0HEBYYFhEI/fTt6ejs8/0HEBYYFhEI/fTt6ejs8/0HEBYYFhAI/fTt6ejs8/0HEBYYFhAI/fTt6ens8/0HEBYYFhAI/fTt6ens8/0HEBYYFhAI/fTt6ens8/0HEBYYFhAI/fTt6ens9P0HEBYYFhAI/fTt6ens9P0HEBYYFhAI/fTt6ens9P0HEBYYFhAI/fTt6ens9P0HEBYYFhAI/fTt6ens9P0HEBYYFhAI/fTt6ent9P0HEBYYFhAI/fTt6ent9P0HEBUYFhAI/fTt6ent9P0HEBUYFhAI/fTt6ent9P0HEBUYFhAI/fTt6ent9P0HEBUYFhAI/fTt6ent9P0HEBUYFhAI/fTt6ent9P0HEBUYFhAI/fTt6ent9P0HEBUXFhAI/fTt6ent9P0HEBUXFhAI/fTt6ent9P0HEBUXFhAI/fTt6ent9P0HEBUXFhAI/fTt6ent9P0HEBUXFhAI/fTt6ent9P0HDxUXFhAI/fTt6ent9P0HDxUXFRAI/fTt6ent9P0HDxUXFRAI/fTt6ent9P0HDxUXFRAI/fTt6ent9P0HDxUXFRAI/vTt6ent9P0HDxUXFRAI/vTt6ent9P0HDxUXFRAI/vXt6ent9P0HDxUXFRAI/vXt6ent9P0HDxUXFRAI/vXt6ent9P0HDxUXFRAI/vXt6unt9P0HDxUXFRAI/vXt6unt9P0HDxUXFRAI/vXu6unt9P0HDxUXFRAI/vXu6unt9P0HDxUXFRAI/vXu6unt9P0HDxUXFRAI/vXu6unt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxUXFRAI/vXu6urt9P0HDxQXFRAI/vXu6urt9P0HDxQXFQ8I/vXu6urt9P0HDxQWFQ8I/vXu6uru9P0HDxQWFQ8I/vXu6uru9P0HDxQWFQ8I/vXu6uru9P0HDxQWFQ8I/vXu6uru9P0HDxQWFQ8I/vXu6uru9P0HDxQWFQ8I/vXu6uru9P0HDxQWFQ8I/vXu6uru9P0HDxQWFQ8I/vXu6uru9P0HDxQWFQ8I/vXu6uru9P0HDxQWFA8I/vXu6uru9P0HDxQWFA8I/vXu6uru9P0HDxQWFA8I/vXu6uru9P0HDxQWFA8I/vXu6uru9P0HDxQWFA8I/vXu6uru9P0HDxQWFA8I/vXu6uru9P0HDxQWFA8H/vXu6+ru9P0HDxQWFA8H/vXu6+ru9P0HDxQWFA8H/vXu6+ru9P0HDxQWFA8H/vXu6+ru9P0HDxQWFA8H/vXu6+ru9P0HDxQWFA8H/vXu6+vu9f0HDxQWFA8H/vXu6+vu9f0HDxQWFA8H/vXu6+vu9f0HDxQWFA8H/vXu6+vu9f0HDhQWFA8H/vXu6+vu9f0HDhQWFA8H/vXv6+vu9f0HDhQWFA8H/vXv6+vu9f0HDhQWFA8H/vXv6+vu9f0HDhQWFA8H/vXv6+vu9f0HDhQWFA8H/vXv6+vu9f0HDhQWFA8H/vXv6+vu9f0HDhQWFA8H/vXv6+vu9f0HDhQWFA8H/vXv6+vu9f0HDhQWFA8H/vXv6+vu9f0HDhQWFA8H/vXv6+vu9f0HDhQVFA8H/vXv6+vu9f0HDhMVFA8H/vXv6+vu9f0HDhMVFA8H/vXv6+vu9f0HDhMVFA8H/vXv6+vu9f0HDhMVFA8H/vXv6+vu9f0HDhMVFA8H/vXv6+vu9f0HDhMVFA8H/vXv6+vu9f0HDhMVFA8H/vXv6+vv9f0HDhMVFA8H/vXv6+vv9f0HDhMVFA8H/vXv6+vv9f0HDhMVFA8H/vXv6+vv9f0HDhMVFA8H/vXv6+vv9f0HDhMVEw8H/vXv6+vv9f0HDhMVEw8H/vbv6+vv9f0HDhMVEw8H/vbv6+vv9f0HDhMVEw4H/vbv6+vv9f0HDhMVEw4H/vbv7Ovv9f0HDhMVEw4H/vbv7Ovv9f0HDhMVEw4H/vbv7Ovv9f0GDhMVEw4H/vbv7Ovv9f0GDhMVEw4H/vbv7Ovv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbv7Ozv9f0GDhMVEw4H/vbw7Ozv9f0GDhMUEw4H/vbw7Ozv9f0GDhMUEw4H/vbw7Ozv9f0GDhMUEw4H/vbw7Ozv9f0GDhMUEw4H/vbw7Ozv9f0GDhMUEw4H/vbw7Ozv9f0GDhIUEw4H/vbw7Ozv9f0GDhIUEw4H/vbw7Ozv9f0GDRIUEw4H/vbw7Ozv9f0GDRIUEw4H/vbw7Ozv9f0GDRIUEw4H/vbw7Ozv9f0GDRIUEw4H/vbw7Ozv9f0GDRIUEw4H/vbw7Ozv9f0GDRIUEw4H/vbw7Ozv9f0GDRIUEw4H/vbw7Ozv9f0GDRIUEw4H/vbw7Ozv9f0GDRIUEg4H/vbw7Ozw9f0GDRIUEg4H/vbw7Ozw9f0GDRIUEg4H/vbw7ezw9f0GDRIUEg4H/vbw7ezw9f0GDRIUEg4H/vbw7ezw9v0GDRIUEg4H/vbw7ezw9v0GDRIUEg4H/vbw7ezw9v0GDRIUEg4H/vbw7e3w9v0GDRIUEg4H/vbw7e3w9v0GDRIUEg4H/vbw7e3w9v0GDRIUEg4H/vbw7e3w9v0GDRIUEg4H/vbw7e3w9v0GDRIUEg4H/vbw7e3w9v0GDRIUEg4H/vbw7e3w9v0GDRIUEg4H/vbw7e3w9v0GDRIUEg4H/vbw7e3w9v0GDRIUEg4H/vbw7e3w9v0GDRIUEg0H/vbw7e3w9v0GDRIUEg0H/vbw7e3w9v0GDRIUEg0H/vbw7e3w9v0GDRITEg0H/vbw7e3w9v0GDRITEg0H/vbw7e3w9v0GDRITEg0H/vbw7e3w9v0GDRITEg0H/vbw7e3w9v0GDRITEg0H/vbw7e3w9v0GDRITEg0H/vbw7e3w9v0GDRITEg0H/vbw7e3w9v0GDRITEg0H/vbx7e3w9v0GDRITEg0H/vbx7e3w9v0GDRETEg0H/vbx7e3w9v0GDRETEg0H/vbx7e3w9v0GDRETEg0H/vbx7e3w9v0GDRETEg0H/vbx7e3w9v0GDRETEg0H/vbx7e3w9v0GDRETEg0H/vbx7e3w9v0GDRETEg0H/vbx7e3w9v0GDRETEg0H/vfx7e3w9v0GDRETEg0H/vfx7e3w9v0GDRETEQ0G/vfx7u3w9v0GDRETEQ0G/vfx7u3w9v0GDRETEQ0G/vfx7u3w9v0GDRETEQ0G/vfx7u3w9v0GDRETEQ0G/vfx7u7w9v0GDRETEQ0G/vfx7u7x9v0GDRETEQ0G/vfx7u7x9v0GDBETEQ0G/vfx7u7x9v0GDBETEQ0G/vfx7u7x9v0GDBETEQ0G/vfx7u7x9v0GDBETEQ0G/vfx7u7x9v0GDBETEQ0G/vfx7u7x9v0GDBETEQ0G/vfx7u7x9v0GDBETEQ0G/vfx7u7x9v0GDBETEQ0G/vfx7u7x9v0GDBETEQ0G/vfx7u7x9v0GDBETEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBESEQ0G/vfx7u7x9v0GDBASEQ0G/vfx7u7x9v0GDBASEQwG/vfx7u7x9v0GDBASEQwG/vfx7u7x9v0GDBASEQwG/vfx7u7x9v0GDBASEQwG/vfy7u7x9v0GDBASEQwG/vfy7u7x9/0GDBASEQwG/vfy7u7x9/0GDBASEQwG/vfy7+7x9/0GDBASEQwG/vfy7+7x9/0GDBASEAwG/vfy7+7x9/0GDBASEAwG/vfy7+7x9/0GDBASEAwG/vfy7+/x9/0GDBASEAwG/vfy7+/x9/0GDBASEAwG/vfy7+/x9/0GDBASEAwG/vfy7+/x9/0GDBASEAwG/vfy7+/x9/0GDBASEAwG/vfy7+/x9/0GDBASEAwG/vfy7+/x9/0GDBASEAwG/vfy7+/x9/0GDBASEAwG/vfy7+/y9/0GDBASEAwG/vfy7+/y9/0FDBASEAwG/vfy7+/y9/0FDBASEAwG/vfy7+/y9/0FDBAREAwG/vfy7+/y9/0FDBAREAwG/vfy7+/y9/0FDBAREAwG/vfy7+/y9/0FDBAREAwG/vfy7+/y9/0FDBAREAwG/vfy7+/y9/0FDBAREAwG/vfy7+/y9/0FDBAREAwG/vfy7+/y9/0FDBAREAwG/vfy7+/y9/0FDBAREAwG/vfy7+/y9/0FCxAREAwG/vfy7+/y9/0FCxAREAwG/vfy7+/y9/0FCxAREAwG/vfy7+/y9/0FCxAREAwG/vfy7+/y9/0FCxAREAwG/vfy7+/y9/0FCxAREAwG/vfy7+/y9/0FCxAREAwG/vfy7+/y9/0FCw8REAwG/vfy7+/y9/4FCw8REAwG/vfy7+/y9/4FCw8REAwG/vjy7+/y9/4FCw8REAwG/vjy7+/y9/4FCw8REAwG/vjy8O/y9/4FCw8REAwG/vjy8O/y9/4FCw8REAwG/vjy8O/y9/4FCw8REAwG/vjy8O/y9/4FCw8RDwwG/vjy8PDy9/4FCw8RDwwG/vjz8PDy9/4FCw8RDwwG/vjz8PDy9/4FCw8RDwwG/vjz8PDy9/4FCw8RDwwG/vjz8PDy9/4FCw8RDwwG/vjz8PDy9/4FCw8RDwsG/vjz8PDy9/4FCw8RDwsG/vjz8PDy9/4FCw8RDwsG/vjz8PDy9/4FCw8RDwsG/vjz8PDy9/4FCw8RDwsG/vjz8PDy9/4FCw8QDwsG/vjz8PDy9/4FCw8QDwsG/vjz8PDy9/4FCw8QDwsG/vjz8PDy9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz9/4FCw8QDwsG/vjz8PDz+P4FCw8QDwsG/vjz8PDz+P4FCw8QDwsG/vjz8PDz+P4FCw8QDwsG/vjz8PDz+P4FCw4QDwsG/vjz8PDz+P4FCw4QDwsG/vjz8PDz+P4FCw4QDwsF/vjz8fDz+P4FCw4QDwsF/vjz8fDz+P4FCw4QDwsF/vjz8fDz+P4FCw4QDwsF/vjz8fHz+P4FCw4QDwsF/vjz8fHz+P4FCw4QDwsF/vjz8fHz+P4FCg4QDgsF/vjz8fHz+P4FCg4QDgsF/vjz8fHz+P4FCg4QDgsF/vjz8fHz+P4FCg4QDgsF/vjz8fHz+P4FCg4QDgsF/vjz8fHz+P4FCg4QDgsF/vjz8fHz+P4FCg4QDgsF/vjz8fHz+P4FCg4QDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgsF/vj08fHz+P4FCg4PDgoF/vj08fH0+P4FCg4PDgoF/vj08fH0+P4FCg4PDgoF/vj08fH0+P4FCg4PDgoF/vj08fH0+P4FCg4PDgoF/vj08fH0+P4FCg4PDgoF/vj08fH0+P4FCg4PDgoF/vj08fH0+P4FCg4PDgoF/vj08fH0+P4FCg4PDgoF/vj08fH0+P4FCg4PDgoF/vn08fH0+P4FCg4PDgoF/vn08vH0+P4FCg4PDgoF/vn08vH0+P4FCg0PDgoF/vn08vH0+P4FCg0PDgoF/vn08vH0+P4FCg0PDgoF/vn08vL0+P4FCg0PDgoF/vn08vL0+P4FCg0PDgoF/vn08vL0+P4FCg0PDgoF/vn08vL0+P4FCg0PDgoF/vn08vL0+P4FCg0PDQoF/vn08vL0+P4FCg0PDQoF/vn08vL0+P4FCg0PDQoF/vn08vL0+P4FCg0PDQoF/vn08vL0+P4FCg0PDQoF/vn08vL0+P4FCg0ODQoF/vn08vL0+P4FCg0ODQoF/vn08vL0+P4FCg0ODQoF/vn08vL0+P4FCg0ODQoF/vn08vL0+P4FCg0ODQoF/vn08vL0+P4FCg0ODQoF/vn08vL0+P4FCg0ODQoF/vn08vL0+P4FCg0ODQoF/vn08vL0+P4FCg0ODQoF/vn18vL0+P4FCg0ODQoF/vn18vL0+P4FCQ0ODQoF/vn18vL0+P4FCQ0ODQoF/vn18vL0+P4ECQ0ODQoF/vn18vL0+P4ECQ0ODQoF/vn18vL0+f4ECQ0ODQoF/vn18vL0+f4ECQ0ODQoF/vn18vL0+f4ECQ0ODQoF/vn18vL0+f4ECQ0ODQoF/vn18vL0+f4ECQ0ODQoF/vn18vL0+f4ECQ0ODQoF/vn18vL1+f4ECQ0ODQoF/vn18vL1+f4ECQ0ODQoF/vn18vL1+f4ECQ0ODQoF/vn18/L1+f4ECQ0ODQoF/vn18/L1+f4ECQ0ODQoF/vn18/L1+f4ECQ0ODQoF/vn18/L1+f4ECQ0ODQoF/vn18/P1+f4ECQwODQkF/vn18/P1+f4ECQwODQkF/vn18/P1+f4ECQwODQkF/vn18/P1+f4ECQwODQkF/vn18/P1+f4ECQwODQkF/vn18/P1+f4ECQwODQkF/vn18/P1+f4ECQwODAkF/vn18/P1+f4ECQwODAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn18/P1+f4ECQwNDAkF/vn28/P1+f4ECQwNDAkF/vn28/P1+f4ECQwNDAkF/vn28/P1+f4ECQwNDAkF/vn28/P1+f4ECQwNDAkF/vn28/P1+f4ECQwNDAkF/vn28/P1+f4ECQwNDAkF/vr28/P1+f4ECQwNDAkF/vr29PP1+f4ECQwNDAkE/vr29PP1+f4ECQwNDAkE/vr29PP1+f4ECQwNDAkE/vr29PT1+f4ECQwNDAkE/vr29PT2+f4ECQwNDAkE/vr29PT2+f4ECAwNDAkE/vr29PT2+f4ECAsNDAkE/vr29PT2+f4ECAsNDAkE/vr29PT2+f4ECAsNDAkE/vr29PT2+f4ECAsNDAkE/vr29PT2+f4ECAsNDAkE/vr29PT2+f4ECAsMDAkE/vr29PT2+f4ECAsMCwkE/vr29PT2+f4ECAsMCwkE/vr29PT2+f4ECAsMCwkE/vr29PT2+f4ECAsMCwkE/vr29PT2+f4ECAsMCwkE/vr29PT2+f4ECAsMCwkE/vr29PT2+f4ECAsMCwkE/vr29PT2+f4ECAsMCwkE/vr29PT2+f4ECAsMCwgE/vr29PT2+f4ECAsMCwgE/vr29PT2+f4ECAsMCwgE/vr29PT2+v4ECAsMCwgE/vr29PT2+v4ECAsMCwgE/vr29PT2+v4ECAsMCwgE/vr29PT2+v4ECAsMCwgE/vr29PT2+v4ECAsMCwgE/vr29PT2+v4ECAsMCwgE/vr29PT2+v4ECAsMCwgE/vr29PT2+v4ECAsMCwgE/vr29PT2+v4ECAsMCwgE/vr29PT2+v4ECAsMCwgE/vr29PT2+v4ECAsMCwgE//r29PT2+v4ECAsMCwgE//r29PT2+v4ECAsMCwgE//r29fT2+v4ECAsMCwgE//r39fT2+v4ECAsMCwgE//r39fT2+v4ECAsMCwgE//r39fX2+v4ECAsMCwgE//r39fX2+v4ECAsMCwgE//r39fX2+v4ECAsMCwgE//r39fX2+v4ECAsMCwgE//r39fX2+v4ECAsMCwgE//r39fX2+v4ECAsMCwgE//r39fX2+v4ECAoMCwgE//r39fX3+v4ECAoLCwgE//r39fX3+v4ECAoLCwgE//r39fX3+v4ECAoLCwgE//r39fX3+v4ECAoLCwgE//r39fX3+v4ECAoLCggE//r39fX3+v4ECAoLCggE//r39fX3+v4ECAoLCggE//r39fX3+v4ECAoLCggE//r39fX3+v4ECAoLCggE//r39fX3+v4ECAoLCggE//r39fX3+v4ECAoLCggE//r39fX3+v4ECAoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//r39fX3+v4EBwoLCggE//v39fX3+v4EBwoLCgcE//v39vX3+v4EBwoLCgcE//v39vX3+v4DBwoLCgcE//v39vX3+v4DBwoLCgcE//v39vb3+v4DBwoLCgcE//v39vb3+v4DBwoLCgcE//v39vb3+v4DBwoLCgcE//v39vb3+v4DBwoLCgcE//v39vb3+v4DBwoLCgcE//v39vb3+v4DBwoLCgcE//v49vb3+v4DBwoKCgcE//v49vb3+v4DBwoKCgcE//v49vb3+v4DBwkKCgcE//v49vb3+v4DBwkKCgcE//v49vb3+v4DBwkKCgcE//v49vb3+v4DBwkKCgcE//v49vb3+v4DBwkKCgcE//v49vb3+v4DBwkKCQcE//v49vb4+v4DBwkKCQcE//v49vb4+v4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcE//v49vb4+/4DBwkKCQcD//v49/b4+/4DBwkKCQcD//v49/b4+/4DBwkKCQcD//v49/f4+/4DBwkKCQcD//v49/f4+/4DBgkKCQcD//v49/f4+/4DBgkKCQcD//v49/f4+/4DBgkKCQcD//v49/f4+/4DBgkKCQcD//v49/f4+/4DBgkKCQcD//v49/f4+/4DBgkJCQcD//v49/f4+/4DBgkJCQcD//v49/f4+/4DBgkJCQcD//v49/f4+/4DBgkJCQcD//v49/f4+/4DBgkJCQcD//v49/f4+/4DBgkJCQcD//v49/f4+/4DBggJCQcD//v49/f4+/4DBggJCQYD//v49/f4+/4DBggJCQYD//v59/f4+/4DBggJCQYD//v59/f4+/4DBggJCAYD//v59/f4+/4DBggJCAYD//v59/f4+/4DBggJCAYD//v59/f4+/4DBggJCAYD//v59/f4+/4DBggJCAYD//v59/f4+/4DBggJCAYD//v59/f5+/4DBggJCAYD//v59/f5+/4DBggJCAYD//v59/f5+/4DBggJCAYD//v59/f5+/4DBggJCAYD//v59/f5+/4DBggJCAYD//v59/f5+/4DBggJCAYD//v59/f5+/4DBggJCAYD//v59/f5+/4DBggJCAYD//v59/f5+/4DBggJCAYD//v59/f5+/4DBggJCAYD//v59/f5+/8DBggJCAYD//z59/f5+/8DBggJCAYD//z5+Pf5+/8DBggJCAYD//z5+Pf5+/8DBggJCAYD//z5+Pj5+/8DBggJCAYD//z5+Pj5+/8DBggJCAYD//z5+Pj5+/8DBggJCAYD//z5+Pj5+/8DBggJCAYD//z5+Pj5+/8DBggJCAYD//z5+Pj5+/8DBggICAYD//z5+Pj5+/8DBggICAYD//z5+Pj5+/8DBggICAYD//z5+Pj5+/8DBggICAYD//z5+Pj5+/8DBggICAYD//z5+Pj5+/8DBggICAYD//z5+Pj5+/8DBggICAYD//z5+Pj5+/8DBggICAYD//z5+Pj5/P8DBggICAYD//z5+Pj5/P8DBggICAYD//z5+Pj5/P8DBgcICAYD//z5+Pj5/P8DBgcICAYD//z5+Pj5/P8DBgcICAYD//z5+Pj5/P8DBgcICAYD//z5+Pj5/P8DBQcIBwYD//z5+Pj5/P8DBQcIBwYD//z5+Pj5/P8DBQcIBwYD//z5+Pj5/P8DBQcIBwYD//z6+Pj5/P8DBQcIBwYD//z6+Pj5/P8DBQcIBwYD//z6+Pj5/P8DBQcIBwYD//z6+Pj5/P8DBQcIBwYD//z6+Pj5/P8DBQcIBwYD//z6+Pj5/P8DBQcIBwUD//z6+Pj6/P8DBQcIBwUD//z6+Pj6/P8DBQcIBwUD//z6+Pj6/P8DBQcIBwUD//z6+Pj6/P8DBQcIBwUD//z6+Pj6/P8DBQcIBwUD//z6+fj6/P8DBQcIBwUD//z6+fj6/P8DBQcIBwUD//z6+fn6/P8DBQcIBwUD//z6+fn6/P8DBQcIBwUD//z6+fn6/P8DBQcIBwUD//z6+fn6/P8DBQcIBwUD//z6+fn6/P8DBQcHBwUD//z6+fn6/P8DBQcHBwUD//z6+fn6/P8DBQcHBwUD//z6+fn6/P8DBQcHBwUD//z6+fn6/P8DBQcHBwUD//z6+fn6/P8DBQcHBwUD//z6+fn6/P8CBQcHBwUD//z6+fn6/P8CBQcHBwUD//z6+fn6/P8CBQcHBwUD//z6+fn6/P8CBQcHBwUD//z6+fn6/P8CBQcHBwUD//z6+fn6/P8CBQcHBwUD//z6+fn6/P8CBQcHBwUD//z6+fn6/P8CBQYHBwUD//z6+fn6/P8CBQYHBwUD//z6+fn6/P8CBQYHBwUD//z6+fn6/P8CBQYHBwUD//z6+fn6/P8CBQYHBgUD//z6+fn6/P8CBQYHBgUD//z6+fn6/P8CBQYHBgUD//z6+fn6/P8CBQYHBgUD//z6+fn6/P8CBQYHBgUD//z6+fn6/P8CBQYHBgUD//z6+fn6/P8CBQYHBgUD//z6+fn6/P8CBQYHBgUD//z6+fn6/P8CBQYHBgUD//z7+fn6/P8CBQYHBgUD//z7+fn6/P8CBQYHBgUD//z7+fn6/P8CBQYHBgUD//37+fn6/P8CBQYHBgUC//37+vn6/P8CBQYHBgUC//37+vr6/P8CBQYHBgUC//37+vr7/P8CBAYHBgUC//37+vr7/P8CBAYHBgUC//37+vr7/P8CBAYHBgUC//37+vr7/P8CBAYGBgUC//37+vr7/P8CBAYGBgUC//37+vr7/P8CBAYGBgUC//37+vr7/P8CBAYGBgUC//37+vr7/P8CBAYGBgQC//37+vr7/P8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAYGBgQC//37+vr7/f8CBAUGBgQC//37+vr7/f8CBAUGBgQC//37+vr7/f8CBAUGBgQC//37+vr7/f8CBAUGBQQC//37+vr7/f8CBAUGBQQC//37+vr7/f8CBAUGBQQC//37+vr7/f8CBAUGBQQC//37+vr7/f8CBAUGBQQC//37+vr7/f8CBAUGBQQC//37+vr7/f8CBAUGBQQC//37+vr7/f8CBAUGBQQC//37+vr7/f8CBAUGBQQC//37+vr7/f8CBAUGBQQC//37+vr7/f8CBAUGBQQC//37+/r7/f8CBAUGBQQC//37+/v7/f8CBAUGBQQC//37+/v7/f8CBAUGBQQC//37+/v7/f8CBAUGBQQC//38+/v7/f8CBAUFBQQC//38+/v7/f8CBAUFBQQC//38+/v7/f8CBAUFBQQC//38+/v7/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CBAUFBQQC//38+/v8/f8CAwUFBQQC//38+/v8/f8CAwUFBQQC//38+/v8/f8CAwUFBQQC//38+/v8/f8CAwUFBQQC//38+/v8/f8CAwUFBQQC//38+/v8/f8CAwUFBQQC//38+/v8/f8CAwQFBQMC//38+/v8/f8CAwQFBQMC//38+/v8/f8CAwQFBAMC//38+/v8/f8CAwQFBAMC//38+/v8/f8CAwQFBAMC//38+/v8/f8CAwQFBAMC//38+/v8/f8CAwQFBAMC//38+/v8/f8CAwQFBAMC//38+/v8/f8CAwQFBAMC//38+/v8/f8CAwQFBAMC//78+/v8/f8CAwQFBAMC//78/Pv8/f8CAwQFBAMC//78/Pz8/f8CAwQFBAMC//78/Pz8/f8CAwQFBAMC//78/Pz8/f8CAwQEBAMC//78/Pz8/f8CAwQEBAMC//78/Pz8/f8CAwQEBAMC//78/Pz8/f8CAwQEBAMC//78/Pz8/v8CAwQEBAMC//78/Pz8/v8CAwQEBAMC//78/Pz8/v8CAwQEBAMC//78/Pz8/v8CAwQEBAMC//78/Pz8/v8CAwQEBAMC//79/Pz8/v8CAwQEBAMC//79/Pz8/v8CAwQEBAMC//79/Pz8/v8CAwQEBAMC//79/Pz9/v8CAwQEBAMC//79/Pz9/v8CAwQEBAMC//79/Pz9/v8CAwQEBAMC//79/Pz9/v8CAwQEBAMC//79/Pz9/v8CAwQEBAMC//79/Pz9/v8CAwQEBAMC//79/Pz9/v8CAwQEBAMC//79/Pz9/v8CAwQEBAMC//79/Pz9/v8CAwQEBAMC//79/Pz9/v8BAwQEBAMC//79/Pz9/v8BAwQEBAMC//79/Pz9/v8BAwQEBAMC//79/Pz9/v8BAwMEBAMC//79/Pz9/v8BAwMEBAMC//79/Pz9/v8BAwMEAwMC//79/Pz9/v8BAwMEAwMC//79/Pz9/v8BAwMEAwMC//79/Pz9/v8BAwMEAwMC//79/Pz9/v8BAwMEAwMC//79/Pz9/v8BAwMEAwMC//79/Pz9/v8BAwMEAwMB//79/f39/v8BAgMEAwMB//79/f39/v8BAgMEAwMB//79/f39/v8BAgMDAwMB//79/f39/v8BAgMDAwMB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//79/f39/v8BAgMDAwIB//7+/f39/v8BAgMDAwIB//7+/f39/v8BAgMDAwIB//7+/f3+/v8BAgMDAwIB//7+/f3+/v8BAgMDAwIB//7+/f3+/v8BAgMDAwIB//7+/f3+/v8BAgMDAwIB//7+/f3+/v8BAgMDAwIB//7+/f3+/v8BAgMDAwIB//7+/f3+/v8BAgMDAwIB//7+/f3+/v8BAgMDAwIB//7+/f3+/v8BAgIDAwIB//7+/f3+/v8BAgIDAgIB//7+/f3+/v8BAgIDAgIB//7+/f3+/v8BAgIDAgIB//7+/f3+/v8BAgIDAgIB//7+/f3+/v8BAgIDAgIB///+/v7+/v8BAgIDAgIB///+/v7+/v8BAgICAgIB///+/v7+/v8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAgICAgIB///+/v7+//8BAQICAgIB///+/v7+//8BAQICAgEB///+/v7+//8BAQICAgEB///+/v7+//8BAQICAgEB///+/v7+//8BAQICAgEB///+/v7+//8BAQICAgEB///+/v7+//8BAQICAgEB///+/v7+//8BAQICAgEB///+/v7+//8BAQICAgEB///+/v7+//8BAQICAgEB/////v7+//8BAQICAgEB/////v7///8BAQICAgEB/////v7///8BAQICAgEB/////v7///8BAQICAgEB/////v7///8BAQECAgEB/////v7///8BAQECAQEB/////v7///8BAQECAQEB/////v7///8BAQECAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB//////////8BAQEBAQEB////AQ==")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lf3p4"]
+size = Vector2(32, 37)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tiles" type="Node" parent="."]
+
+[node name="tile_success2" parent="tiles" instance=ExtResource("1_bneb3")]
+scale = Vector2(2, 2)
+is_goal = false
+text = "Q"
+
+[node name="tile_success3" parent="tiles" instance=ExtResource("1_bneb3")]
+position = Vector2(1664, 0)
+scale = Vector2(2, 2)
+text = "O"
+
+[node name="player" parent="tiles" instance=ExtResource("2_4vsbj")]
+
+[node name="tile_fall45" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(40, 0)
+
+[node name="tile_fall46" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(24, 0)
+
+[node name="tile_fall47" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(56, 0)
+
+[node name="tile_fall72" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(72, 0)
+
+[node name="tile_fall48" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(104, 0)
+
+[node name="tile_fall49" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(88, 0)
+
+[node name="tile_fall50" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(120, 0)
+
+[node name="tile_fall73" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(136, 0)
+
+[node name="tile_fall75" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(152, 0)
+
+[node name="tile_fall77" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(168, 0)
+
+[node name="tile_fall51" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(200, 0)
+
+[node name="tile_fall52" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(184, 0)
+
+[node name="tile_fall53" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(216, 0)
+
+[node name="tile_fall78" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(232, 0)
+
+[node name="tile_fall54" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(264, 0)
+
+[node name="tile_fall55" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(248, 0)
+
+[node name="tile_fall56" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(280, 0)
+
+[node name="tile_fall79" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(296, 0)
+
+[node name="tile_fall80" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(312, 0)
+
+[node name="tile_fall101" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(328, 0)
+
+[node name="tile_fall57" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(360, 0)
+
+[node name="tile_fall58" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(344, 0)
+
+[node name="tile_fall59" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(376, 0)
+
+[node name="tile_fall102" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(392, 0)
+
+[node name="tile_fall60" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(424, 0)
+
+[node name="tile_fall61" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(408, 0)
+
+[node name="tile_fall103" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(456, 0)
+
+[node name="tile_fall63" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(488, 0)
+
+[node name="tile_fall64" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(472, 0)
+
+[node name="tile_fall65" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(504, 0)
+
+[node name="tile_fall104" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(520, 0)
+
+[node name="tile_fall67" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(552, 0)
+
+[node name="tile_fall105" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(536, 0)
+
+[node name="tile_fall106" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(568, 0)
+
+[node name="tile_fall107" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(600, 0)
+
+[node name="tile_fall108" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(584, 0)
+
+[node name="tile_fall109" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(616, 0)
+
+[node name="tile_fall110" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(632, 0)
+
+[node name="tile_fall111" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(648, 0)
+
+[node name="tile_fall112" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(664, 0)
+
+[node name="tile_fall113" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(696, 0)
+
+[node name="tile_fall114" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(680, 0)
+
+[node name="tile_fall115" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(712, 0)
+
+[node name="tile_fall117" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(728, 0)
+
+[node name="tile_fall116" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(760, 0)
+
+[node name="tile_fall118" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(744, 0)
+
+[node name="tile_fall120" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(776, 0)
+
+[node name="tile_fall121" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(792, 0)
+
+[node name="tile_fall122" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(808, 0)
+
+[node name="tile_fall123" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(824, 0)
+
+[node name="tile_fall124" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(840, 0)
+
+[node name="tile_fall125" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(856, 0)
+
+[node name="tile_fall132" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(872, 0)
+
+[node name="tile_fall133" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(888, 0)
+
+[node name="tile_fall134" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(904, 0)
+
+[node name="tile_fall137" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(920, 0)
+
+[node name="tile_fall139" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(936, 0)
+
+[node name="tile_fall140" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(952, 0)
+
+[node name="tile_fall141" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(968, 0)
+
+[node name="tile_fall142" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(984, 0)
+
+[node name="tile_fall143" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1000, 0)
+
+[node name="tile_fall144" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1016, 0)
+
+[node name="tile_fall145" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1032, 0)
+
+[node name="tile_fall146" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1048, 0)
+
+[node name="tile_fall147" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1064, 0)
+
+[node name="tile_fall149" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1080, 0)
+
+[node name="tile_fall150" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1096, 0)
+
+[node name="tile_fall151" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1112, 0)
+
+[node name="tile_fall152" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1128, 0)
+
+[node name="tile_fall153" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1144, 0)
+
+[node name="tile_fall154" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1160, 0)
+
+[node name="tile_fall155" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1176, 0)
+
+[node name="tile_fall156" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1192, 0)
+
+[node name="tile_fall157" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1208, 0)
+
+[node name="tile_fall158" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1224, 0)
+
+[node name="tile_fall159" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1240, 0)
+
+[node name="tile_fall62" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(440, 0)
+
+[node name="tile_fall66" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1256, 0)
+
+[node name="tile_fall68" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1272, 0)
+
+[node name="tile_fall81" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1288, 0)
+
+[node name="tile_fall69" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1320, 0)
+
+[node name="tile_fall70" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1304, 0)
+
+[node name="tile_fall71" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1336, 0)
+
+[node name="tile_fall82" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1352, 0)
+
+[node name="tile_fall83" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1384, 0)
+
+[node name="tile_fall84" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1368, 0)
+
+[node name="tile_fall85" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1400, 0)
+
+[node name="tile_fall86" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1416, 0)
+
+[node name="tile_fall87" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1432, 0)
+
+[node name="tile_fall88" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1448, 0)
+
+[node name="tile_fall89" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1480, 0)
+
+[node name="tile_fall90" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1464, 0)
+
+[node name="tile_fall91" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1496, 0)
+
+[node name="tile_fall92" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1512, 0)
+
+[node name="tile_fall93" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1544, 0)
+
+[node name="tile_fall94" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1528, 0)
+
+[node name="tile_fall95" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1560, 0)
+
+[node name="tile_fall96" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1576, 0)
+
+[node name="tile_fall97" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1608, 0)
+
+[node name="tile_fall98" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1592, 0)
+
+[node name="tile_fall99" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1624, 0)
+
+[node name="tile_fall100" parent="tiles" instance=ExtResource("3_e4vtt")]
+position = Vector2(1640, 0)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(144, 128)
+autoscroll = Vector2(100, 100)
+screen_offset = Vector2(100, 100)
+
+[node name="lava" parent="Parallax2D" instance=ExtResource("7_p0mio")]
+offset_left = 158.0
+offset_top = -2.0
+offset_right = 1639.0
+offset_bottom = 1268.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Parallax2D"]
+offset_left = 478.0
+offset_top = 198.0
+offset_right = 670.0
+offset_bottom = 238.0
+scale = Vector2(1.03478, 1.03478)
+text = "THANKS FOR PLAYING!"
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+position = Vector2(-248, -344)
+rotation = -0.785397
+height = 0.1
+
+[node name="gem1" parent="." instance=ExtResource("8_q3nwp")]
+position = Vector2(168, 0)
+
+[node name="gem2" parent="." instance=ExtResource("8_q3nwp")]
+position = Vector2(312, 0)
+
+[node name="gem3" parent="." instance=ExtResource("8_q3nwp")]
+position = Vector2(440, 0)
+
+[node name="gem4" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(552, -9.09495e-13)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem4"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem4"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem4"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem4"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem5" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(648, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem5"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem5"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem5"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem5"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem6" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(728, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem6"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem6"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem6"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem6"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem7" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(792, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem7"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem7"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem7"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem7"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem8" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(840, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem8"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem8"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem8"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem8"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem9" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(872, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem9"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem9"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem9"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem9"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem10" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(888, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem10"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem10"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem10"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem10"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem11" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(904, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem11"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem11"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem11"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem11"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem12" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(920, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem12"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem12"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem12"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem12"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem13" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(936, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem13"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem13"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem13"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem13"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem14" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(952, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem14"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem14"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem14"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem14"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem15" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(968, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem15"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem15"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem15"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem15"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem16" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(984, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem16"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem16"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem16"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem16"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem17" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1000, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem17"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem17"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem17"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem17"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem18" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1016, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem18"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem18"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem18"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem18"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem19" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1032, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem19"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem19"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem19"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem19"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem20" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1048, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem20"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem20"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem20"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem20"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem21" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1064, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem21"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem21"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem21"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem21"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem22" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1080, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem22"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem22"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem22"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem22"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem23" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1096, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem23"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem23"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem23"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem23"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem24" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1112, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem24"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem24"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem24"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem24"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem25" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1128, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem25"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem25"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem25"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem25"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem26" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1144, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem26"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem26"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem26"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem26"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem27" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1160, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem27"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem27"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem27"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem27"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem28" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1176, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem28"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem28"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem28"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem28"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem29" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1192, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem29"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem29"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem29"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem29"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem30" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1208, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem30"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem30"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem30"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem30"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem31" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1224, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem31"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem31"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem31"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem31"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="gem32" type="Area2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lf3p4")
+position = Vector2(1240, 0)
+scale = Vector2(0.89, 1)
+script = ExtResource("9_lger7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gem32"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf3p4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="gem32"]
+texture = SubResource("CanvasTexture_p477x")
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="gem32"]
+stream = SubResource("AudioStreamWAV_6713g")
+volume_db = -15.0
+script = ExtResource("12_2yjt6")
+wave/type = 2
+sample_params/sound_vol = 0.25
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.2
+envelope/punch_time = 0.2
+envelope/decay_time = 0.4
+frequency/start_frequency = 0.8
+frequency/min_freq_cutoff = 0.1
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.05
+arpeggiation/frequency_mult = 0.5
+arpeggiation/change_speed = 0.7
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.0
+flanger/sweep = 0.0
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 1.0
+high_pass_filter/cutoff_sweep = 0.0
+metadata/_custom_type_script = ExtResource("12_2yjt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gem32"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lf3p4")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 1616.0
+offset_top = -64.0
+offset_right = 1808.0
+offset_bottom = -24.0
+scale = Vector2(1.03478, 1.03478)
+text = "NEXYPE LABS"

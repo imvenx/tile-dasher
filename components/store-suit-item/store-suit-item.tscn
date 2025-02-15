@@ -13,9 +13,8 @@ material = ExtResource("1_opg1p")
 script = ExtResource("2_wluqs")
 
 [node name="sprite2d" type="Sprite2D" parent="."]
-modulate = Color(0.163861, 0.163861, 0.163861, 0.435294)
+modulate = Color(0.164706, 0.164706, 0.164706, 0.823529)
 z_index = 1
-material = ExtResource("1_opg1p")
 position = Vector2(-0.000518799, 3.08826)
 scale = Vector2(1.74599, 1.74599)
 texture = ExtResource("3_opg1p")
@@ -52,7 +51,7 @@ offset_top = 1.0
 offset_right = 251.0
 offset_bottom = 56.0
 scale = Vector2(1.27572, 1.27572)
-text = "Press ENTER to watch an ad and unlock this custom"
+text = "Unlock this suit by pressing ENTER to watch an ad"
 horizontal_alignment = 1
 vertical_alignment = 1
 

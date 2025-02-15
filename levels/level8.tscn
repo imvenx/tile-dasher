@@ -28,7 +28,19 @@ text = "X"
 position = Vector2(-96, -176)
 
 [node name="tile_fall58" parent="tiles" instance=ExtResource("3_1eeqx")]
-position = Vector2(-80, -176)
+position = Vector2(-96, -160)
+
+[node name="tile_fall61" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-48, -160)
+
+[node name="tile_fall62" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-48, -144)
+
+[node name="tile_fall63" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-64, -144)
+
+[node name="tile_fall64" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(-48, -208)
 
 [node name="tile_fall59" parent="tiles" instance=ExtResource("3_1eeqx")]
 position = Vector2(-80, -160)
@@ -38,6 +50,15 @@ position = Vector2(-64, -160)
 
 [node name="tile_fall40" parent="tiles" instance=ExtResource("3_1eeqx")]
 position = Vector2(56, -96)
+
+[node name="tile_fall42" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(40, -80)
+
+[node name="tile_fall48" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(56, -80)
+
+[node name="tile_fall49" parent="tiles" instance=ExtResource("3_1eeqx")]
+position = Vector2(40, -128)
 
 [node name="tile_fall41" parent="tiles" instance=ExtResource("3_1eeqx")]
 position = Vector2(72, -96)

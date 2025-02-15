@@ -18,6 +18,13 @@
 [x] properly map wasd input
 [x] add crazygames API
 [x] fix home menu big tile collider
+[x] fix lag on start level on web (fixed it was a shader on the store suit sprite)
+?- prevent fall if charging dash
+[?x]- fix crash
+[x] make levels easier
+- add particles and sound fireworks last level, and party
+- add particles lava, change suit
+- save collected gems only on finish level
 - make move tile optional param to start moving after player steps on it
 - add total of 12 levels at least
 - add credits, socials

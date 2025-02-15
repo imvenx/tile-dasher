@@ -12,6 +12,10 @@ var levels = [
 	"res://levels/level6.tscn",
 	"res://levels/level7.tscn",
 	"res://levels/level8.tscn",
+	"res://levels/level9.tscn",
+	"res://levels/level10.tscn",
+	"res://levels/level11.tscn",
+	"res://levels/level12.tscn",
 ]
 
 var current_level_scene: Node = null

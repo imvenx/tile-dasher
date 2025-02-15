@@ -11,7 +11,7 @@
 [node name="tiles" type="Node" parent="."]
 
 [node name="tile_success" parent="tiles" instance=ExtResource("2_76ugp")]
-position = Vector2(-1, -288)
+position = Vector2(0, -320)
 scale = Vector2(2, 2)
 text = "O"
 
@@ -51,6 +51,12 @@ position = Vector2(0, -248)
 
 [node name="tile_fall28" parent="tiles" instance=ExtResource("4_55gdq")]
 position = Vector2(0, -264)
+
+[node name="tile_fall33" parent="tiles" instance=ExtResource("4_55gdq")]
+position = Vector2(0, -280)
+
+[node name="tile_fall61" parent="tiles" instance=ExtResource("4_55gdq")]
+position = Vector2(0, -296)
 
 [node name="tile_fall20" parent="tiles" instance=ExtResource("4_55gdq")]
 position = Vector2(-16, -248)

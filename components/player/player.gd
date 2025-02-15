@@ -67,6 +67,8 @@ func _input(event: InputEvent):
 			move_8d_behaviour.reset_speed()
 	
 func onFall():
+	$CollisionShape2D.disabled = true
+	z_index -= 3
 	$gems.visible = false
 	fall_behaviour.start_falling()
 	floor_detector.disconnect('fallen', onFall)
@@ -138,18 +140,62 @@ func on_anim_ended(anim: String):
 	
 
 func changeSuit(suit: String):
+	
+	var _material: ShaderMaterial = $state_machine/idle.material
+	_material.set_shader_parameter('targetColor', Vector3(.5,.5,.5))
+	_material.set_shader_parameter('replacementColor', Vector3(0,1,1))
+	_material.set_shader_parameter('tolerance', 10)
+	await get_tree().create_timer(.3).timeout
+	
+	_material.set_shader_parameter('isReplacementColorDisabled', false)
+	modulate = Color(1,1,1,1)
+	
 	if(suit == 'green'):
-		var _material: ShaderMaterial = $state_machine/idle.material
 		_material.set_shader_parameter('tolerance', 0)
 	
 	if(suit == 'orange'):
-		var _material: ShaderMaterial = $state_machine/idle.material
 		_material.set_shader_parameter('targetColor', Vector3(0,1,0))
 		_material.set_shader_parameter('replacementColor', Vector3(1,0.6,0.2))
 		_material.set_shader_parameter('tolerance', 0.8)
 
 	if(suit == 'ninja'):
-		var _material: ShaderMaterial = $state_machine/idle.material
 		_material.set_shader_parameter('targetColor', Vector3(0,1,0))
 		_material.set_shader_parameter('replacementColor', Vector3(0.1,0.1,0.1))
 		_material.set_shader_parameter('tolerance', 1)
+
+	if(suit == 'lava'):
+		_material.set_shader_parameter('targetColor', Vector3(0,1,0))
+		_material.set_shader_parameter('replacementColor', Vector3(1,0.1,0.1))
+		_material.set_shader_parameter('tolerance', 0.9)
+
+	if(suit == 'white'):
+		_material.set_shader_parameter('targetColor', Vector3(0,1,0))
+		_material.set_shader_parameter('replacementColor', Vector3(.8,.8,.8))
+		_material.set_shader_parameter('tolerance', 0.9)
+
+	if(suit == 'energy'):
+		_material.set_shader_parameter('targetColor', Vector3(0,1,0))
+		_material.set_shader_parameter('replacementColor', Vector3(0,1,1))
+		_material.set_shader_parameter('tolerance', 2)
+
+	if(suit == 'blue'):
+		_material.set_shader_parameter('targetColor', Vector3(0,1,0))
+		_material.set_shader_parameter('replacementColor', Vector3(.1,.1,.4))
+		_material.set_shader_parameter('tolerance', 0.9)
+
+	if(suit == 'pink'):
+		_material.set_shader_parameter('targetColor', Vector3(0,1,0))
+		_material.set_shader_parameter('replacementColor', Vector3(.9,.5,.9))
+		_material.set_shader_parameter('tolerance', 0.9)
+
+	if(suit == 'Url'):
+		_material.set_shader_parameter('targetColor', Vector3(.4,.1,.1))
+		_material.set_shader_parameter('replacementColor', Vector3(.75,.2,.45))
+		_material.set_shader_parameter('tolerance', .3)
+
+	if(suit == 'invisible'):
+		modulate = Color(0,0,0,0)
+		_material.set_shader_parameter('isReplacementColorDisabled', true)
+		
+		#_material.set_shader_parameter('replacementColor', Vector4(0,0,0, 0.1))
+		#_material.set_shader_parameter('tolerance', 1)

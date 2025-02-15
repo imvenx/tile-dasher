@@ -15,6 +15,7 @@ func onBodyEnter(body: Node2D) -> void:
 		$"change-clothes-sound".play()
 		
 		if not Global.unlockedSuits.has(name):
+			await get_tree().create_timer(.5).timeout
 			var tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property($tooltip, "modulate:a", 1.0, 0.3) 
 

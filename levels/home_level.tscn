@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bik5xw0wq8lsj"]
+[gd_scene load_steps=10 format=3 uid="uid://bik5xw0wq8lsj"]
 
 [ext_resource type="Script" uid="uid://xkmf7mf23e4r" path="res://levels/home_level.gd" id="1_bk3ur"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="1_o8q58"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://curvmrgt18ouk" path="res://components/store-suit-item/store-suit-item.tscn" id="5_d5a51"]
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="5_xqjf2"]
 [ext_resource type="PackedScene" uid="uid://c6jk2ksvkfrwq" path="res://components/tiles/tile-move/tile_move_config.tscn" id="8_iy2cv"]
+[ext_resource type="PackedScene" uid="uid://c3vxm88ppme36" path="res://components/tiles/tile-block/tile_block.tscn" id="8_m2b6b"]
 [ext_resource type="PackedScene" uid="uid://1lfo5m1xy0l2" path="res://components/tiles/tile-move/tile-move.tscn" id="11_xqjf2"]
 
 [node name="home_level" type="Node2D"]
@@ -146,28 +147,28 @@ text = "IX"
 position = Vector2(648, -160)
 scale = Vector2(2, 2)
 is_goal = false
-go_to_level_number = 5
+go_to_level_number = 9
 text = "IX"
 
 [node name="tile_success10" parent="tiles" instance=ExtResource("5_xqjf2")]
 position = Vector2(696, -160)
 scale = Vector2(2, 2)
 is_goal = false
-go_to_level_number = 6
+go_to_level_number = 10
 text = "VX"
 
 [node name="tile_success11" parent="tiles" instance=ExtResource("5_xqjf2")]
 position = Vector2(744, -160)
 scale = Vector2(2, 2)
 is_goal = false
-go_to_level_number = 7
+go_to_level_number = 11
 text = "ZX"
 
 [node name="tile_success12" parent="tiles" instance=ExtResource("5_xqjf2")]
 position = Vector2(792, -160)
 scale = Vector2(2, 2)
 is_goal = false
-go_to_level_number = 8
+go_to_level_number = 12
 text = "Q"
 
 [node name="levels_portals" type="Node2D" parent="tiles"]
@@ -185,26 +186,60 @@ metadata/isDisabled = true
 [node name="waypoint1" type="Node2D" parent="tiles/tile_move/waypoints"]
 position = Vector2(80, 0)
 
+[node name="tile-block" parent="tiles" instance=ExtResource("8_m2b6b")]
+z_index = 2
+position = Vector2(704, 80)
+
+[node name="tile-block10" parent="tiles" instance=ExtResource("8_m2b6b")]
+z_index = 2
+position = Vector2(704, 48)
+
+[node name="tile-block11" parent="tiles" instance=ExtResource("8_m2b6b")]
+z_index = 2
+position = Vector2(736, 48)
+
+[node name="tile-block12" parent="tiles" instance=ExtResource("8_m2b6b")]
+z_index = 2
+position = Vector2(736, 80)
+
+[node name="tile-block2" parent="tiles" instance=ExtResource("8_m2b6b")]
+position = Vector2(56, 88)
+
+[node name="tile-block3" parent="tiles" instance=ExtResource("8_m2b6b")]
+position = Vector2(24, 88)
+
+[node name="tile-block4" parent="tiles" instance=ExtResource("8_m2b6b")]
+position = Vector2(24, 56)
+
+[node name="tile-block5" parent="tiles" instance=ExtResource("8_m2b6b")]
+position = Vector2(24, 24)
+
+[node name="tile-block6" parent="tiles" instance=ExtResource("8_m2b6b")]
+position = Vector2(56, 24)
+
+[node name="tile-block7" parent="tiles" instance=ExtResource("8_m2b6b")]
+position = Vector2(88, 24)
+
+[node name="tile-block8" parent="tiles" instance=ExtResource("8_m2b6b")]
+position = Vector2(88, 56)
+
+[node name="tile-block9" parent="tiles" instance=ExtResource("8_m2b6b")]
+position = Vector2(88, 88)
+
 [node name="store" type="Node2D" parent="."]
 z_index = 1
 position = Vector2(-56, 40)
 scale = Vector2(0.323812, 0.323812)
 
 [node name="ninja" parent="store" instance=ExtResource("5_d5a51")]
-position = Vector2(-49.4114, 123.528)
-
-[node name="ColorRect2" type="ColorRect" parent="store/ninja"]
-visible = false
-offset_left = -49.4114
-offset_top = -49.4114
-offset_right = -9.41138
-offset_bottom = -9.41138
-scale = Vector2(2.20127, 2.20127)
-color = Color(0.129412, 0.156863, 0.152941, 1)
+modulate = Color(0.666569, 0.666569, 0.666569, 1)
+material = null
+position = Vector2(-123.528, 148.234)
 
 [node name="orange" parent="store" instance=ExtResource("5_d5a51")]
 modulate = Color(1, 0.392157, 0.0784314, 1)
-position = Vector2(-98.8228, -74.1171)
+material = null
+position = Vector2(-123.528, -24.7057)
 
 [node name="ColorRect2" type="ColorRect" parent="store/orange"]
 visible = false
@@ -226,7 +261,42 @@ color = Color(0, 0, 0, 1)
 
 [node name="green" parent="store" instance=ExtResource("5_d5a51")]
 modulate = Color(0.588235, 1, 0.392157, 1)
-position = Vector2(222.351, 123.528)
+material = null
+position = Vector2(74.1171, 172.94)
+
+[node name="lava" parent="store" instance=ExtResource("5_d5a51")]
+modulate = Color(0.952941, 0.054902, 0, 1)
+material = null
+position = Vector2(345.88, 49.4114)
+
+[node name="invisible" parent="store" instance=ExtResource("5_d5a51")]
+modulate = Color(1, 1, 1, 0.760784)
+material = null
+position = Vector2(2396.45, 74.1171)
+
+[node name="white" parent="store" instance=ExtResource("5_d5a51")]
+material = null
+position = Vector2(914.111, 123.528)
+
+[node name="energy" parent="store" instance=ExtResource("5_d5a51")]
+modulate = Color(0.184314, 1, 1, 1)
+material = null
+position = Vector2(2149.4, 74.1171)
+
+[node name="Url" parent="store" instance=ExtResource("5_d5a51")]
+modulate = Color(1, 1, 0.129412, 1)
+material = null
+position = Vector2(2643.51, 74.117)
+
+[node name="pink" parent="store" instance=ExtResource("5_d5a51")]
+modulate = Color(0.921569, 0.372549, 0.956863, 1)
+material = null
+position = Vector2(1358.81, 123.528)
+
+[node name="blue" parent="store" instance=ExtResource("5_d5a51")]
+modulate = Color(0.0647883, 0.168436, 0.347011, 1)
+material = null
+position = Vector2(1136.46, 123.528)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="store"]
 modulate = Color(0, 0, 0, 0.996078)

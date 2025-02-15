@@ -1,0 +1,393 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6vl4uw25msrb"]
+
+[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="1_okowm"]
+[ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="2_8oooe"]
+[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="3_i18um"]
+[ext_resource type="PackedScene" uid="uid://1lfo5m1xy0l2" path="res://components/tiles/tile-move/tile-move.tscn" id="4_8bhgk"]
+[ext_resource type="PackedScene" uid="uid://c6jk2ksvkfrwq" path="res://components/tiles/tile-move/tile_move_config.tscn" id="5_mv8ey"]
+[ext_resource type="PackedScene" uid="uid://c3vxm88ppme36" path="res://components/tiles/tile-block/tile_block.tscn" id="6_8oooe"]
+[ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="6_80amw"]
+[ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="7_3r2vy"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tiles" type="Node" parent="."]
+
+[node name="tile_success" parent="tiles" instance=ExtResource("1_okowm")]
+position = Vector2(0, -560)
+scale = Vector2(2, 2)
+text = "O"
+
+[node name="tile_success2" parent="tiles" instance=ExtResource("1_okowm")]
+scale = Vector2(2, 2)
+is_goal = false
+text = "VX"
+
+[node name="player" parent="tiles" instance=ExtResource("2_8oooe")]
+
+[node name="tile_fall44" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -392)
+
+[node name="tile_fall45" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -24)
+
+[node name="tile_fall46" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -40)
+
+[node name="tile_fall47" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -56)
+
+[node name="tile_fall48" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -72)
+
+[node name="tile_fall49" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -88)
+
+[node name="tile_fall50" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-16, -88)
+
+[node name="tile_fall52" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-32, -88)
+
+[node name="tile_fall62" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-48, -88)
+
+[node name="tile_fall70" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -88)
+
+[node name="tile_fall71" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -104)
+
+[node name="tile_fall72" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -120)
+
+[node name="tile_fall73" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -136)
+
+[node name="tile_fall74" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -152)
+
+[node name="tile_fall75" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -168)
+
+[node name="tile_fall76" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -184)
+
+[node name="tile_fall77" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-48, -184)
+
+[node name="tile_fall78" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-32, -184)
+
+[node name="tile_fall79" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-16, -184)
+
+[node name="tile_fall51" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(16, -88)
+
+[node name="tile_fall63" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(32, -88)
+
+[node name="tile_fall64" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(48, -88)
+
+[node name="tile_fall65" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -88)
+
+[node name="tile_fall66" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -104)
+
+[node name="tile_fall67" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -120)
+
+[node name="tile_fall68" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -136)
+
+[node name="tile_fall69" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -152)
+
+[node name="tile_fall80" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -168)
+
+[node name="tile_fall81" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -184)
+
+[node name="tile_fall82" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(48, -184)
+
+[node name="tile_fall83" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(32, -184)
+
+[node name="tile_fall84" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(16, -184)
+
+[node name="tile_fall85" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -184)
+
+[node name="tile_fall86" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -200)
+
+[node name="tile_move" parent="tiles" instance=ExtResource("4_8bhgk")]
+position = Vector2(-40, -136)
+
+[node name="tile_move_config" parent="tiles/tile_move" instance=ExtResource("5_mv8ey")]
+metadata/reverse = false
+metadata/loop = true
+
+[node name="waypoints" type="Node2D" parent="tiles/tile_move"]
+
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move/waypoints"]
+position = Vector2(80, 0)
+
+[node name="tile_fall87" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -216)
+
+[node name="tile_fall88" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -232)
+
+[node name="tile_fall89" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-16, -232)
+
+[node name="tile_fall90" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-32, -232)
+
+[node name="tile_fall91" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-48, -232)
+
+[node name="tile_fall92" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -232)
+
+[node name="tile_fall93" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -248)
+
+[node name="tile_fall94" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -264)
+
+[node name="tile_fall95" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -280)
+
+[node name="tile_fall140" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -296)
+
+[node name="tile_fall141" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -312)
+
+[node name="tile_fall96" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -328)
+
+[node name="tile_fall97" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -344)
+
+[node name="tile_fall98" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -360)
+
+[node name="tile_fall99" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-48, -360)
+
+[node name="tile_fall100" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-32, -360)
+
+[node name="tile_fall101" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-16, -360)
+
+[node name="tile_fall102" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(16, -232)
+
+[node name="tile_fall103" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(32, -232)
+
+[node name="tile_fall104" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(48, -232)
+
+[node name="tile_fall105" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -232)
+
+[node name="tile_fall106" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -248)
+
+[node name="tile_fall107" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -264)
+
+[node name="tile_fall108" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -280)
+
+[node name="tile_fall149" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -296)
+
+[node name="tile_fall150" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -312)
+
+[node name="tile_fall109" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -328)
+
+[node name="tile_fall110" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -344)
+
+[node name="tile_fall111" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -360)
+
+[node name="tile_fall112" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(48, -360)
+
+[node name="tile_fall113" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(32, -360)
+
+[node name="tile_fall114" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(16, -360)
+
+[node name="tile_fall115" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -360)
+
+[node name="tile_fall116" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -376)
+
+[node name="tile_move2" parent="tiles" instance=ExtResource("4_8bhgk")]
+position = Vector2(264, -264)
+
+[node name="tile_move_config" parent="tiles/tile_move2" instance=ExtResource("5_mv8ey")]
+metadata/speed = 40
+metadata/reverse = false
+metadata/loop = true
+
+[node name="waypoints" type="Node2D" parent="tiles/tile_move2"]
+
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move2/waypoints"]
+position = Vector2(0, -80)
+
+[node name="tile_fall117" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -536)
+
+[node name="tile_fall118" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -408)
+
+[node name="tile_fall119" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-16, -408)
+
+[node name="tile_fall120" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-32, -408)
+
+[node name="tile_fall121" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-48, -408)
+
+[node name="tile_fall122" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -408)
+
+[node name="tile_fall123" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -424)
+
+[node name="tile_fall124" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -440)
+
+[node name="tile_fall125" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -456)
+
+[node name="tile_fall126" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -472)
+
+[node name="tile_fall127" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -488)
+
+[node name="tile_fall128" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-64, -504)
+
+[node name="tile_fall129" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-48, -504)
+
+[node name="tile_fall130" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-32, -504)
+
+[node name="tile_fall131" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(-16, -504)
+
+[node name="tile_fall132" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(16, -408)
+
+[node name="tile_fall133" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(32, -408)
+
+[node name="tile_fall134" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(48, -408)
+
+[node name="tile_fall135" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -408)
+
+[node name="tile_fall136" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -424)
+
+[node name="tile_fall137" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -440)
+
+[node name="tile_fall138" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -456)
+
+[node name="tile_fall139" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -472)
+
+[node name="tile_fall147" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -488)
+
+[node name="tile_fall148" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(64, -504)
+
+[node name="tile_fall142" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(48, -504)
+
+[node name="tile_fall143" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(32, -504)
+
+[node name="tile_fall144" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(16, -504)
+
+[node name="tile_fall145" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -504)
+
+[node name="tile_fall146" parent="tiles" instance=ExtResource("3_i18um")]
+position = Vector2(0, -520)
+
+[node name="tile_move3" parent="tiles" instance=ExtResource("4_8bhgk")]
+position = Vector2(-40, -456)
+
+[node name="tile_move_config" parent="tiles/tile_move3" instance=ExtResource("5_mv8ey")]
+metadata/speed = 60
+metadata/reverse = false
+metadata/loop = true
+
+[node name="waypoints" type="Node2D" parent="tiles/tile_move3"]
+
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move3/waypoints"]
+position = Vector2(80, 0)
+
+[node name="tile-block" parent="tiles" instance=ExtResource("6_8oooe")]
+position = Vector2(0, -432)
+
+[node name="tile-block2" parent="tiles" instance=ExtResource("6_8oooe")]
+position = Vector2(24, -136)
+
+[node name="tile-block5" parent="tiles" instance=ExtResource("6_8oooe")]
+position = Vector2(-64, -272)
+
+[node name="tile-block3" parent="tiles" instance=ExtResource("6_8oooe")]
+position = Vector2(0, -480)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(144, 128)
+autoscroll = Vector2(100, 100)
+screen_offset = Vector2(100, 100)
+
+[node name="lava" parent="Parallax2D" instance=ExtResource("6_80amw")]
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+position = Vector2(-248, -344)
+rotation = -0.785397
+height = 0.1
+
+[node name="gem1" parent="." instance=ExtResource("7_3r2vy")]
+position = Vector2(0, -136)
+
+[node name="gem2" parent="." instance=ExtResource("7_3r2vy")]
+position = Vector2(-64, -248)
+
+[node name="gem3" parent="." instance=ExtResource("7_3r2vy")]
+position = Vector2(0, -456)

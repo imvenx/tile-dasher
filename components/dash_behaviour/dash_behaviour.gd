@@ -58,7 +58,8 @@ func stopDashing():
 	adjustCooldownBasedOnDistance()
 	position.x = 0
 	modulate = Color(1, 1, 1, 1)
-	$unload.stop()
+	if $unload.playing:
+		$unload.stop()
 	$reload.play()
 	
 func cancelDash():
@@ -67,7 +68,8 @@ func cancelDash():
 	adjustCooldownBasedOnDistance()
 	position.x = 0
 	modulate = Color(1, 1, 1, 1)
-	$unload.stop()
+	if $unload.playing:
+		$unload.stop()
 	$reload.play()
 
 func adjustCooldownBasedOnDistance():
@@ -85,7 +87,8 @@ func updateCooldownProgress(delta: float):
 		var energy_recovered = delta / dashCooldownTime * 100
 		energyPercent = clamp(energyPercent + energy_recovered, 0, 100)
 	else:
-		$reload.stop()
+		if $reload.playing:
+			$reload.stop()
 
 func updateOpacity():
 	modulate = Color(0, 10, 100, energyPercent / 100)

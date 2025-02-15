@@ -1,0 +1,188 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnh5v0htchxvb"]
+
+[ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="1_wtim4"]
+[ext_resource type="PackedScene" uid="uid://c5oycs7smsf4m" path="res://components/player/player.tscn" id="2_jvmxc"]
+[ext_resource type="PackedScene" uid="uid://2el7cdlhrx8c" path="res://components/tiles/tile_fall.tscn" id="3_csfeo"]
+[ext_resource type="PackedScene" uid="uid://1lfo5m1xy0l2" path="res://components/tiles/tile-move/tile-move.tscn" id="4_24dmg"]
+[ext_resource type="PackedScene" uid="uid://c6jk2ksvkfrwq" path="res://components/tiles/tile-move/tile_move_config.tscn" id="5_y3hxw"]
+[ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="6_oqqna"]
+[ext_resource type="PackedScene" uid="uid://djp35qy2enu4w" path="res://components/gem/gem.tscn" id="7_7q4xn"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tiles" type="Node" parent="."]
+
+[node name="tile_success" parent="tiles" instance=ExtResource("1_wtim4")]
+position = Vector2(0, -520)
+scale = Vector2(2, 2)
+text = "O"
+
+[node name="tile_success2" parent="tiles" instance=ExtResource("1_wtim4")]
+scale = Vector2(2, 2)
+is_goal = false
+text = "IX"
+
+[node name="player" parent="tiles" instance=ExtResource("2_jvmxc")]
+
+[node name="tile_fall43" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(-56, -328)
+
+[node name="tile_fall50" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(-56, -344)
+
+[node name="tile_fall51" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(-40, -328)
+
+[node name="tile_fall52" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(-40, -344)
+
+[node name="tile_fall53" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(40, -480)
+
+[node name="tile_fall61" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(152, -496)
+
+[node name="tile_fall54" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(56, -480)
+
+[node name="tile_fall55" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(72, -480)
+
+[node name="tile_fall56" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(88, -480)
+
+[node name="tile_fall57" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(104, -480)
+
+[node name="tile_fall58" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(120, -480)
+
+[node name="tile_fall59" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(136, -480)
+
+[node name="tile_fall60" parent="tiles" instance=ExtResource("3_csfeo")]
+position = Vector2(152, -480)
+
+[node name="tile_move" parent="tiles" instance=ExtResource("4_24dmg")]
+position = Vector2(0, -32)
+
+[node name="tile_move_config" parent="tiles/tile_move" instance=ExtResource("5_y3hxw")]
+metadata/reverse = false
+metadata/loop = true
+metadata/startOnPlayerEnter = true
+
+[node name="waypoints" type="Node2D" parent="tiles/tile_move"]
+
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move/waypoints"]
+position = Vector2(0, -32)
+
+[node name="waypoint2" type="Node2D" parent="tiles/tile_move/waypoints"]
+position = Vector2(-64, -32)
+
+[node name="waypoint3" type="Node2D" parent="tiles/tile_move/waypoints"]
+position = Vector2(-64, -160)
+
+[node name="waypoint4" type="Node2D" parent="tiles/tile_move/waypoints"]
+position = Vector2(64, -160)
+
+[node name="waypoint5" type="Node2D" parent="tiles/tile_move/waypoints"]
+position = Vector2(64, -32)
+
+[node name="tile_move2" parent="tiles" instance=ExtResource("4_24dmg")]
+position = Vector2(0, -240)
+
+[node name="tile_move_config" parent="tiles/tile_move2" instance=ExtResource("5_y3hxw")]
+metadata/reverse = false
+metadata/loop = true
+
+[node name="waypoints" type="Node2D" parent="tiles/tile_move2"]
+
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move2/waypoints"]
+position = Vector2(0, -40)
+
+[node name="tile_move7" parent="tiles" instance=ExtResource("4_24dmg")]
+position = Vector2(0, -336)
+
+[node name="tile_move_config" parent="tiles/tile_move7" instance=ExtResource("5_y3hxw")]
+metadata/reverse = false
+metadata/loop = true
+
+[node name="waypoints" type="Node2D" parent="tiles/tile_move7"]
+
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move7/waypoints"]
+position = Vector2(0, 32)
+
+[node name="tile_move5" parent="tiles" instance=ExtResource("4_24dmg")]
+position = Vector2(152, -520)
+
+[node name="tile_move_config" parent="tiles/tile_move5" instance=ExtResource("5_y3hxw")]
+metadata/reverse = false
+metadata/loop = true
+metadata/startOnPlayerEnter = true
+
+[node name="waypoints" type="Node2D" parent="tiles/tile_move5"]
+
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move5/waypoints"]
+position = Vector2(-112, 0)
+
+[node name="waypoint2" type="Node2D" parent="tiles/tile_move5/waypoints"]
+position = Vector2(-112, 0)
+
+[node name="tile_move6" parent="tiles" instance=ExtResource("4_24dmg")]
+position = Vector2(-104, -104)
+
+[node name="tile_move_config" parent="tiles/tile_move6" instance=ExtResource("5_y3hxw")]
+metadata/reverse = false
+metadata/loop = true
+
+[node name="waypoints" type="Node2D" parent="tiles/tile_move6"]
+
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move6/waypoints"]
+position = Vector2(0, -64)
+
+[node name="tile_move3" parent="tiles" instance=ExtResource("4_24dmg")]
+position = Vector2(-48, -376)
+
+[node name="tile_move_config" parent="tiles/tile_move3" instance=ExtResource("5_y3hxw")]
+metadata/reverse = false
+metadata/loop = true
+
+[node name="waypoints" type="Node2D" parent="tiles/tile_move3"]
+
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move3/waypoints"]
+position = Vector2(0, -64)
+
+[node name="tile_move4" parent="tiles" instance=ExtResource("4_24dmg")]
+position = Vector2(-48, -480)
+
+[node name="tile_move_config" parent="tiles/tile_move4" instance=ExtResource("5_y3hxw")]
+metadata/reverse = false
+metadata/loop = true
+
+[node name="waypoints" type="Node2D" parent="tiles/tile_move4"]
+
+[node name="waypoint1" type="Node2D" parent="tiles/tile_move4/waypoints"]
+position = Vector2(48, 0)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(144, 128)
+autoscroll = Vector2(100, 100)
+screen_offset = Vector2(100, 100)
+
+[node name="lava" parent="Parallax2D" instance=ExtResource("6_oqqna")]
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+position = Vector2(-248, -344)
+rotation = -0.785397
+height = 0.1
+
+[node name="gem1" parent="." instance=ExtResource("7_7q4xn")]
+position = Vector2(16, -192)
+
+[node name="gem2" parent="." instance=ExtResource("7_7q4xn")]
+position = Vector2(-104, -144)
+
+[node name="gem3" parent="." instance=ExtResource("7_7q4xn")]
+position = Vector2(152, -480)
