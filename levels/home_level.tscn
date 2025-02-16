@@ -284,7 +284,7 @@ material = null
 position = Vector2(2149.4, 74.1171)
 
 [node name="Url" parent="store" instance=ExtResource("5_d5a51")]
-modulate = Color(1, 1, 0.129412, 1)
+modulate = Color(0.580392, 0.552941, 1, 1)
 material = null
 position = Vector2(2643.51, 74.117)
 

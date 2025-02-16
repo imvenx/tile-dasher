@@ -29,58 +29,55 @@ func _ready() -> void:
 	Global.gem_collected.connect(on_gem_collected)
 
 	smooth_transition_color.modulate.a = 1.0
-	_load_level(levels[Global.current_level]) 
+	loadLevel(levels[Global.current_level]) 
 
 	# Fade in at the start
 	var tween = get_tree().create_tween()
 	tween.tween_property(smooth_transition_color, "modulate:a", 0.0, 1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 
-func _load_level(level_path: String) -> void:
+func loadLevel(level_path: String) -> void:
 	if current_level_scene:
 		current_level_scene.queue_free()  # Ensure old level is removed before loading a new one
 
 	current_level_scene = load(level_path).instantiate()
 	add_child(current_level_scene)  # Add the new level
 
-func fade_out_and_change_level(level: String) -> void:
+func fadeOutAndChangeLevel(level: String) -> void:
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(smooth_transition_color, "modulate:a", 1.0, 1.0
 	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	await tween.finished
 
-	#if Global.current_level >= levels.size():
-		#print('game finished')
-		#return
-		
-	#if Global.current_level < levels.size():
-		#_load_level(levels[Global.current_level])
-	_load_level(level)
+	loadLevel(level)
 
 	# Fade back in after loading
 	tween = get_tree().create_tween()
 	tween.tween_property(smooth_transition_color, "modulate:a", 0.0, 1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 
 func on_level_completed() -> void:
+	await get_tree().create_timer(.3).timeout
+	if(Global.current_level == 12):
+		CrazySdk.happytime()
+	
 	#print(gems_collected)
 	#Global.current_level += 1
-	#fade_out_and_change_level(Global.current_level)
+	#fadeOutAndChangeLevel(Global.current_level)
 	CrazySdk.gameplayStop()
 
 	if(Global.current_level + 1 > Global.lastUnlockedLevel):
 		Global.setLastUnlockedLevel(Global.current_level + 1)
 	set_current_level_scene(0)
-	fade_out_and_change_level(levels[Global.current_level])
+	fadeOutAndChangeLevel(levels[Global.current_level])
 
 func on_restart_level():
-	fade_out_and_change_level(levels[Global.current_level])
-	#_load_level(levels[Global.current_level])
+	fadeOutAndChangeLevel(levels[Global.current_level])
 
 
 func on_go_to_level(levelNumber: int):
 	CrazySdk.gameplayStart()
 	set_current_level_scene(levelNumber)
-	fade_out_and_change_level(levels[levelNumber])
+	fadeOutAndChangeLevel(levels[levelNumber])
 
 
 func on_gem_collected(gem: String):

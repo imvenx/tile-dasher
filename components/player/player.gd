@@ -12,6 +12,8 @@ class_name Player
 @onready var area_2d = $Area2D
 var anim_speed = 1
 
+var localCollectedGems = []
+
 func _ready() -> void:
 
 	changeSuit(Global.currentSuit)
@@ -25,6 +27,11 @@ func _ready() -> void:
 	move_8d_behaviour.connect('stoped_moving', on_stop_moving)
 	area_2d.connect("area_entered", on_area_entered)
 	state_machine.connect("anim_ended", on_anim_ended)
+	Global.level_completed.connect(onLevelCompleted)
+	
+func onLevelCompleted():
+	for gem in localCollectedGems:
+		Global.gem_collected.emit(gem)
 	
 
 func _process(delta: float) -> void:
@@ -98,8 +105,8 @@ func on_stop_moving():
 var gems = 0
 func on_area_entered(area2d: Area2D):
 	if area2d.is_in_group("gem"):
+		localCollectedGems.push_front(area2d.name)
 		gems += 1
-		Global.gem_collected.emit(area2d.name)
 		state_machine.change_state('happy')
 		$state_machine/happy/gem.visible = true
 		$state_machine/happy/blink_bracer.visible = false
@@ -141,6 +148,7 @@ func on_anim_ended(anim: String):
 
 func changeSuit(suit: String):
 	
+	$changeClothesParticles.set_emitting(true)
 	var _material: ShaderMaterial = $state_machine/idle.material
 	_material.set_shader_parameter('targetColor', Vector3(.5,.5,.5))
 	_material.set_shader_parameter('replacementColor', Vector3(0,1,1))

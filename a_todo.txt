@@ -22,11 +22,10 @@
 ?- prevent fall if charging dash
 [?x]- fix crash
 [x] make levels easier
-- add particles and sound fireworks last level, and party
-- add particles lava, change suit
-- save collected gems only on finish level
-- make move tile optional param to start moving after player steps on it
-- add total of 12 levels at least
+[x] add particles and sound fireworks last level, and party
+[x] save collected gems only on finish level
+[x] make move tile optional param to start moving after player steps on it
+[x] add total of 12 levels at least
 - add credits, socials
 - fix fall after touching tile on successfull dash
 - dont save gems unless finish level
@@ -35,6 +34,7 @@
 - add remaining suits
 
 ## REFINE
+?- add particles lava
 - add exit level tile behind start tile
 - add skip level with ad tile after die 2 times 
 - prevent player move on success platform anim start

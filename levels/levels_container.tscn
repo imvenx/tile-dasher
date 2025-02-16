@@ -12,13 +12,12 @@ script/source = "extends Control
 script = ExtResource("1_c4a6t")
 
 [node name="smooth_transition_color" type="ColorRect" parent="."]
-visible = false
 z_index = 10
-offset_left = -1128.0
-offset_top = -928.0
-offset_right = -1088.0
-offset_bottom = -888.0
-scale = Vector2(66.1714, 65.3046)
+offset_left = -3344.0
+offset_top = -3296.0
+offset_right = -3304.0
+offset_bottom = -3256.0
+scale = Vector2(177.66, 174.459)
 color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control" parent="."]
