@@ -1,8 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://cty1j3pas531w"]
+[gd_scene load_steps=9 format=3 uid="uid://cty1j3pas531w"]
 
 [ext_resource type="Script" uid="uid://vnpm7i80qbfv" path="res://levels/levels_container.gd" id="1_c4a6t"]
+[ext_resource type="Shader" uid="uid://dqys37k8py2iu" path="res://levels/fog.gdshader" id="2_3mufk"]
 [ext_resource type="AudioStream" uid="uid://cqnh3vr4krpxs" path="res://sound/game-song.mp3" id="2_c4a6t"]
 [ext_resource type="AudioStream" uid="uid://cf641dv1xvghr" path="res://sound/lava-ambience-sound.mp3" id="3_vhwtf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3mufk"]
+frequency = 0.0075
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3mufk"]
+width = 1152
+height = 648
+generate_mipmaps = false
+seamless = true
+noise = SubResource("FastNoiseLite_3mufk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_plo0m"]
+shader = ExtResource("2_3mufk")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_3mufk")
+shader_parameter/density = 0.25
+shader_parameter/speed = Vector2(0.08, 0.07)
 
 [sub_resource type="GDScript" id="GDScript_vhwtf"]
 script/source = "extends Control
@@ -11,8 +28,23 @@ script/source = "extends Control
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_c4a6t")
 
-[node name="smooth_transition_color" type="ColorRect" parent="."]
-z_index = 10
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 0
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(8, 8)
+motion_offset = Vector2(100, 100)
+motion_mirroring = Vector2(1152, 648)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+material = SubResource("ShaderMaterial_plo0m")
+offset_left = 2.0
+offset_right = 1154.0
+offset_bottom = 648.0
+
+[node name="smooth_transition_color" type="ColorRect" parent="ParallaxBackground"]
+z_index = 200
 offset_left = -3344.0
 offset_top = -3296.0
 offset_right = -3304.0

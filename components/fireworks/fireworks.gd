@@ -17,7 +17,7 @@ func _ready():
 	_on_timer_timeout()
 
 func _on_timer_timeout():
-	$"Explosion(3)".play()
+	$"explosion-sound".play()
 	set_emitting(true)
 
 #func _change_color():

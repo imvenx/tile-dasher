@@ -91,3 +91,9 @@ func deleteAllStorage():
 		
 static func coalesce(value, default_value):
 	return value if value != null else default_value
+
+
+func open_link(link: String):
+	var val = "window.open('"+link+"', '_blank')"
+	print(val)
+	JavaScriptBridge.eval(val)

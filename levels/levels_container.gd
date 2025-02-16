@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var smooth_transition_color: ColorRect = $smooth_transition_color
+@onready var smooth_transition_color: ColorRect = $ParallaxBackground/smooth_transition_color
 
 var levels = [
 	"res://levels/home_level.tscn",

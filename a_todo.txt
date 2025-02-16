@@ -26,12 +26,11 @@
 [x] save collected gems only on finish level
 [x] make move tile optional param to start moving after player steps on it
 [x] add total of 12 levels at least
+[x] add remaining suits
+[x] add moving tile with nodes path children
+[x] move tile on home menu should start moving only after beat level 8
 - add credits, socials
-- fix fall after touching tile on successfull dash
-- dont save gems unless finish level
-- add moving tile with nodes path children
-- move tile on home menu should start moving only after beat level 8
-- add remaining suits
+?- fix fall after touching tile on successfull dash
 
 ## REFINE
 ?- add particles lava

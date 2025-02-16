@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://cyu4sxt1xgu3"]
+[gd_scene load_steps=8 format=4 uid="uid://cyu4sxt1xgu3"]
 
 [ext_resource type="Script" uid="uid://d20akqow7onet" path="res://components/fireworks/fireworks.gd" id="1_t2ewd"]
 [ext_resource type="Script" uid="uid://dxx1ufxu8jy2h" path="res://addons/godot_sfxr/SfxrStreamPlayer.gd" id="2_jqxk7"]
-[ext_resource type="AudioStream" uid="uid://dilwg5qp8g0mi" path="res://components/fireworks/fireworks-explosion.mp3" id="3_q3rjs"]
-[ext_resource type="AudioStream" uid="uid://y6qqgu1lsqg3" path="res://components/fireworks/explosion(2).wav" id="4_jqxk7"]
-[ext_resource type="AudioStream" uid="uid://dyhtmhmogdvq1" path="res://components/fireworks/explosion(3).wav" id="5_q3rjs"]
+[ext_resource type="AudioStream" uid="uid://qfruwcw8abeb" path="res://components/fireworks/fireworks-explosion.mp3" id="3_q3rjs"]
 
 [sub_resource type="Gradient" id="Gradient_e4vtt"]
 colors = PackedColorArray(0, 1, 1, 1, 1, 0.517647, 1, 1)
@@ -70,18 +68,7 @@ high_pass_filter/cutoff_frequency = 0.0
 high_pass_filter/cutoff_sweep = 0.0
 metadata/_custom_type_script = ExtResource("2_jqxk7")
 
-[node name="Fireworks-explosion" type="AudioStreamPlayer2D" parent="."]
+[node name="explosion-sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_q3rjs")
-max_distance = 400.0
-attenuation = 1.10957
-
-[node name="Explosion(2)" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_jqxk7")
-volume_db = -15.0
-max_distance = 300.0
-attenuation = 0.406126
-
-[node name="Explosion(3)" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_q3rjs")
 volume_db = -10.0
 max_distance = 1000.0

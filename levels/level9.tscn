@@ -74,7 +74,7 @@ metadata/startOnPlayerEnter = true
 [node name="waypoints" type="Node2D" parent="tiles/tile_move"]
 
 [node name="waypoint1" type="Node2D" parent="tiles/tile_move/waypoints"]
-position = Vector2(0, -32)
+position = Vector2(0, -31)
 
 [node name="waypoint2" type="Node2D" parent="tiles/tile_move/waypoints"]
 position = Vector2(-64, -32)
