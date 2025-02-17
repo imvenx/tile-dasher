@@ -96,6 +96,7 @@ hframes = 7
 
 [node name="SuccessPlatformActivate" type="AudioStreamPlayer2D" parent="." index="6"]
 stream = ExtResource("10_n3mvd")
+volume_db = -5.0
 
 [node name="PointLight2D" type="PointLight2D" parent="." index="7"]
 z_index = 2

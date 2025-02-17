@@ -6,8 +6,8 @@ uniform vec2 speed = vec2(0.05, 0.05);
 
 void fragment() {
 	vec2 uv = UV + speed * TIME;
-	
+
 	float noise = texture(noise_texture, uv).r;
 	float fog = clamp(noise * 2.0 - 1.0, 0.0, 1.0);
-	COLOR.a *= fog * density; 
+	COLOR.a *= fog * density;
 }

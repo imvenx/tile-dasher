@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bik5xw0wq8lsj"]
+[gd_scene load_steps=11 format=3 uid="uid://bik5xw0wq8lsj"]
 
 [ext_resource type="Script" uid="uid://xkmf7mf23e4r" path="res://levels/home_level.gd" id="1_bk3ur"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="1_o8q58"]
@@ -8,13 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bb02c455xi8vf" path="res://components/tiles/tile_success/tile_success.tscn" id="5_xqjf2"]
 [ext_resource type="PackedScene" uid="uid://c6jk2ksvkfrwq" path="res://components/tiles/tile-move/tile_move_config.tscn" id="8_iy2cv"]
 [ext_resource type="PackedScene" uid="uid://c3vxm88ppme36" path="res://components/tiles/tile-block/tile_block.tscn" id="8_m2b6b"]
-[ext_resource type="Script" uid="uid://cl2kqr5dhjwr5" path="res://components/store-suit-item/social-link.gd" id="10_v1ieb"]
-[ext_resource type="Texture2D" uid="uid://map7pl6x7ehf" path="res://components/store-suit-item/IMG_0059.PNG" id="11_wxsmv"]
+[ext_resource type="PackedScene" uid="uid://betka8mwaibgu" path="res://components/store-suit-item/social-link.tscn" id="10_2rs62"]
 [ext_resource type="PackedScene" uid="uid://1lfo5m1xy0l2" path="res://components/tiles/tile-move/tile-move.tscn" id="11_xqjf2"]
-[ext_resource type="AudioStream" uid="uid://c080ra8ojkhgi" path="res://components/store-suit-item/change-cothes-sound.mp3" id="12_jrl3g"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8q58"]
-size = Vector2(111.175, 111.175)
 
 [node name="home_level" type="Node2D"]
 script = ExtResource("1_bk3ur")
@@ -294,58 +289,8 @@ modulate = Color(0.580392, 0.552941, 1, 1)
 material = null
 position = Vector2(2643.51, 74.117)
 
-[node name="Discord" type="Node2D" parent="store"]
-modulate = Color(0.580392, 0.552941, 1, 1)
+[node name="Discord" parent="store" instance=ExtResource("10_2rs62")]
 position = Vector2(2643.51, -123.528)
-script = ExtResource("10_v1ieb")
-
-[node name="sprite2d" type="Sprite2D" parent="store/Discord"]
-modulate = Color(0.164706, 0.164706, 0.164706, 0.823529)
-z_index = 1
-position = Vector2(-0.000518799, 3.08826)
-scale = Vector2(1.74599, 1.74599)
-texture = ExtResource("11_wxsmv")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="store/Discord"]
-z_index = 1
-offset_left = -64.8529
-offset_top = 23.0
-offset_right = 65.1471
-offset_bottom = 63.0
-text = "Suit"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Area2D" type="Area2D" parent="store/Discord"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="store/Discord/Area2D"]
-position = Vector2(3.8147e-06, -4.76837e-07)
-shape = SubResource("RectangleShape2D_o8q58")
-
-[node name="tooltip" type="ColorRect" parent="store/Discord"]
-z_index = 3
-offset_left = -104.0
-offset_top = -112.0
-offset_right = 216.0
-offset_bottom = -40.0
-scale = Vector2(0.653361, 0.653361)
-color = Color(0, 0, 0, 1)
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="store/Discord/tooltip"]
-z_index = 4
-layout_mode = 0
-offset_top = 1.0
-offset_right = 251.0
-offset_bottom = 56.0
-scale = Vector2(1.27572, 1.27572)
-text = "Unlock this suit by pressing ENTER to watch an ad"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="change-clothes-sound" type="AudioStreamPlayer2D" parent="store/Discord"]
-position = Vector2(-120, 0)
-stream = ExtResource("12_jrl3g")
-volume_db = 10.0
 
 [node name="pink" parent="store" instance=ExtResource("5_d5a51")]
 modulate = Color(0.921569, 0.372549, 0.956863, 1)

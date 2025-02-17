@@ -13,6 +13,7 @@ width = 1152
 height = 648
 generate_mipmaps = false
 seamless = true
+seamless_blend_skirt = 0.04
 noise = SubResource("FastNoiseLite_3mufk")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_plo0m"]
@@ -65,8 +66,12 @@ script = SubResource("GDScript_vhwtf")
 position = Vector2(0, 16)
 stream = ExtResource("2_c4a6t")
 autoplay = true
+max_distance = 10000.0
+panning_strength = 0.0
 
 [node name="Lava-ambience-sound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -24)
 stream = ExtResource("3_vhwtf")
 autoplay = true
+max_distance = 10000.0
+panning_strength = 0.0

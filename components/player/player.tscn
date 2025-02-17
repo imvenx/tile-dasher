@@ -482,7 +482,7 @@ frame = 1
 
 [node name="walk_sound" type="AudioStreamPlayer" parent="player/state_machine/walk"]
 stream = SubResource("AudioStreamWAV_x3fw6")
-volume_db = -15.0
+volume_db = -18.0
 script = ExtResource("18_8rpwc")
 wave/type = 2
 sample_params/sound_vol = 0.25
