@@ -34,6 +34,11 @@ func _input(event: InputEvent) -> void:
 	if isPlayerInside and event.is_action_pressed("ui_accept"):
 		var tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property($tooltip, "modulate:a", 0.0, 0.3)
-		Global.open_link('https://discord.gg/egJCEWRhpz')
+		
+		var discordLink = 'https://discord.gg/egJCEWRhpz'
+		var twitterLink = 'https://x.com/nexype'
+		var mastodonLink = 'https://mastodon.social/@nexype'
+		var link = ''
+		Global.open_link('')
 		#Global.addUnlockedSuit(name)
 		#CrazySdk.requestRewardedAd()

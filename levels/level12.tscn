@@ -1991,3 +1991,20 @@ scale = Vector2(0.552288, 0.552288)
 [node name="GPUParticles2D11" parent="." instance=ExtResource("11_5o0av")]
 position = Vector2(1504, -48)
 scale = Vector2(0.552288, 0.552288)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 864.0
+offset_top = -32.0
+offset_right = 1816.0
+offset_bottom = 16.0
+scale = Vector2(0.437365, 0.437365)
+text = "Lava Ambience.wav by andreivstudio -- https://freesound.org/s/555380/ -- License: Creative Commons 0
+"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="."]
+offset_left = 1296.0
+offset_top = 16.0
+offset_right = 1728.0
+offset_bottom = 64.0
+scale = Vector2(0.555951, 0.555951)
+text = "Game music, art and programming made by NEXYPE"

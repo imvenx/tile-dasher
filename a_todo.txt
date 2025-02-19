@@ -11,15 +11,14 @@
 [x] change pick blink bracer sound and add text
 [x] store if can use dash
 [x] add success tile animation and sound
-[x] add ninja suit and others for ad watch and 
-	posibility to go back to default suit
+[x] add ninja suit and others for ad watch 
+		and posibility to go back to default suit
 [x] change k for space bar for dash
 [x] on finish level teleport player below respective platform
 [x] properly map wasd input
 [x] add crazygames API
 [x] fix home menu big tile collider
 [x] fix lag on start level on web (fixed it was a shader on the store suit sprite)
-?- prevent fall if charging dash
 [?x]- fix crash
 [x] make levels easier
 [x] add particles and sound fireworks last level, and party
@@ -29,8 +28,9 @@
 [x] add remaining suits
 [x] add moving tile with nodes path children
 [x] move tile on home menu should start moving only after beat level 8
-- add credits, socials
-?- fix fall after touching tile on successfull dash
+[x] add credits, socials
+[?x] fix fall after touching tile on successfull dash
+?- prevent fall if charging dash
 
 ## REFINE
 ?- add particles lava
