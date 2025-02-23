@@ -35,10 +35,10 @@ func _input(event: InputEvent) -> void:
 		var tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property($tooltip, "modulate:a", 0.0, 0.3)
 		
-		var discordLink = 'https://discord.gg/egJCEWRhpz'
-		var twitterLink = 'https://x.com/nexype'
-		var mastodonLink = 'https://mastodon.social/@nexype'
-		var link = ''
-		Global.open_link('')
+		var links = {
+			Discord = 'https://discord.gg/egJCEWRhpz',
+			Mastodon = 'https://mastodon.social/@nexype',
+		}
+		Global.open_link(links[name])
 		#Global.addUnlockedSuit(name)
 		#CrazySdk.requestRewardedAd()

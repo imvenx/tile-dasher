@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://bik5xw0wq8lsj"]
+[gd_scene load_steps=17 format=4 uid="uid://bik5xw0wq8lsj"]
 
 [ext_resource type="Script" uid="uid://xkmf7mf23e4r" path="res://levels/home_level.gd" id="1_bk3ur"]
 [ext_resource type="PackedScene" uid="uid://djavpkgmyfxxs" path="res://components/lava/lava.tscn" id="1_o8q58"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://betka8mwaibgu" path="res://components/store-suit-item/social-link.tscn" id="10_2rs62"]
 [ext_resource type="Script" uid="uid://cl2kqr5dhjwr5" path="res://components/store-suit-item/social-link.gd" id="11_jrl3g"]
 [ext_resource type="PackedScene" uid="uid://1lfo5m1xy0l2" path="res://components/tiles/tile-move/tile-move.tscn" id="11_xqjf2"]
-[ext_resource type="Texture2D" uid="uid://bjy4oqhsa8uvb" path="res://components/store-suit-item/twitter-logo.png" id="12_0ak7j"]
 [ext_resource type="AudioStream" uid="uid://c080ra8ojkhgi" path="res://components/store-suit-item/change-cothes-sound.mp3" id="13_0ak7j"]
 [ext_resource type="Script" uid="uid://dxx1ufxu8jy2h" path="res://addons/godot_sfxr/SfxrStreamPlayer.gd" id="14_03fjm"]
 [ext_resource type="Texture2D" uid="uid://cmjeu1kt6ocpv" path="res://components/store-suit-item/mastodon-logo.png" id="15_mnwe3"]
@@ -301,90 +300,7 @@ material = null
 position = Vector2(2643.51, 74.117)
 
 [node name="Discord" parent="store" instance=ExtResource("10_2rs62")]
-position = Vector2(2501.45, -299.557)
-
-[node name="Twitter-X" type="Node2D" parent="store"]
-modulate = Color(0.580392, 0.552941, 1, 1)
-position = Vector2(2686.74, -299.557)
-script = ExtResource("11_jrl3g")
-
-[node name="sprite2d2" type="Sprite2D" parent="store/Twitter-X"]
-z_index = 1
-position = Vector2(-0.000732422, 3.08826)
-scale = Vector2(0.966308, 0.966308)
-texture = ExtResource("12_0ak7j")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="store/Twitter-X"]
-z_index = 1
-offset_left = -64.8529
-offset_top = 23.0
-offset_right = 65.1471
-offset_bottom = 63.0
-text = "Suit"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Area2D" type="Area2D" parent="store/Twitter-X"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="store/Twitter-X/Area2D"]
-position = Vector2(0, 9.26448)
-shape = SubResource("RectangleShape2D_o8q58")
-
-[node name="tooltip" type="ColorRect" parent="store/Twitter-X"]
-z_index = 3
-offset_left = -104.0
-offset_top = -112.0
-offset_right = 216.0
-offset_bottom = -40.0
-scale = Vector2(0.653361, 0.653361)
-color = Color(0, 0, 0, 1)
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="store/Twitter-X/tooltip"]
-z_index = 4
-layout_mode = 0
-offset_top = 1.0
-offset_right = 251.0
-offset_bottom = 56.0
-scale = Vector2(1.27572, 1.27572)
-text = "Press ENTER to open link"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="change-clothes-sound" type="AudioStreamPlayer2D" parent="store/Twitter-X"]
-position = Vector2(-120, 0)
-stream = ExtResource("13_0ak7j")
-volume_db = 10.0
-
-[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="store/Twitter-X"]
-stream = SubResource("AudioStreamWAV_3nssn")
-volume_db = -20.0
-script = ExtResource("14_03fjm")
-wave/type = 1
-sample_params/sound_vol = 0.25
-sample_params/sample_rate = 44100.0
-envelope/attack_time = 0.0
-envelope/sustain_time = 0.0295032
-envelope/punch_time = 0.507596
-envelope/decay_time = 0.490119
-frequency/start_frequency = 0.439276
-frequency/min_freq_cutoff = 0.0
-frequency/slide = 0.0
-frequency/delta_slide = 0.0
-vibrato/depth = 0.0
-vibrato/speed = 0.0
-arpeggiation/frequency_mult = 0.0
-arpeggiation/change_speed = 0.0
-duty_cycle/duty_cycle = 0.0
-duty_cycle/sweep = 0.0
-retrigger/rate = 0.0
-flanger/offset = 0.0
-flanger/sweep = 0.0
-low_pass_filter/cutoff_frequency = 1.0
-low_pass_filter/cutoff_sweep = 0.0
-low_pass_filter/resonance = 0.0
-high_pass_filter/cutoff_frequency = 0.0
-high_pass_filter/cutoff_sweep = 0.0
-metadata/_custom_type_script = ExtResource("14_03fjm")
+position = Vector2(2686.74, -305.733)
 
 [node name="Mastodon" type="Node2D" parent="store"]
 modulate = Color(0.580392, 0.552941, 1, 1)

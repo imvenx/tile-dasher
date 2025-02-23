@@ -30,6 +30,8 @@
 [x] move tile on home menu should start moving only after beat level 8
 [x] add credits, socials
 [?x] fix fall after touching tile on successfull dash
+- add youtube and instagram? and steam page?
+- add reddit?
 ?- prevent fall if charging dash
 
 ## REFINE

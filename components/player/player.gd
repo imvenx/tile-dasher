@@ -123,7 +123,7 @@ func on_area_entered(area2d: Area2D):
 		).modulate = Color(1,1,1,1)
 	
 	if area2d.name == "blink_bracer":
-		CrazySdk.happytime()
+		#CrazySdk.happytime()
 		$"pick-item".process_mode = Node.PROCESS_MODE_ALWAYS
 		$"pick-item".play()
 		dash_progress_bar.setIsVisible(false)
