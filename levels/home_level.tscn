@@ -252,24 +252,6 @@ modulate = Color(1, 0.392157, 0.0784314, 1)
 material = null
 position = Vector2(-123.528, -24.7057)
 
-[node name="ColorRect2" type="ColorRect" parent="store/orange"]
-visible = false
-offset_left = -33.9703
-offset_top = -9.26463
-offset_right = 6.02968
-offset_bottom = 30.7354
-scale = Vector2(1.63289, 1.63289)
-color = Color(0.806873, 0.582555, 0.110612, 1)
-
-[node name="ColorRect3" type="ColorRect" parent="store/orange"]
-visible = false
-offset_left = -30.8821
-offset_top = -43.235
-offset_right = 9.11789
-offset_bottom = -3.23495
-scale = Vector2(1.34912, 0.856699)
-color = Color(0, 0, 0, 1)
-
 [node name="green" parent="store" instance=ExtResource("5_d5a51")]
 modulate = Color(0.588235, 1, 0.392157, 1)
 material = null
@@ -383,7 +365,7 @@ low_pass_filter/cutoff_sweep = 0.0
 low_pass_filter/resonance = 0.0
 high_pass_filter/cutoff_frequency = 0.0
 high_pass_filter/cutoff_sweep = 0.0
-metadata/_custom_type_script = ExtResource("14_03fjm")
+metadata/_custom_type_script = "uid://dxx1ufxu8jy2h"
 
 [node name="pink" parent="store" instance=ExtResource("5_d5a51")]
 modulate = Color(0.921569, 0.372549, 0.956863, 1)

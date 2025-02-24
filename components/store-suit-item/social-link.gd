@@ -22,13 +22,9 @@ func onBodyExit(body: Node2D) -> void:
 	if body.is_in_group("player"): 
 		isPlayerInside = false
 		
-		if Global.unlockedSuits.has(name):
-			pass
-			#Global.setCurrentSuit(name)
-		else:
-			var tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-			tween.tween_property($tooltip, "modulate:a", 0.0, 0.3)
-			body.changeSuit(Global.currentSuit)
+		var tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property($tooltip, "modulate:a", 0.0, 0.3)
+		#body.changeSuit(Global.currentSuit)
 
 func _input(event: InputEvent) -> void:
 	if isPlayerInside and event.is_action_pressed("ui_accept"):

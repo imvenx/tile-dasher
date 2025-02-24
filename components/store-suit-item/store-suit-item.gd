@@ -22,7 +22,7 @@ func onBodyEnter(body: Node2D) -> void:
 			tween.tween_property($tooltip, "modulate:a", 1.0, 0.3) 
 
 func onBodyExit(body: Node2D) -> void:
-	if isDisabled: return
+	#if isDisabled: return
 	if body.is_in_group("player"): 
 		isPlayerInside = false
 		

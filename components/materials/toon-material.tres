@@ -4,5 +4,5 @@
 
 [resource]
 shader = ExtResource("1_5rxjw")
-shader_parameter/TOON_STEPS_12 = 2
+shader_parameter/TOON_STEPS_12 = 3
 shader_parameter/COLOR_BOOST_5 = 1.0

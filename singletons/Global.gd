@@ -26,7 +26,9 @@ var currentSuit = getItem('currentSuit', 'green')
 func setCurrentSuit(val: String):
 	currentSuit = val
 	setItem('currentSuit', val)
-var unlockedSuits = getItem('unlockedSuits', ['green', 'lava'])
+var unlockedSuits = getItem('unlockedSuits', 
+['green', 'lava', 'orange', 'ninja', 'white', 'blue', 'pink',
+ 'energy', 'invisible', 'Url'])
 func addUnlockedSuit(suit: String):
 	if not unlockedSuits.has(suit):
 		unlockedSuits.push_front(suit)
