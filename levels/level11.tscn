@@ -309,4 +309,3 @@ position = Vector2(-40, -376)
 
 [node name="gem3" parent="." instance=ExtResource("7_y8dwv")]
 position = Vector2(72, -568)
-scale = Vector2(0.567278, 0.636577)

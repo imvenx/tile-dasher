@@ -509,7 +509,7 @@ low_pass_filter/cutoff_sweep = 0.0
 low_pass_filter/resonance = 0.0
 high_pass_filter/cutoff_frequency = 0.228629
 high_pass_filter/cutoff_sweep = 0.0
-metadata/_custom_type_script = ExtResource("18_8rpwc")
+metadata/_custom_type_script = "uid://dxx1ufxu8jy2h"
 
 [node name="fall" type="Sprite2D" parent="player/state_machine"]
 visible = false
