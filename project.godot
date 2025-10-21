@@ -20,7 +20,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://singletons/Global.gd"
-CrazySdk="*res://singletons/CrazySDK.gd"
 
 [debug]
 

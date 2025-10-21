@@ -41,4 +41,3 @@ func _input(event: InputEvent) -> void:
 		var tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property($tooltip, "modulate:a", 0.0, 0.3)
 		Global.addUnlockedSuit(name)
-		#CrazySdk.requestRewardedAd()

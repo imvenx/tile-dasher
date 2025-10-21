@@ -37,4 +37,3 @@ func _input(event: InputEvent) -> void:
 		}
 		Global.open_link(links[name])
 		#Global.addUnlockedSuit(name)
-		#CrazySdk.requestRewardedAd()
