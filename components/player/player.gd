@@ -10,6 +10,8 @@ class_name Player
 @onready var state_machine: StateMachine = $state_machine
 @onready var dash_progress_bar: DashProgressBar = $'../dash_progress_bar'
 @onready var area_2d = $Area2D
+@onready var virtual_joystick = %joystick
+
 var anim_speed = 1
 
 var localCollectedGems = []
@@ -42,25 +44,45 @@ func _process(delta: float) -> void:
 func handle_movement_and_rotation():
 	var input_vector = Vector2.ZERO
 	
-	#if Input.is_key_pressed(KEY_W):
-	if Input.is_action_pressed("ui_up"):
-		input_vector.y -= 1
-	#if Input.is_key_pressed(KEY_S):
-	if Input.is_action_pressed("ui_down"):
-		input_vector.y += 1
-	if Input.is_action_pressed("ui_left"):
-	#if Input.is_key_pressed(KEY_A):
-		input_vector.x -= 1
-	if Input.is_action_pressed("ui_right"):
-	#if Input.is_key_pressed(KEY_D):
-		input_vector.x += 1
+	if virtual_joystick and virtual_joystick.is_active:
+		# Use joystick input
+		input_vector = virtual_joystick.get_output_vector()
+	else:
+		#if Input.is_key_pressed(KEY_W):
+		if Input.is_action_pressed("ui_up"):
+			input_vector.y -= 1
+		#if Input.is_key_pressed(KEY_S):
+		if Input.is_action_pressed("ui_down"):
+			input_vector.y += 1
+		if Input.is_action_pressed("ui_left"):
+		#if Input.is_key_pressed(KEY_A):
+			input_vector.x -= 1
+		if Input.is_action_pressed("ui_right"):
+		#if Input.is_key_pressed(KEY_D):
+			input_vector.x += 1
 	move_8d_behaviour.move_8d(input_vector)
 	rotate_behaviour.rotate(input_vector)
 	
 func _input(event: InputEvent):
+	
 	if not Global.hasBlinkBracer: return
 	
 	if not floor_detector.has_fallen:
+		# Check for right side screen press (touch or mouse) - but NOT keyboard
+		if (event is InputEventScreenTouch or (event is InputEventMouseButton and not event is InputEventKey)):
+			if event.pressed and event.position.x > get_viewport_rect().size.x / 2:
+				if state_machine.state == 'walk':
+					state_machine.change_anim_speed(0.5)
+				dashBehaviour.startDashing()
+				rotate_behaviour.modify_rotation_speed(4)
+				move_8d_behaviour.change_speed(.5)
+			elif not event.pressed and event.position.x > get_viewport_rect().size.x / 2:
+				state_machine.change_anim_speed(anim_speed)
+				dashBehaviour.stopDashing()
+				rotate_behaviour.reset_rotation_speed()
+				move_8d_behaviour.reset_speed()
+		
+		# Keep existing keyboard functionality
 		if event.is_action_pressed('dash'):
 			if state_machine.state == 'walk':
 				state_machine.change_anim_speed(0.5)
@@ -72,7 +94,7 @@ func _input(event: InputEvent):
 			dashBehaviour.stopDashing()
 			rotate_behaviour.reset_rotation_speed()
 			move_8d_behaviour.reset_speed()
-	
+			
 func onFall():
 	$CollisionShape2D.disabled = true
 	z_index -= 3

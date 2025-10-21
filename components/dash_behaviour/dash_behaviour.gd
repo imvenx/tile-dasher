@@ -42,6 +42,7 @@ func _physics_process(delta: float) -> void:
 func startDashing():
 	if energyPercent <= 0: 
 		return
+	%dashstick/ColorRect/ColorRect.color = Color(0,1,1)
 		
 	position.x += initialDashJumpStep
 	energyPercent -= initialDashEnergySpent
@@ -52,6 +53,8 @@ func startDashing():
 
 func stopDashing():
 	if not isDashing: return
+	%dashstick/ColorRect/ColorRect.color = Color(0,0,0)
+	
 	visible = false
 	dash.emit(global_position)
 	isDashing = false

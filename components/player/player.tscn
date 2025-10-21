@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=4 uid="uid://c5oycs7smsf4m"]
+[gd_scene load_steps=74 format=4 uid="uid://c5oycs7smsf4m"]
 
 [ext_resource type="PackedScene" uid="uid://bh8uwy3lhrnnt" path="res://components/round_progress_bar/round_progress_bar.tscn" id="1_pxnim"]
 [ext_resource type="Script" uid="uid://iuxgc4nbxcxm" path="res://components/player/player_container.gd" id="1_qhwjt"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://bo0vbby1u86vj" path="res://components/tiles/fall.mp3" id="14_wmnke"]
 [ext_resource type="Script" uid="uid://dxx1ufxu8jy2h" path="res://addons/godot_sfxr/SfxrStreamPlayer.gd" id="18_8rpwc"]
 [ext_resource type="PackedScene" uid="uid://cqkvppm3y6woj" path="res://hud/hud.tscn" id="20_vckwg"]
+[ext_resource type="PackedScene" uid="uid://kvpbdu50onx2" path="res://joystick/joystick.tscn" id="24_5fydm"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5lnqj"]
 diffuse_texture = ExtResource("10_8rpwc")
@@ -328,12 +329,12 @@ graph_offset = Vector2(0, -60.5652)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hc4cx"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_x3fw6"]
+nodes/output/position = Vector2(760, 20)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_8rpwc")
 nodes/StateMachine/position = Vector2(180, 20)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hc4cx")
 nodes/TimeScale/position = Vector2(500, 60)
-nodes/output/position = Vector2(760, 20)
-node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wmnke"]
 shader = ExtResource("9_5fydm")
@@ -408,6 +409,73 @@ script = ExtResource("1_qhwjt")
 
 [node name="dash_progress_bar" parent="." node_paths=PackedStringArray("obj") instance=ExtResource("1_pxnim")]
 obj = NodePath("../player/dash_behaviour")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="joystick" parent="CanvasLayer" instance=ExtResource("24_5fydm")]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = -136.0
+offset_right = 200.0
+offset_bottom = -96.0
+grow_vertical = 0
+
+[node name="dashstick" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.6627451)
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1004.0
+offset_top = -136.0
+offset_right = 1044.0
+offset_bottom = -96.0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/dashstick"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -112.0
+offset_right = -0.3721161
+offset_bottom = -40.372116
+grow_vertical = 0
+scale = Vector2(2.0103903, 2.0103903)
+size_flags_horizontal = 8
+size_flags_vertical = 8
+color = Color(0, 0, 0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/dashstick/ColorRect"]
+layout_mode = 0
+offset_left = 36.31137
+offset_top = -7.9586487
+offset_right = 107.939255
+offset_bottom = 63.669235
+rotation = 0.7853982
+scale = Vector2(0.8540333, 0.8540333)
+color = Color(0, 0, 0, 0.67058825)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/dashstick/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.917311
+offset_top = -7.9586544
+offset_right = 35.813934
+offset_bottom = 19.896637
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.669241, 0.669241)
+text = "DASH"
 
 [node name="player" type="CharacterBody2D" parent="." groups=["player"]]
 z_index = 1
